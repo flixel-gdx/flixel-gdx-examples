@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">flixel-android</string>
+    <string-array name="demos">
+        <item>PathFinding</item>
+        <item>FlxCollisions</item>
+        <item>FlxTilemapDemo</item>
+        <item>Particles</item>
+        <item>SaveDemo</item>
+        <item>AnimationDemo</item>
+        <item>CollisionDemo</item>
+        <item>ThousandParticlesDemo</item>
+        <item>BlurDemo</item>
+        <item>BitmapfontDemo</item>
+        <item>MultiTouchDemo</item>
+        <item>DragAndDropDemo</item>
+        <item>CameraEffectsDemo</item>
+        <item>AudioDemo</item>
+        <item>TileDemo</item>
+        <item>EZPlatformer</item>
+        <item>TiledMap2Demo</item>
+        <item>AnalogDemo</item> 
+		<item>SensorDemo</item>
+		<item>Mode</item>
+		<item>FlxInvaders"</item>
+		<item>VibrationDemo</item>
+    </string-array>
+</resources>
