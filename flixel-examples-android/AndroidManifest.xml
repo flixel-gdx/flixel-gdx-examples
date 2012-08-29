@@ -144,7 +144,12 @@
             android:label="FlxInvaders"
             android:screenOrientation="landscape" >
         </activity>
-        
+        <activity
+            android:name=".BomberPlanet"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="BomberPlanet"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

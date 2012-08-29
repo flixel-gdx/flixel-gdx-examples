@@ -22,7 +22,8 @@
         <item>AnalogDemo</item> 
 		<item>SensorDemo</item>
 		<item>Mode</item>
-		<item>FlxInvaders"</item>
+		<item>FlxInvaders</item>
 		<item>VibrationDemo</item>
+		<item>BomberPlanet</item>
     </string-array>
 </resources>
