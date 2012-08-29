@@ -3,7 +3,7 @@ package org.flixel.examples.animation;
 import org.flixel.FlxG;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
-import org.flixel.event.AFlxSprite;
+import org.flixel.event.AFlxAnim;
 
 /**
  * A simple demo to show how animation works.
@@ -64,10 +64,10 @@ public class PlayState extends FlxState
 	}
 
 	
-	AFlxSprite AnimationCallback = new AFlxSprite()
+	AFlxAnim AnimationCallback = new AFlxAnim()
 	{
 		@Override
-		public void onAnimate(String curAnim, int curFrame, int curIndex)
+		public void callback(String curAnim, int curFrame, int curIndex)
 		{
 			if(curFrame == 5)
 			{

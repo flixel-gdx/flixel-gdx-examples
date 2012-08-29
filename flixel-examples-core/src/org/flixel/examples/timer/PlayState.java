@@ -55,7 +55,7 @@ public class PlayState extends FlxState
 	AFlxTimer stop = new AFlxTimer()
 	{
 		@Override
-		public void onComplete(FlxTimer flxTimer)
+		public void callback(FlxTimer flxTimer)
 		{
 			_text.setText("Time: complete");
 			_complete = true;

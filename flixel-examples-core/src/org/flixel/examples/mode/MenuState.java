@@ -152,7 +152,7 @@ public class MenuState extends FlxState
 			fading = true;
 			FlxG.play(SndHit2);
 			FlxG.flash(0xffd8eba2,0.5f);
-			FlxG.fade(0xff131c1b,1,new AFlxCamera(){@Override public void onFadeComplete(){onFade();}});
+			FlxG.fade(0xff131c1b,1,new AFlxCamera(){@Override public void callback(){onFade();}});
 		}
 	}
 
@@ -181,7 +181,7 @@ public class MenuState extends FlxState
 	protected void onFade()
 	{
 		if(attractMode)
-			FlxG.loadReplay((FlxG.random()<0.5)?FlxG.loadString(Attract1):FlxG.loadString(Attract2),new PlayState(),new String[]{"ANY"},22,new AFlxReplay(){@Override public void onComplete(){onDemoComplete();}});
+			FlxG.loadReplay((FlxG.random()<0.5)?FlxG.loadString(Attract1):FlxG.loadString(Attract2),new PlayState(),new String[]{"ANY"},22,new AFlxReplay(){@Override public void callback(){onDemoComplete();}});
 		else
 			FlxG.switchState(new PlayState());
 	}
@@ -190,7 +190,7 @@ public class MenuState extends FlxState
 	//Here, we initiate another fade effect.
 	protected void onDemoComplete()
 	{
-		FlxG.fade(0xff131c1b,1,new AFlxCamera(){@Override public void onFadeComplete(){onDemoFaded();}});
+		FlxG.fade(0xff131c1b,1,new AFlxCamera(){@Override public void callback(){onDemoFaded();}});
 	}
 
 	//Finally, we have another function called by FlxG.fade(), this time

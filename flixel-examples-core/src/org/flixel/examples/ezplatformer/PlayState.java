@@ -7,7 +7,7 @@ import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
-import org.flixel.event.AFlxG;
+import org.flixel.event.AFlxCollision;
 
 import com.badlogic.gdx.utils.IntArray;
 
@@ -188,10 +188,10 @@ public class PlayState extends FlxState
 	}
 	
 	//Called whenever the player touches a coin
-	AFlxG getCoin = new AFlxG()
+	AFlxCollision getCoin = new AFlxCollision()
 	{
 		@Override
-		public void onNotifyCallback(FlxObject Coin, FlxObject Player)
+		public void callback(FlxObject Coin, FlxObject Player)
 		{						
 			Coin.kill();
 			score.setText("SCORE: "+(coins.countDead()*100));
@@ -205,10 +205,10 @@ public class PlayState extends FlxState
 	
 	
 	//Called whenever the player touches the exit
-	AFlxG win = new AFlxG()
+	AFlxCollision win = new AFlxCollision()
 	{
 		@Override
-		public void onNotifyCallback(FlxObject Exit, FlxObject Player)
+		public void callback(FlxObject Exit, FlxObject Player)
 		{
 			status.setText("Yay, you won!");
 			score.setText("SCORE: 5000");

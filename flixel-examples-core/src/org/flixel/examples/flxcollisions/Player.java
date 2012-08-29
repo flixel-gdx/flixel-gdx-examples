@@ -6,6 +6,10 @@ public class Player extends FlxSprite
 {
 	private String ImgPlayer = "examples/flxcollisions/pack:player";
 	
+	protected FlxObject jumpArea;
+	protected FlxObject leftArea;
+	protected FlxObject rightArea;
+	
 	public Player(float X, float Y)
 	{
 		super(X, Y);
@@ -25,6 +29,10 @@ public class Player extends FlxSprite
 		addAnimation("walk_back",new int[]{3,2,1,0},10,true);
 		addAnimation("flail",new int[]{1,2,3,0},18,true);
 		addAnimation("jump",new int[]{4},0,false);
+		
+		jumpArea = new FlxObject(0, 0, FlxG.width, FlxG.height / 2);
+		leftArea = new FlxObject(0, FlxG.height / 2, FlxG.width / 2, FlxG.height / 2);
+		rightArea = new FlxObject(FlxG.width / 2, FlxG.height / 2, FlxG.width / 2, FlxG.height / 2);
 	}
 
 	@Override
@@ -32,15 +40,15 @@ public class Player extends FlxSprite
 	{
 		//Smooth slidey walking controls
 		acceleration.x = 0;
-		if(FlxG.keys.LEFT || isTouched(new FlxObject(0, FlxG.height / 2, FlxG.width / 2, FlxG.height / 2)))
+		if(FlxG.keys.LEFT || isTouched(leftArea))
 			acceleration.x -= drag.x;
-		if(FlxG.keys.RIGHT || isTouched(new FlxObject(FlxG.width / 2, FlxG.height / 2, FlxG.width / 2, FlxG.height / 2)))
+		if(FlxG.keys.RIGHT || isTouched(rightArea))
 			acceleration.x += drag.x;
 
 		if(isTouching(FLOOR))
 		{
 			//Jump controls
-			if(FlxG.keys.justPressed("SPACE") || justTouched(new FlxObject(0, 0, FlxG.width, FlxG.height / 2)))
+			if(FlxG.keys.justPressed("SPACE") || justTouched(jumpArea))
 			{
 				velocity.y = -acceleration.y*0.51f;
 				play("jump");

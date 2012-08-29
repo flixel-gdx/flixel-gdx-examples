@@ -45,7 +45,7 @@ public class VictoryState extends FlxState
 			{
 				_fading = true;
 				FlxG.play(SndMenu);
-				FlxG.fade(0xff131c1b,2,new AFlxCamera(){@Override public void onFadeComplete(){ onPlay();}});
+				FlxG.fade(0xff131c1b,2,new AFlxCamera(){@Override public void callback(){ onPlay();}});
 			}
 		}
 	}

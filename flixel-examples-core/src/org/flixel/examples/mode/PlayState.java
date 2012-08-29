@@ -2,7 +2,7 @@ package org.flixel.examples.mode;
 
 import org.flixel.*;
 import org.flixel.event.AFlxCamera;
-import org.flixel.event.AFlxG;
+import org.flixel.event.AFlxCollision;
 
 import com.badlogic.gdx.utils.Array;
 
@@ -207,8 +207,8 @@ public class PlayState extends FlxState
 
 		//collisions with environment
 		FlxG.collide(_blocks,_objects);
-		FlxG.overlap(_hazards,_player,new AFlxG(){@Override public void onNotifyCallback(FlxObject Object1, FlxObject Object2) {overlapped(Object1, Object2);}});
-		FlxG.overlap(_bullets,_hazards,new AFlxG(){@Override public void onNotifyCallback(FlxObject Object1, FlxObject Object2) {overlapped(Object1, Object2);}});
+		FlxG.overlap(_hazards,_player,new AFlxCollision(){@Override public void callback(FlxObject Object1, FlxObject Object2) {overlapped(Object1, Object2);}});
+		FlxG.overlap(_bullets,_hazards,new AFlxCollision(){@Override public void callback(FlxObject Object1, FlxObject Object2) {overlapped(Object1, Object2);}});
 
 		//check to see if the player scored any points this frame
 		boolean scoreChanged = oldScore != FlxG.score;
@@ -260,7 +260,7 @@ public class PlayState extends FlxState
 			if(_spawners.countLiving() <= 0)
 			{
 				_fading = true;
-				FlxG.fade(0xffd8eba2,3,new AFlxCamera(){@Override public void onFadeComplete(){onVictory();}});
+				FlxG.fade(0xffd8eba2,3,new AFlxCamera(){@Override public void callback(){onVictory();}});
 			}
 		}
 

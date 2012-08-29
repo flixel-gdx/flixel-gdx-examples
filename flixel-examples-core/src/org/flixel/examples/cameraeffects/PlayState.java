@@ -25,7 +25,7 @@ public class PlayState extends FlxState
 		public void callback()
 		{
 			FlxG.log("fade!");
-			FlxG.fade(0xFF000000, 2, new AFlxCamera(){ @Override public void onFadeComplete(){FlxG.camera.stopFX();}});
+			FlxG.fade(0xFF000000, 2, new AFlxCamera(){ @Override public void callback(){FlxG.camera.stopFX();}});
 		}
 	};
 	
