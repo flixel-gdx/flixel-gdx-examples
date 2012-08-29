@@ -8,24 +8,30 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.tiled.TiledLoader;
+import com.badlogic.gdx.graphics.g2d.tiled.TiledMap;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledObject;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledObjectGroup;
 
 public class PlayState extends FlxState
 {
+	public static TiledMap map = TiledLoader.createMap(Gdx.files.internal("examples/tiledmap2/map01.tmx"));
 	private static String ImgBG = "examples/tiledmap2/pack:bg";
 	private static String ImgGibs = "examples/tiledmap2/pack:gibs";
 	private static String ImgTiles = "examples/tiledmap2/pack:tiles";
 	
 	private FlxTilemap _level;
 	private FlxGamePad _pad;
+	
+	
 
 	@Override
 	public void create()
 	{
 		//Background
 		FlxG.setBgColor(0xffacbcd7);
-		
+
 		_pad = new FlxGamePad(FlxGamePad.LEFT_RIGHT, FlxGamePad.A);
 		
 		// Objects that are placed in the very front.
@@ -36,7 +42,7 @@ public class PlayState extends FlxState
 		add(new FlxText(32,36,96,"collision").setFormat(null,16,0xFF778ea1,"center"));
 		add(new FlxText(32,60,96,"DEMO").setFormat(null,24,0xFF778ea1,"center"));
 		
-		for(TiledObjectGroup group : Asset.map.objectGroups)
+		for(TiledObjectGroup group : map.objectGroups)
 		{
 			for(TiledObject object : group.objects)
 			{
@@ -109,7 +115,7 @@ public class PlayState extends FlxState
 		_level = new FlxTilemap();
 //		_level.loadMap(FlxTilemap.arrayToCSV(data, 40), Asset.ImgTiles);
 //		_level.loadMap(FlxTilemap.array2DToCSV(Asset.map.layers.get(0).tiles), Asset.ImgTiles);
-		_level.loadMap(FlxTilemap.tiledmapToCSV(Asset.map, 0), ImgTiles, 8, 8, FlxTilemap.OFF, 1);
+		_level.loadMap(FlxTilemap.tiledmapToCSV(map, 0), ImgTiles, 8, 8, FlxTilemap.OFF, 1);
 		
 		add(_level);
 		add(_pad);

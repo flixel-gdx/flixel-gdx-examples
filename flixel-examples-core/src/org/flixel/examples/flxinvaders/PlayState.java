@@ -36,7 +36,7 @@ public class PlayState extends FlxState
 	public void create()
 	{
 		// Set background color.
-		FlxG.setBgColor(0x000000);
+		FlxG.setBgColor(0xFF000000);
 				
 		int i;	
 		//We're using the global score to store a basic, state-independent status string.

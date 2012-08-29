@@ -17,12 +17,4 @@ public class TiledMap2Demo extends FlxGame
 		super(320, 240, PlayState.class, 2, 40, 40);
 		forceDebugger = true;
 	}
-	
-	@Override
-	public void create()
-	{
-		Asset.create();
-		super.create();
-	}
-
 }
