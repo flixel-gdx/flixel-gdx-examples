@@ -1,5 +1,6 @@
 package org.flixel.examples.tiledmap2;
 
+import org.flixel.FlxG;
 import org.flixel.FlxGame;
 
 /**
@@ -16,5 +17,6 @@ public class TiledMap2Demo extends FlxGame
 	{
 		super(320, 240, PlayState.class, 2, 40, 40);
 		forceDebugger = true;
+		FlxG.debug = true;
 	}
 }

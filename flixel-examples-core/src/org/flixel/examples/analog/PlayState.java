@@ -4,6 +4,7 @@ import org.flixel.FlxAnalog;
 import org.flixel.FlxG;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
+import org.flixel.event.AFlxButton;
 
 public class PlayState extends FlxState
 {
@@ -30,34 +31,50 @@ public class PlayState extends FlxState
 		add(s = new FlxSprite(FlxG.width-2, 0).makeGraphic(2, FlxG.height));
 		s.immovable = true;
 		
-		add(_analog = new FlxAnalog(10,FlxG.height-110));
+		add(_analog = new FlxAnalog(55, FlxG.height-55));
+		_analog.onPressed = movePlayer;
+		_analog.onUp = stopPlayer;
+		_analog.setAlpha(.75f);
 	}
+	
+	AFlxButton stopPlayer = new AFlxButton()
+	{		
+		@Override
+		public void callback()
+		{
+			_player.velocity.x = _player.velocity.y = 0;
+		}
+	};
+	
+	AFlxButton movePlayer = new AFlxButton()
+	{		
+		@Override
+		public void callback()
+		{
+			_player.angle = _analog.getAngle();
+			_player.velocity.x = 7 * _analog.acceleration.x;
+			_player.velocity.y = 7 * _analog.acceleration.y;
+		}
+	};
 	
 	
 	@Override
 	public void update()
 	{
 		super.update();
-		_player.velocity.x = _player.velocity.y = 0;
-		//if(_analog.pressed)
+		
+		if(_analog.justPressed())
 		{
-			_player.velocity.x = 40*(_analog.accel.x);
-			_player.velocity.y = 40*(_analog.accel.y);
-			playerRotate();
+//			trace("just pressed");
+		}
+		if(_analog.pressed())
+		{
+			//trace("pressed");
+		}			
+		if(_analog.justReleased())
+		{
+//			trace("released");				
 		}
 		FlxG.collide();
 	}
-
-
-	private void playerRotate()
-	{		
-		float DiffX = 0 + _player.x;
-		float DiffY = 0 - _player.y;
-		float angle = (float) Math.atan2((_analog.accel.y - DiffY)-_player.y,(_analog.accel.x+DiffX)-_player.x);
-		angle *= radiansToDegrees;
-		
-		if(_analog.pressed)
-			_player.angle = angle;
-	}
-
 }

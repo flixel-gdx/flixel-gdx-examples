@@ -32,7 +32,7 @@ public class PlayState extends FlxState
 		//Background
 		FlxG.setBgColor(0xffacbcd7);
 
-		_pad = new FlxGamePad(FlxGamePad.LEFT_RIGHT, FlxGamePad.A);
+		_pad = new FlxGamePad(FlxGamePad.FULL, FlxGamePad.A_B);
 		
 		// Objects that are placed in the very front.
 		FlxSprite decoration = new FlxSprite(256,159,ImgBG);
