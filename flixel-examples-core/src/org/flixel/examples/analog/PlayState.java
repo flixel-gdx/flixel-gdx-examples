@@ -4,7 +4,7 @@ import org.flixel.FlxAnalog;
 import org.flixel.FlxG;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
-import org.flixel.event.AFlxButton;
+import org.flixel.event.AFlxAnalog;
 
 public class PlayState extends FlxState
 {
@@ -31,13 +31,13 @@ public class PlayState extends FlxState
 		add(s = new FlxSprite(FlxG.width-2, 0).makeGraphic(2, FlxG.height));
 		s.immovable = true;
 		
-		add(_analog = new FlxAnalog(55, FlxG.height-55));
+		add(_analog = new FlxAnalog(75, FlxG.height-75));
 		_analog.onPressed = movePlayer;
 		_analog.onUp = stopPlayer;
 		_analog.setAlpha(.75f);
 	}
 	
-	AFlxButton stopPlayer = new AFlxButton()
+	AFlxAnalog stopPlayer = new AFlxAnalog()
 	{		
 		@Override
 		public void callback()
@@ -46,7 +46,7 @@ public class PlayState extends FlxState
 		}
 	};
 	
-	AFlxButton movePlayer = new AFlxButton()
+	AFlxAnalog movePlayer = new AFlxAnalog()
 	{		
 		@Override
 		public void callback()
