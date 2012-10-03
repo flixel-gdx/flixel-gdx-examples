@@ -1,5 +1,6 @@
 package org.flixel.examples.flxcollisions;
 
+import org.flixel.FlxG;
 import org.flixel.FlxGame;
 
 /**
@@ -14,5 +15,6 @@ public class FlxCollisions extends FlxGame
 	public FlxCollisions()
 	{
 		super(320, 240, PlayState.class, 2, 40, 40);
+		FlxG.debug = true;
 	}
 }
