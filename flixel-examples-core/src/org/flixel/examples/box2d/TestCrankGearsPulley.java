@@ -29,6 +29,7 @@ public class TestCrankGearsPulley extends Test
 		// Define crank.
 		B2FlxBox crank = (B2FlxBox) new B2FlxBox(100, 360-135, 15, 60)
 			.setDensity(1f)
+			.setDraggable(true)
 			.create();
 		add(crank);
 		
@@ -43,6 +44,7 @@ public class TestCrankGearsPulley extends Test
 		// Define follower.
 		B2FlxBox follower = (B2FlxBox) new B2FlxBox(100, 360-255, 15, 120)
 			.setDensity(1)
+			.setDraggable(true)
 			.create();
 		add(follower);
 		
@@ -53,6 +55,7 @@ public class TestCrankGearsPulley extends Test
 		// Define piston
 		B2FlxBox piston = (B2FlxBox) new B2FlxBox(100-follower.width, 360-277.5f, 45, 45)
 			.setDensity(1f)
+			.setDraggable(true)
 			.create();
 		add(piston);
 		
@@ -70,6 +73,7 @@ public class TestCrankGearsPulley extends Test
 		// Create a payload
 		B2FlxBox payload = (B2FlxBox) new B2FlxBox(100-follower.width, 360-367.5f, 45, 45)
 			.setDensity(2f)
+			.setDraggable(true)
 			.create();
 		add(payload);
 		
@@ -77,6 +81,7 @@ public class TestCrankGearsPulley extends Test
 		// GEARS
 		B2FlxCircle circle1 = (B2FlxCircle) new B2FlxCircle(175, 155, 25)
 			.setDensity(5)
+			.setDraggable(true)
 			.create();
 		add(circle1);
 		
@@ -86,6 +91,7 @@ public class TestCrankGearsPulley extends Test
 		
 		B2FlxCircle circle2 = (B2FlxCircle) new B2FlxCircle(225, 130, 50)
 			.setDensity(5)
+			.setDraggable(true)
 			.create();
 		add(circle2);
 		
@@ -95,10 +101,10 @@ public class TestCrankGearsPulley extends Test
 		
 		B2FlxBox box = (B2FlxBox) new B2FlxBox(325, 80, 20, 200)
 			.setDensity(5)
+			.setDraggable(true)
 			.create();
 		add(box);
-		
-		// TODO: the circles doesn't really spin after prismatic joint.
+				
 		B2FlxPrismaticJoint joint3 = (B2FlxPrismaticJoint) new B2FlxPrismaticJoint(null, box)
 			.setAxis(new Vector2(0, 1))
 			.setLowerTranslation(-25f/B2FlxB.RATIO)
@@ -124,6 +130,7 @@ public class TestCrankGearsPulley extends Test
 		// PULLEY
 		B2FlxBox pulley = (B2FlxBox) new B2FlxBox(430, 180, 100, 40)
 			.setDensity(5)
+			.setDraggable(true)
 			.create();
 		add(pulley);
 		
@@ -142,6 +149,7 @@ public class TestCrankGearsPulley extends Test
 			.setFriction(.3f)
 			.setRestitution(.3f)
 			.setDensity(5f)
+			.setDraggable(true)
 			.create();
 		add(circ);
 		

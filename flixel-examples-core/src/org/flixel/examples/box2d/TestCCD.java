@@ -4,6 +4,7 @@ import org.flixel.FlxG;
 import org.flixel.plugin.flxbox2d.B2FlxV2;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
+import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
 
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -27,7 +28,10 @@ public class TestCCD extends Test
 		
 		
 		// Create 'basket'
-		B2FlxSprite body = new B2FlxSprite(150, 100).setBullet(true).create();
+		B2FlxShape body = new B2FlxSprite(150, 100)
+			.setBullet(true)
+			.setDraggable(true)
+			.create();
 		
 		B2FlxBox bottom = (B2FlxBox) new B2FlxBox(0, 0, 90, 9).setFixtureDef(fd);
 		body.createFixture(bottom.fixtureDef);
@@ -53,6 +57,7 @@ public class TestCCD extends Test
 			add(new B2FlxCircle(FlxG.random()*300+250, FlxG.random()*320+20, FlxG.random()*10+5)
 					.setFixtureDef(fd)
 					.setBullet(true)
+					.setDraggable(true)
 					.create());
 		}
 	}

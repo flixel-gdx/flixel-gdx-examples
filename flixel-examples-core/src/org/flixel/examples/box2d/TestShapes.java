@@ -1,6 +1,7 @@
 package org.flixel.examples.box2d;
 
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
+import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxChain;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxEdge;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxPolygon;
@@ -19,18 +20,19 @@ public class TestShapes extends Test
 		info.setText("Box, Circle, Convex, Concave, Edge, Chain");
 		
 		// Box shape
-		add(new B2FlxBox(50,50, 20, 20)
+		add(new B2FlxBox(50,50, 50, 50)
 			.setRestitution(.3f)
 			.setFriction(.2f)
 			.setDensity(.8f)
+			.setDraggable(true)
 			.create());
-		
 		
 		// Circle shape
 		add(new B2FlxCircle(120, 50, 15f)
 			.setRestitution(.3f)
 			.setFriction(.2f)
 			.setDensity(.8f)
+			.setDraggable(true)
 			.create());
 		
 				
@@ -45,13 +47,14 @@ public class TestShapes extends Test
 		 * |			   /
 		 * p5------------p4
 		 */
-		add(new B2FlxPolygon(200, 100, new float[][][]
+		add(new B2FlxPolygon(200, 50, new float[][][]
 				{	
 					{{-20,-20},{20,-20},{40,0},{20,20},{-20,20}}
 				})			
 		.setRestitution(.3f)
 		.setFriction(.2f)
 		.setDensity(.8f)
+		.setDraggable(true)
 		.create());
 		
 		
@@ -66,7 +69,7 @@ public class TestShapes extends Test
 		 * |			 |	   \
 		 * p4------------p3-p10-p9
 		 */
-		add(new B2FlxPolygon(280, 100, new float[][][]
+		add(new B2FlxPolygon(280, 50, new float[][][]
 					{	
 						{{-20,-20},{20,-20},{20,20},{-20,20}},
 						{{20,-20},{40,-20},{20,0}},
@@ -75,15 +78,20 @@ public class TestShapes extends Test
 			.setRestitution(.3f)
 			.setFriction(.2f)
 			.setDensity(.8f)
+			.setDraggable(true)
 			.create());
 		
 		
 		// Edge shape
-		add(new B2FlxEdge(300, 100, new float[][]{{10,100},{200, 50},{300,100}}).create());
-		
+		add(new B2FlxEdge(300, 120, new float[][]{{0,0},{200, -40},{300,30}}).create());
 		
 		// Chain shape
-		// TODO: add chain shape.
+		add(new B2FlxChain(100, 100, new float[][]{{0,0},{100, 0},{150,50}})
+				.setPrevVertex(-5, -5f)
+				.setNextVertex(150f, 55f)
+				.create()
+			);
+		
 	}
 }
 

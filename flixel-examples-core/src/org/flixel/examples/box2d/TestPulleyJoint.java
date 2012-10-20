@@ -35,17 +35,17 @@ public class TestPulleyJoint extends Test
 		 */
 		Vector2 anchor1 = box1.body.getWorldCenter();
 		Vector2 anchor2 = box2.body.getWorldCenter();
-		Vector2 groundAnchor1 = new Vector2(anchor1.x, anchor1.y - (150 / B2FlxB.RATIO));
-		Vector2 groundAnchor2 = new Vector2(anchor2.x, anchor2.y - (150 / B2FlxB.RATIO));
+		Vector2 groundAnchor1 = new Vector2(anchor1.x, anchor1.y - (150f / B2FlxB.RATIO));
+		Vector2 groundAnchor2 = new Vector2(anchor2.x, anchor2.y - (150f / B2FlxB.RATIO));
 		
-		new B2FlxPulleyJoint(box1, box2)
+		add(new B2FlxPulleyJoint(box1, box2)
 			.setGroundAnchorA(groundAnchor1)
 			.setGroundAnchorB(groundAnchor2)
 			.setRatio(1)
 			.setAnchorA(anchor1)
 			.setAnchorB(anchor2)
 			.setShowLine(true)
-			.create();
+			.create());
 	}
 }
 

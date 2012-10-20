@@ -33,8 +33,9 @@ public class TestCompound extends Test
 			cd2.setShapePosition(22,22);
 			
 			x = 320 + B2FlxMath.randomRange(-3, 3);
-			body = new B2FlxSprite(x+150, (31.5f + 70 * -i + 300))
+			body = (B2FlxSprite) new B2FlxSprite(x+150, (31.5f + 70 * -i + 300))
 				.setAngle(FlxG.random() * 360f)
+				.setDraggable(true)
 				.create();
 			body.createFixture(cd1, 2f);
 			body.createFixture(cd2, 2f);
@@ -52,8 +53,9 @@ public class TestCompound extends Test
 			b1 = new B2FlxBox(0, 0, 15, 30);
 			b2 = (B2FlxBox) new B2FlxBox(0, 0, 15, 30, new B2FlxV2(0,-15), 90);
 			x = 320 + B2FlxMath.randomRange(-3, 3);
-			body = new B2FlxSprite(x-150, (31.5f + 75 * -i + 300))
+			body = (B2FlxSprite) new B2FlxSprite(x-150, (31.5f + 75 * -i + 300))
 				.setAngle(FlxG.random() * 360f)
+				.setDraggable(true)
 				.create();
 			body.createFixture(b1, 2f);
 			body.createFixture(b2, 2f);
@@ -78,6 +80,7 @@ public class TestCompound extends Test
 																				{{0,0}, {0,36}, {-27,56}},
 																				{{0,0}, {27,56},{0,36}}				
 																			})
+					.setDraggable(true)	
 					.create());
 		}
 		
@@ -85,10 +88,10 @@ public class TestCompound extends Test
 		B2FlxBox bottom = new B2FlxBox(0, 0, 90, 9);
 		B2FlxBox left = new B2FlxBox(0, 0, 9, 162, new B2FlxV2(-43.5f, -70.5f), -11.5f);
 		B2FlxBox right = new B2FlxBox(0, 0, 9, 162, new B2FlxV2(43.5f, -70.5f), 11.5f);
-		body = new B2FlxSprite(320, 300).create();
-		body.createFixture(bottom, 4);
-		body.createFixture(left, 4);
-		body.createFixture(right, 4);
+		body = (B2FlxSprite) new B2FlxSprite(320, 300).setDraggable(true).create();
+		body.createFixture(bottom, 4, true);
+		body.createFixture(left, 4, true);
+		body.createFixture(right, 4, true);
 		add(body);
 	}
 }

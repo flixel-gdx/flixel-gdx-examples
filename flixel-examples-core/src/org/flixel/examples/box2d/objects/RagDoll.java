@@ -27,6 +27,7 @@ public class RagDoll extends FlxGroup
 		// Head
 		B2FlxCircle head = (B2FlxCircle) new B2FlxCircle(x + 2f, y - 1f, 12.5f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		head.body.applyLinearImpulse(new Vector2(FlxG.random() * 100 - 50,  FlxG.random() * 100 -50), 
 				head.body.getWorldCenter());
@@ -38,66 +39,77 @@ public class RagDoll extends FlxGroup
 		fixDef.restitution = .1f;
 		B2FlxBox torso1 = (B2FlxBox) new B2FlxBox(x, y + 28f, 30f, 20f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		add(torso1);
 		
 		// 2nd Torso
 		B2FlxBox torso2 = (B2FlxBox) new B2FlxBox(x, y + 43f, 30f, 20f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		add(torso2);
 		
 		// 3rd Torso
 		B2FlxBox torso3 = (B2FlxBox) new B2FlxBox(x, y + 58f, 30f, 20f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		add(torso3);
 		
 		// Upper Arm L
 		B2FlxBox upperArmL = (B2FlxBox) new B2FlxBox(x-33f, y+24f, 36f, 13f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		add(upperArmL);
 		
 		// Upper Arm R
 		B2FlxBox upperArmR = (B2FlxBox) new B2FlxBox(x+27f, y+24f, 36f, 13f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		add(upperArmR);
 		
 		// Lower Arm L
 		B2FlxBox lowerArmL = (B2FlxBox) new B2FlxBox(x-60f, y+24f, 34f, 12f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		add(lowerArmL);
 		
 		// Lower Arm R
 		B2FlxBox lowerArmR = (B2FlxBox) new B2FlxBox(x+57f, y+24f, 34f, 12f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		add(lowerArmR);
 		
 		// Upper Leg L
 		B2FlxBox upperLegL = (B2FlxBox) new B2FlxBox(x, y+73f, 15f, 44f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		add(upperLegL);
 		
 		// Upper Leg R
 		B2FlxBox upperLegR = (B2FlxBox) new B2FlxBox(x+15f, y+73f, 15f, 44f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		add(upperLegR);
 		
 		// Lower Leg L
 		B2FlxBox lowerLegL = (B2FlxBox) new B2FlxBox(x+1f, y+110f, 12f, 40f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		add(lowerLegL);
 		
 		// Lower Leg R
 		B2FlxBox lowerLegR = (B2FlxBox) new B2FlxBox(x+17f, y+110f, 12f, 40f)
 			.setFixtureDef(fixDef)
+			.setDraggable(true)
 			.create();
 		add(lowerLegR);
 		

@@ -4,7 +4,7 @@ import org.flixel.FlxG;
 import org.flixel.plugin.flxbox2d.B2FlxB;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
+import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactFilter;
@@ -30,7 +30,7 @@ public class TestOneSidedPlatform extends Test
 		
 		// Platform
 		add(platform = (B2FlxBox) new B2FlxBox(FlxG.width/2-90, 285, 180, 30)
-			.setType(B2FlxSprite.STATIC)
+			.setType(B2FlxShape.STATIC)
 			.create());
 		
 		bottom = platform.position.y + .5f;
@@ -41,6 +41,7 @@ public class TestOneSidedPlatform extends Test
 				.setDensity(1)
 				.setFriction(0)
 				.setRestitution(0)
+				.setDraggable(true)
 				.create());
 		
 		B2FlxB.world.setContactFilter(new ContactFilter()

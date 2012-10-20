@@ -3,7 +3,7 @@ package org.flixel.examples.box2d;
 import org.flixel.FlxG;
 import org.flixel.examples.box2d.objects.RagDoll;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
+import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
@@ -33,7 +33,7 @@ public class TestRagdolls extends Test
 		for(int j = 1; j < 10; j++)
 		{
 			step = (B2FlxBox) new B2FlxBox(0, 160+20*j, 20*j, 20)
-				.setType(B2FlxSprite.STATIC)
+				.setType(B2FlxShape.STATIC)
 				.create();
 			add(step);
 		}
@@ -42,13 +42,13 @@ public class TestRagdolls extends Test
 		for(int j = 1; j < 10; j++)
 		{
 			step = (B2FlxBox) new B2FlxBox(FlxG.width-20*j, 160+20*j, 20*j, 20)
-				.setType(B2FlxSprite.STATIC)
+				.setType(B2FlxShape.STATIC)
 				.create();
 			add(step);
 		}
 		
 		// A block in the center
-		add(new B2FlxBox(290, 280, 60, 80).setType(B2FlxSprite.STATIC).create());
+		add(new B2FlxBox(290, 280, 60, 80).setType(B2FlxShape.STATIC).create());
 	}
 }
 

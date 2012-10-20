@@ -24,12 +24,12 @@ public class TestGearJoint extends Test
 		title.setText("GearJoint");
 		info.setText("As one box rotates, the other \nthe other slides and vice versa.");
 		
-		B2FlxBox box1 = createBox(FlxG.width/2-100, FlxG.height/2-25, 50, 50);
+		B2FlxBox box1 = (B2FlxBox) createBox(FlxG.width/2-100, FlxG.height/2-25, 50, 50).setDraggable(true);
 		add(box1);
 		
-		B2FlxBox box2 = createBox(box1.x+100, FlxG.height/2-25, 50, 50);
+		B2FlxBox box2 = (B2FlxBox) createBox(box1.x+100, FlxG.height/2-25, 50, 50).setDraggable(true);
 		add(box2);
-		
+				
 		B2FlxRevoluteJoint revoluteJoint = (B2FlxRevoluteJoint) new B2FlxRevoluteJoint(null, box1)
 			.setLowerAngle(-90)
 			.setUpperAngle(45)

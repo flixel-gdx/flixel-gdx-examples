@@ -2,6 +2,7 @@ package org.flixel.examples.box2d;
 
 import org.flixel.plugin.flxbox2d.B2FlxB;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
+import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
 
 import com.badlogic.gdx.math.Vector2;
@@ -17,7 +18,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
  */
 public class TestBreakable extends Test
 {
-	public B2FlxSprite body;
+	public B2FlxShape body;
 	public Vector2 velocity = new Vector2();
 	public float angularVelocity;
 	public B2FlxBox shape1;

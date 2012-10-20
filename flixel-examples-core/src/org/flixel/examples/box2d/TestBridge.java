@@ -32,15 +32,17 @@ public class TestBridge extends Test
 			plank = (B2FlxBox) new B2FlxBox(76 + 22 + 44 * i, 245, 48, 10)
 				.setDensity(20)
 				.setFriction(.2f)
+				.setDraggable(true)
 				.create();
 			add(plank);
 			
-			new B2FlxRevoluteJoint(prevBody, plank)
+			add(new B2FlxRevoluteJoint(prevBody, plank)
 				.setLowerAngle(-15f)
 				.setUpperAngle(15f)
 				.setEnableLimit(true)
 				.setAnchorA(new B2FlxV2(100 + 44 * i, 250))
-				.create();
+				.setShowLine(true)
+				.create());
 			
 			prevBody = plank;
 		}
@@ -63,6 +65,7 @@ public class TestBridge extends Test
 			add(new B2FlxBox(FlxG.random() * 400 + 100, FlxG.random() * 150 + 50, 
 					FlxG.random() * 10 + 20, FlxG.random() * 10 + 20)
 				.setFixtureDef(fd)
+				.setDraggable(true)
 				.create()
 			);					
 		}
@@ -72,6 +75,7 @@ public class TestBridge extends Test
 			add(new B2FlxCircle(FlxG.random() * 400 + 100, FlxG.random() * 150 + 50, 
 					FlxG.random() * 5 +10)
 				.setFixtureDef(fd)
+				.setDraggable(true)
 				.create()
 			);
 		}
@@ -114,6 +118,7 @@ public class TestBridge extends Test
 			add(new B2FlxPolygon(FlxG.random() * 400 + 100, FlxG.random() * 150 + 50, new float[][][]{vertices})
 					.setFixtureDef(fd)
 					.setAngle(FlxG.random() * FlxU.PI)
+					.setDraggable(true)
 					.create()
 				);
 		}

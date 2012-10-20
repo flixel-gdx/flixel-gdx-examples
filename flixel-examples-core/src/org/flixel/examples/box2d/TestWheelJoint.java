@@ -3,7 +3,7 @@ package org.flixel.examples.box2d;
 import org.flixel.FlxG;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
+import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 import org.flixel.plugin.flxbox2d.dynamics.joints.B2FlxWheelJoint;
 
 import com.badlogic.gdx.math.Vector2;
@@ -22,10 +22,11 @@ public class TestWheelJoint extends Test
 		info.setText("This joint is designed for vehicle suspensions.");
 		
 		B2FlxCircle circle = (B2FlxCircle) new B2FlxCircle(100, FlxG.height/2-20, 20)
-			.setType(B2FlxSprite.DYNAMIC)
+			.setType(B2FlxShape.DYNAMIC)
 			.setFriction(.8f)
 			.setRestitution(.3f)
 			.setDensity(.7f)
+			.setDraggable(true)
 			.create();
 		add(circle);
 		
@@ -33,6 +34,7 @@ public class TestWheelJoint extends Test
 			.setFriction(.8f)
 			.setRestitution(.3f)
 			.setDensity(.7f)
+			.setDraggable(true)
 			.create();
 		add(circle2);
 		
