@@ -65,8 +65,9 @@ public class TestCart extends Test
 		_pad = new FlxGamePad(FlxGamePad.LEFT_RIGHT, FlxGamePad.NONE);
 		if(Gdx.app.getType() == ApplicationType.Android)
 		{
+			_pad.setDPadPositionY(-20);
+			_pad.setAlpha(0.5f);
 			add(_pad);
-			_pad.setAlpha(0.5f);			
 		}
 	}
 	

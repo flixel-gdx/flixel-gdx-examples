@@ -830,7 +830,7 @@ public class PlayState extends FlxState
 		}
 	}
 
-	// TODO: not tested, but it's obviously that 180 / PI is faster.
+	// Not tested, but it's obviously that 180 / PI is faster.
 	public void testMathToDegrees()
 	{
 		double result;
@@ -849,7 +849,7 @@ public class PlayState extends FlxState
 		}
 	}
 
-	// TODO: not tested, but it's obviously that PI / 180 is faster.
+	// Not tested, but it's obviously that PI / 180 is faster.
 	public void testMathToRadians()
 	{
 		double result;
