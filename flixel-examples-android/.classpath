@@ -5,5 +5,6 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="src" path="/flixel-examples-core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/flixel-android"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
