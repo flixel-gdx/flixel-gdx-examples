@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 
 public class PlayState extends FlxState
 {
-	public static final int ITERATIONS = 10000000;
+	public static final int ITERATIONS = 10000;
 	public static final float FLOAT1 = -2450.50f;
 	public static final float FLOAT2 = -500f;
 	public static final float FLOAT3 = 500f;

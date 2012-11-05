@@ -156,6 +156,12 @@
             android:label="BomberPlanet"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".Performance"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="Performance"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

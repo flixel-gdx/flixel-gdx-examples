@@ -63,6 +63,7 @@ public class MenuState extends FlxState
 		title1.setColor(0x3a5c39);
 		title1.antialiasing = true;
 		title1.velocity.x = -FlxG.width;
+		title1.moves = true;
 		add(title1);
 
 		//the letters "de"
@@ -71,6 +72,7 @@ public class MenuState extends FlxState
 		title2.setColor(title1.getColor());
 		title2.antialiasing = title1.antialiasing;
 		title2.velocity.x = FlxG.width;
+		title2.moves = true;
 		add(title2);
 
 		fading = false;
