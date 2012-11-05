@@ -19,20 +19,33 @@ public class TestPrismaticJoint extends Test
 		title.setText("PrismaticJoint");
 		info.setText("The prismatic joint can act \nlike a moving platform.");
 		
-		B2FlxBox box = createBox(FlxG.width/2-25, FlxG.height/2-25, 50, 50);
+		B2FlxBox box = createBox(50, FlxG.height/2-25, 50, 50);
 		add(box);
 		
-		B2FlxPrismaticJoint joint = (B2FlxPrismaticJoint) new B2FlxPrismaticJoint(box, null)
-			.setAxis(new Vector2(0,1))
+		new B2FlxPrismaticJoint(box, null)
+			.setAxis(new Vector2(0, 1))
 			.setLowerTranslation(-5f)
 			.setUpperTranslation(2.5f)
+			.setMaxMotorForce(50f)
+			.setMotorSpeed(80)
 			.setEnableLimit(true)
-			.setMaxMotorForce(1f)
-			.setMotorSpeed(0)
 			.setEnableMotor(true)
 			.setAnchorA(box.body.getWorldCenter())
 			.create();
-		add(joint);
+		
+		box = createBox(FlxG.width/2f, FlxG.height/2-25, 50, 50);
+		add(box);
+		
+		new B2FlxPrismaticJoint(box, null)
+			.setAxis(new Vector2(1,0))
+			.setLowerTranslation(-5f)
+			.setUpperTranslation(5f)
+			.setMaxMotorForce(5f)
+			.setMotorSpeed(80)
+			.setEnableLimit(true)
+			.setEnableMotor(true)
+			.setAnchorA(box.body.getWorldCenter())
+			.create();
 	}
 }
 
