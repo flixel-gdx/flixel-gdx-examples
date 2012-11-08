@@ -1,7 +1,7 @@
 package org.flixel.examples.pathfinding;
 
 import org.flixel.*;
-import org.flixel.event.AFlxButton;
+import org.flixel.event.IFlxButton;
 
 public class PlayState extends FlxState
 {
@@ -88,15 +88,15 @@ public class PlayState extends FlxState
         add(_unit);
                         
         //Add button move to goal to PlayState
-        _btnFindPath = new FlxButton(320, 10, "Move To Goal", new AFlxButton(){@Override public void callback(){moveToGoal();}});
+        _btnFindPath = new FlxButton(320, 10, "Move To Goal", new IFlxButton(){@Override public void callback(){moveToGoal();}});
         add(_btnFindPath);
 
         //Add button stop unit to PlayState
-        _btnStopUnit = new FlxButton(320, 30, "Stop Unit", new AFlxButton(){@Override public void callback(){stopUnit();}});
+        _btnStopUnit = new FlxButton(320, 30, "Stop Unit", new IFlxButton(){@Override public void callback(){stopUnit();}});
         add(_btnStopUnit);
                         
         //Add button reset unit to PlayState
-        _btnResetUnit = new FlxButton(320, 50, "Reset Unit", new AFlxButton(){@Override public void callback(){resetUnit();}});
+        _btnResetUnit = new FlxButton(320, 50, "Reset Unit", new IFlxButton(){@Override public void callback(){resetUnit();}});
         add(_btnResetUnit);
                         
         //Add label for legend

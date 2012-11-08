@@ -4,7 +4,7 @@ import org.flixel.FlxButton;
 import org.flixel.FlxG;
 import org.flixel.FlxText;
 import org.flixel.FlxU;
-import org.flixel.event.AFlxButton;
+import org.flixel.event.IFlxButton;
 import org.flixel.plugin.flxbox2d.B2FlxB;
 import org.flixel.plugin.flxbox2d.B2FlxState;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
@@ -32,9 +32,11 @@ public class Test extends B2FlxState
 		super.create();
 		FlxG.debug = true;
 		FlxG.visualDebug = true;
+		FlxG.setBgColor(0xff000000);
 		
 		// Debug renderer.
 		FlxG.addPlugin(new B2FlxDebug());
+//		B2FlxDebug.drawAABBs = true;
 		
 		B2FlxB.world.setWarmStarting(true);
 		
@@ -59,13 +61,13 @@ public class Test extends B2FlxState
 		
 		// Create walls
 		// Left
-		add(new B2FlxBox(0, 0, 5, FlxG.height).setType(B2FlxShape.STATIC).create());
+		add(new B2FlxBox(0, 0, 5, FlxG.height).setType(B2FlxShape.STATIC).setCategoryBits((short) 0x0001).create());
 		// Right
-		add(new B2FlxBox(FlxG.width-5, 0, 5, FlxG.height).setType(B2FlxShape.STATIC).create());
+		add(new B2FlxBox(FlxG.width-5, 0, 5, FlxG.height).setType(B2FlxShape.STATIC).setCategoryBits((short) 0x0001).create());
 		// Top
-		add(new B2FlxBox(0, 0, FlxG.width, 5).setType(B2FlxShape.STATIC).create());
+		add(new B2FlxBox(0, 0, FlxG.width, 5).setType(B2FlxShape.STATIC).setCategoryBits((short) 0x0001).create());
 		// Bottom
-		add(new B2FlxBox(0, FlxG.height-5, FlxG.width, 5).setType(B2FlxShape.STATIC).create());
+		add(new B2FlxBox(0, FlxG.height-5, FlxG.width, 5).setType(B2FlxShape.STATIC).setCategoryBits((short) 0x0001).create());
 		
 		// Add mouse joint.
 		add(mouse = new B2FlxMouseJoint());
@@ -74,40 +76,41 @@ public class Test extends B2FlxState
 		{
 			tests = new Class[]	
 			{
-					TestShapes.class,			// Shapes
-					TestDistanceJoint.class,	// DistanceJoint
-					TestRopeJoint.class,		// RopeJoint
-					TestRevoluteJoint.class,	// RevoluteJoint
-					TestPrismaticJoint.class,	// PrismaticJoint
-					TestPulleyJoint.class,		// PulleyJoint
-					TestGearJoint.class,		// GearJoint
-					TestFrictionJoint.class,	// FrictionJoint
-					TestWeldJoint.class,		// WeldJoint
-					TestWheelJoint.class,		// WheelJoint
-					TestCart.class,				// Cart
-					
-					TestRagdolls.class,			// Ragdolls
-					TestCompound.class,			// Compound Shapes
-					TestCrankGearsPulley.class, // Crank Gears Pulley
-					TestBridge.class,			// Bridge
-					TestStack.class,			// Stack
-					TestCCD.class,				// Continuous Collision Detection
-//					TestTheoJansen.class,		// Theo Jansen
-//					TestEdges.class,			// Edges
-//					TestBuoyancy.class,			// Buouyancy
-					TestOneSidedPlatform.class, // One Sided Platform
-//					TestBreakable.class,		// Breakable
-//					TestRaycast.class,			// Raycast
-//					TestSensor.class,			// Sensor
+				TestShapes.class,			// Shapes
+				TestDistanceJoint.class,	// DistanceJoint
+				TestRopeJoint.class,		// RopeJoint
+				TestRevoluteJoint.class,	// RevoluteJoint
+				TestPrismaticJoint.class,	// PrismaticJoint
+				TestPulleyJoint.class,		// PulleyJoint
+				TestGearJoint.class,		// GearJoint
+				TestFrictionJoint.class,	// FrictionJoint
+				TestWeldJoint.class,		// WeldJoint
+				TestWheelJoint.class,		// WheelJoint
+				TestCart.class,				// Cart
+				
+				TestRagdolls.class,			// Ragdolls
+				TestCompound.class,			// Compound Shapes
+				TestCrankGearsPulley.class, // Crank Gears Pulley
+				TestBridge.class,			// Bridge
+				TestStack.class,			// Stack
+				TestCCD.class,				// Continuous Collision Detection
+//				TestTheoJansen.class,		// Theo Jansen
+//				TestEdges.class,			// Edges
+//				TestBuoyancy.class,			// Buouyancy
+				TestOneSidedPlatform.class, // One Sided Platform
+//				TestBreakable.class,		// Breakable
+//				TestRaycast.class,			// Raycast
+//				TestSensor.class,			// Sensor
+				TestCollisionDetection.class// Collision Detection
 			};			
 		}
 		
 		// Mobile
 		if(FlxG.mobile)
 		{
-			add(createButton(2, FlxG.height - 20, "Previous", new AFlxButton(){@Override public void callback(){prev();}}));
-			add(createButton(82, FlxG.height - 20, "Next", new AFlxButton(){@Override public void callback(){next();}}));
-			add(createButton(162, FlxG.height - 20, "Reset", new AFlxButton(){@Override public void callback(){reset();}}));
+			add(createButton(2, FlxG.height - 20, "Previous", new IFlxButton(){@Override public void callback(){prev();}}));
+			add(createButton(82, FlxG.height - 20, "Next", new IFlxButton(){@Override public void callback(){next();}}));
+			add(createButton(162, FlxG.height - 20, "Reset", new IFlxButton(){@Override public void callback(){reset();}}));
 		}
 		
 		if(FlxU.getClassName(this, true).equals("Test"))
@@ -134,7 +137,7 @@ public class Test extends B2FlxState
 		.create();
 	}
 	
-	public FlxButton createButton(float x, float y, String label, AFlxButton callback)
+	public FlxButton createButton(float x, float y, String label, IFlxButton callback)
 	{
 		FlxButton button = new FlxButton(x, y, label, callback);
 		button.ignoreDrawDebug = true;

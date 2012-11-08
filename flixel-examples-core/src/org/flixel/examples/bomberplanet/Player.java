@@ -1,7 +1,7 @@
 package org.flixel.examples.bomberplanet;
 
 import org.flixel.*;
-import org.flixel.event.AFlxCamera;
+import org.flixel.event.IFlxCamera;
 
 public class Player extends FlxSprite
 {
@@ -289,7 +289,7 @@ public class Player extends FlxSprite
 		((PlayState)FlxG.getState()).updateBombHUD();
 	}
 
-	public AFlxCamera youWon = new AFlxCamera()
+	public IFlxCamera youWon = new IFlxCamera()
 	{
 		@Override
 		public void callback()

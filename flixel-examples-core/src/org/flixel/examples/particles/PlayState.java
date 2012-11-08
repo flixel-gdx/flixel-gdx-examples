@@ -9,7 +9,7 @@ import org.flixel.FlxPoint;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
-import org.flixel.event.AFlxButton;
+import org.flixel.event.IFlxButton;
 
 
 public class PlayState extends FlxState
@@ -128,7 +128,7 @@ public class PlayState extends FlxState
 		FlxG.collide(theEmitter, collisionGroup);
 	}
 	
-	AFlxButton onCollision = new AFlxButton()
+	IFlxButton onCollision = new IFlxButton()
 	{
 		@Override
 		public void callback()
@@ -165,7 +165,7 @@ public class PlayState extends FlxState
 		}
 	};
 	
-	AFlxButton onGravity = new AFlxButton()
+	IFlxButton onGravity = new IFlxButton()
 	{
 		@Override
 		public void callback()

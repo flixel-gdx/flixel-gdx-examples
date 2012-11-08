@@ -1,7 +1,7 @@
 package org.flixel.examples.savedemo;
 
 import org.flixel.*;
-import org.flixel.event.AFlxButton;
+import org.flixel.event.IFlxButton;
 
 import com.badlogic.gdx.utils.Array;
 
@@ -82,11 +82,11 @@ public class PlayState extends FlxState
 		add(boxGroup);//Add the group to the state
 
 		//Get out buttons set up along the bottom of the screen
-		demoSave = new FlxButton(2, FlxG.height -22, "Save Locations", new AFlxButton(){@Override public void callback(){onSave();}});
+		demoSave = new FlxButton(2, FlxG.height -22, "Save Locations", new IFlxButton(){@Override public void callback(){onSave();}});
 		add(demoSave);
-		demoLoad = new FlxButton(82, FlxG.height -22, "Load Locations", new AFlxButton(){@Override public void callback(){onLoad();}});
+		demoLoad = new FlxButton(82, FlxG.height -22, "Load Locations", new IFlxButton(){@Override public void callback(){onLoad();}});
 		add(demoLoad);
-		demoClear = new FlxButton(202, FlxG.height -22, "Clear Save", new AFlxButton(){@Override public void callback(){onClear();}});
+		demoClear = new FlxButton(202, FlxG.height -22, "Clear Save", new IFlxButton(){@Override public void callback(){onClear();}});
 		add(demoClear);
 
 		//Let's not forget about our old text, which needs to be above everything else

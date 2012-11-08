@@ -2,7 +2,7 @@ package org.flixel.examples.analog;
 
 import org.flixel.FlxAnalog;
 import org.flixel.FlxSprite;
-import org.flixel.event.AFlxAnalog;
+import org.flixel.event.IFlxAnalog;
 
 public class Player extends FlxSprite
 {
@@ -28,7 +28,7 @@ public class Player extends FlxSprite
 		_analog = null;
 	}	
 
-	AFlxAnalog stopPlayer = new AFlxAnalog()
+	IFlxAnalog stopPlayer = new IFlxAnalog()
 	{		
 		@Override
 		public void callback()
@@ -37,8 +37,8 @@ public class Player extends FlxSprite
 		}
 	};
 	
-	AFlxAnalog movePlayer = new AFlxAnalog()
-	{		
+	IFlxAnalog movePlayer = new IFlxAnalog()
+	{
 		@Override
 		public void callback()
 		{

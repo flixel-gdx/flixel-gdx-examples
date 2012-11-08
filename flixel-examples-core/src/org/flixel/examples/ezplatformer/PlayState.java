@@ -7,7 +7,7 @@ import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
-import org.flixel.event.AFlxCollision;
+import org.flixel.event.IFlxCollision;
 
 import com.badlogic.gdx.utils.IntArray;
 
@@ -188,7 +188,7 @@ public class PlayState extends FlxState
 	}
 	
 	//Called whenever the player touches a coin
-	AFlxCollision getCoin = new AFlxCollision()
+	IFlxCollision getCoin = new IFlxCollision()
 	{
 		@Override
 		public void callback(FlxObject Coin, FlxObject Player)
@@ -205,7 +205,7 @@ public class PlayState extends FlxState
 	
 	
 	//Called whenever the player touches the exit
-	AFlxCollision win = new AFlxCollision()
+	IFlxCollision win = new IFlxCollision()
 	{
 		@Override
 		public void callback(FlxObject Exit, FlxObject Player)

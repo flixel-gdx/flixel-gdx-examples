@@ -1,7 +1,7 @@
 package org.flixel.examples.bomberplanet;
 
 import org.flixel.*;
-import org.flixel.event.AFlxCamera;
+import org.flixel.event.IFlxCamera;
 
 public class VictoryState extends FlxState
 {
@@ -32,7 +32,7 @@ public class VictoryState extends FlxState
 			FlxG.fade(0xff000000,2,faded);
 	}
 
-	protected AFlxCamera flashed = new AFlxCamera()
+	protected IFlxCamera flashed = new IFlxCamera()
 	{
 		@Override	
 		public void callback()
@@ -41,7 +41,7 @@ public class VictoryState extends FlxState
 		}
 	};
 	
-	protected AFlxCamera faded = new AFlxCamera()
+	protected IFlxCamera faded = new IFlxCamera()
 	{
 		@Override	
 		public void callback()

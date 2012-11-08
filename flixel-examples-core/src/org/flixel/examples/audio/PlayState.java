@@ -4,7 +4,7 @@ import org.flixel.FlxButton;
 import org.flixel.FlxG;
 import org.flixel.FlxSound;
 import org.flixel.FlxState;
-import org.flixel.event.AFlxButton;
+import org.flixel.event.IFlxButton;
 
 /**
  * Just a simple demo to play music and sound.
@@ -49,7 +49,7 @@ public class PlayState extends FlxState
 		super.destroy();
 	}
 	
-	AFlxButton playMusic = new AFlxButton()
+	IFlxButton playMusic = new IFlxButton()
 	{
 		@Override
 		public void callback() 
@@ -78,7 +78,7 @@ public class PlayState extends FlxState
 	};
 	
 	
-	AFlxButton stopMusic = new AFlxButton()
+	IFlxButton stopMusic = new IFlxButton()
 	{
 		@Override
 		public void callback() 
@@ -92,7 +92,7 @@ public class PlayState extends FlxState
 		};
 	};
 	
-	AFlxButton playSound = new AFlxButton()
+	IFlxButton playSound = new IFlxButton()
 	{
 		@Override
 		public void callback() 

@@ -1,7 +1,7 @@
 package org.flixel.examples.bomberplanet;
 
 import org.flixel.*;
-import org.flixel.event.AFlxCamera;
+import org.flixel.event.IFlxCamera;
 
 public class MenuState extends FlxState
 {
@@ -62,7 +62,7 @@ public class MenuState extends FlxState
 		}
 	}
 
-	public AFlxCamera onFade = new AFlxCamera()
+	public IFlxCamera onFade = new IFlxCamera()
 	{
 		@Override
 		public void callback()

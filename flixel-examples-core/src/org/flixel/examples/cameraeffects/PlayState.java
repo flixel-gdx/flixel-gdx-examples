@@ -3,8 +3,8 @@ package org.flixel.examples.cameraeffects;
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
 import org.flixel.FlxState;
-import org.flixel.event.AFlxButton;
-import org.flixel.event.AFlxCamera;
+import org.flixel.event.IFlxButton;
+import org.flixel.event.IFlxCamera;
 
 public class PlayState extends FlxState
 {
@@ -19,17 +19,17 @@ public class PlayState extends FlxState
 		add(new FlxButton(190, 10, "shake", onShake));
 	}
 
-	AFlxButton onFade = new AFlxButton()
+	IFlxButton onFade = new IFlxButton()
 	{
 		@Override
 		public void callback()
 		{
 			FlxG.log("fade!");
-			FlxG.fade(0xFF000000, 2, new AFlxCamera(){ @Override public void callback(){FlxG.camera.stopFX();}});
+			FlxG.fade(0xFF000000, 2, new IFlxCamera(){ @Override public void callback(){FlxG.camera.stopFX();}});
 		}
 	};
 	
-	AFlxButton onFlash = new AFlxButton()
+	IFlxButton onFlash = new IFlxButton()
 	{
 		@Override
 		public void callback()
@@ -39,7 +39,7 @@ public class PlayState extends FlxState
 		}
 	};
 	
-	AFlxButton onShake = new AFlxButton()
+	IFlxButton onShake = new IFlxButton()
 	{
 		@Override
 		public void callback()

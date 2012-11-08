@@ -1,7 +1,7 @@
 package org.flixel.examples.mode;
 
 import org.flixel.*;
-import org.flixel.event.AFlxCamera;
+import org.flixel.event.IFlxCamera;
 
 public class Spawner extends FlxSprite
 {
@@ -102,7 +102,7 @@ public class Spawner extends FlxSprite
 		flicker(0);
 		play("dead");
 		FlxG.camera.shake(0.007f,0.25f);
-		FlxG.camera.flash(0xffd8eba2,0.65f,new AFlxCamera(){@Override public void callback(){turnOffSlowMo();}});
+		FlxG.camera.flash(0xffd8eba2,0.65f,new IFlxCamera(){@Override public void callback(){turnOffSlowMo();}});
 		FlxG.timeScale = 0.35f;
 		makeBot();
 		_gibs.at(this);

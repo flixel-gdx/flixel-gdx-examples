@@ -1,0 +1,40 @@
+
+pack.png
+format: RGBA4444
+filter: Nearest,Nearest
+repeat: none
+ghost
+  rotate: false
+  xy: 0, 0
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+boss
+  rotate: false
+  xy: 64, 1
+  size: 64, 63
+  orig: 64, 63
+  offset: 0, 0
+  index: -1
+player
+  rotate: false
+  xy: 128, 0
+  size: 56, 64
+  orig: 56, 64
+  offset: 0, 0
+  index: -1
+bot
+  rotate: false
+  xy: 184, 48
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+enemy
+  rotate: false
+  xy: 184, 32
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

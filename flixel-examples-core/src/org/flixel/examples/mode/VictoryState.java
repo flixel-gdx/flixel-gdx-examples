@@ -1,7 +1,7 @@
 package org.flixel.examples.mode;
 
 import org.flixel.*;
-import org.flixel.event.AFlxCamera;
+import org.flixel.event.IFlxCamera;
 
 public class VictoryState extends FlxState
 {
@@ -45,7 +45,7 @@ public class VictoryState extends FlxState
 			{
 				_fading = true;
 				FlxG.play(SndMenu);
-				FlxG.fade(0xff131c1b,2,new AFlxCamera(){@Override public void callback(){ onPlay();}});
+				FlxG.fade(0xff131c1b,2,new IFlxCamera(){@Override public void callback(){ onPlay();}});
 			}
 		}
 	}

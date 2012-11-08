@@ -3,7 +3,7 @@ package org.flixel.examples.vibration;
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
 import org.flixel.FlxState;
-import org.flixel.event.AFlxButton;
+import org.flixel.event.IFlxButton;
 
 /**
  * A simple demo how vibration works.
@@ -21,7 +21,7 @@ public class PlayState extends FlxState
 		add(new FlxButton(120, 20, "stop vibrate", stop));
 	}
 
-	AFlxButton vibrate = new AFlxButton()
+	IFlxButton vibrate = new IFlxButton()
 	{
 		@Override
 		public void callback()
@@ -30,7 +30,7 @@ public class PlayState extends FlxState
 		}
 	};
 	
-	AFlxButton repeat = new AFlxButton()
+	IFlxButton repeat = new IFlxButton()
 	{
 		@Override
 		public void callback()
@@ -39,7 +39,7 @@ public class PlayState extends FlxState
 		}
 	};
 	
-	AFlxButton stop = new AFlxButton()
+	IFlxButton stop = new IFlxButton()
 	{
 		@Override
 		public void callback()

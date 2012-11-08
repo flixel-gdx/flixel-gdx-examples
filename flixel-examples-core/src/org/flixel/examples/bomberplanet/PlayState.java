@@ -1,7 +1,7 @@
 package org.flixel.examples.bomberplanet;
 
 import org.flixel.*;
-import org.flixel.event.AFlxObject;
+import org.flixel.event.IFlxObject;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.IntArray;
@@ -262,7 +262,7 @@ public class PlayState extends FlxState
 		}
 	}
 
-	public AFlxObject onHitbox = new AFlxObject()
+	public IFlxObject onHitbox = new IFlxObject()
 	{	
 		@Override
 		public boolean callback(FlxObject A,FlxObject B)
@@ -276,7 +276,7 @@ public class PlayState extends FlxState
 		}
 	};
 
-	AFlxObject onEnemyPlayer = new AFlxObject()
+	IFlxObject onEnemyPlayer = new IFlxObject()
 	{
 		@Override
 		public boolean callback(FlxObject A,FlxObject B)
@@ -290,7 +290,7 @@ public class PlayState extends FlxState
 		}
 	};
 	
-	AFlxObject onPowerup = new AFlxObject()
+	IFlxObject onPowerup = new IFlxObject()
 	{
 		@Override
 		public boolean callback(FlxObject A,FlxObject B)

@@ -1,7 +1,7 @@
 package org.flixel.examples.flxcollisions;
 
 import org.flixel.*;
-import org.flixel.event.AFlxButton;
+import org.flixel.event.IFlxButton;
 
 public class PlayState2 extends FlxState
 {
@@ -53,7 +53,7 @@ public class PlayState2 extends FlxState
 
 		if (FlxG.mobile)
 		{
-			FlxButton nextButton = new FlxButton(0, FlxG.height - 20, "Next", new AFlxButton(){@Override public void callback(){FlxG.switchState(new PlayState3());}});
+			FlxButton nextButton = new FlxButton(0, FlxG.height - 20, "Next", new IFlxButton(){@Override public void callback(){FlxG.switchState(new PlayState3());}});
 			nextButton.scrollFactor.x = nextButton.scrollFactor.y = 0;
 			nextButton.setSolid(false);
 			add(nextButton);

@@ -1,7 +1,7 @@
 package org.flixel.examples.replay;
 
 import org.flixel.*;
-import org.flixel.event.AFlxReplay;
+import org.flixel.event.IFlxReplay;
 
 public class PlayState extends FlxState
 {
@@ -170,7 +170,7 @@ public class PlayState extends FlxState
 		/**
 		 * NOTE "ANY" or other key wont work under debug mode!
 		 */
-		FlxG.loadReplay(save, new PlayState(), new String[]{"ANY", "MOUSE"}, 0, new AFlxReplay(){@Override public void callback(){start_record();}});
+		FlxG.loadReplay(save, new PlayState(), new String[]{"ANY", "MOUSE"}, 0, new IFlxReplay(){@Override public void callback(){start_record();}});
 
 	}
 }

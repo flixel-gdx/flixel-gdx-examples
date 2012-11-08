@@ -1,9 +1,9 @@
 package org.flixel.examples.mode;
 
 import org.flixel.*;
-import org.flixel.event.AFlxButton;
-import org.flixel.event.AFlxCamera;
-import org.flixel.event.AFlxReplay;
+import org.flixel.event.IFlxButton;
+import org.flixel.event.IFlxCamera;
+import org.flixel.event.IFlxReplay;
 
 public class MenuState extends FlxState
 {
@@ -123,12 +123,12 @@ public class MenuState extends FlxState
 			text.setColor(0x3a5c39);
 			add(text);
 
-			FlxButton flixelButton = new FlxButton(FlxG.width/2-40,FlxG.height/3+54,"flixel.org",new AFlxButton(){@Override public void callback(){onFlixel();}});
+			FlxButton flixelButton = new FlxButton(FlxG.width/2-40,FlxG.height/3+54,"flixel.org",new IFlxButton(){@Override public void callback(){onFlixel();}});
 			flixelButton.setColor(0xff729954);
 			flixelButton.label.setColor(0xffd8eba2);
 			add(flixelButton);
 
-			FlxButton dannyButton = new FlxButton(flixelButton.x,flixelButton.y + 22,"music: dannyB",new AFlxButton(){@Override public void callback(){onDanny();}});
+			FlxButton dannyButton = new FlxButton(flixelButton.x,flixelButton.y + 22,"music: dannyB",new IFlxButton(){@Override public void callback(){onDanny();}});
 			dannyButton.setColor(flixelButton.getColor());
 			dannyButton.label.setColor(flixelButton.label.getColor());
 			add(dannyButton);
@@ -138,7 +138,7 @@ public class MenuState extends FlxState
 			text.setAlignment("center");
 			add(text);
 
-			playButton = new FlxButton(flixelButton.x,flixelButton.y + 82,"CLICK HERE",new AFlxButton(){@Override public void callback(){onPlay();}});
+			playButton = new FlxButton(flixelButton.x,flixelButton.y + 82,"CLICK HERE",new IFlxButton(){@Override public void callback(){onPlay();}});
 			playButton.setColor(flixelButton.getColor());
 			playButton.label.setColor(flixelButton.label.getColor());
 			add(playButton);
@@ -154,7 +154,7 @@ public class MenuState extends FlxState
 			fading = true;
 			FlxG.play(SndHit2);
 			FlxG.flash(0xffd8eba2,0.5f);
-			FlxG.fade(0xff131c1b,1,new AFlxCamera(){@Override public void callback(){onFade();}});
+			FlxG.fade(0xff131c1b,1,new IFlxCamera(){@Override public void callback(){onFade();}});
 		}
 	}
 
@@ -183,7 +183,7 @@ public class MenuState extends FlxState
 	protected void onFade()
 	{
 		if(attractMode)
-			FlxG.loadReplay((FlxG.random()<0.5)?FlxG.loadString(Attract1):FlxG.loadString(Attract2),new PlayState(),new String[]{"ANY"},22,new AFlxReplay(){@Override public void callback(){onDemoComplete();}});
+			FlxG.loadReplay((FlxG.random()<0.5)?FlxG.loadString(Attract1):FlxG.loadString(Attract2),new PlayState(),new String[]{"ANY"},22,new IFlxReplay(){@Override public void callback(){onDemoComplete();}});
 		else
 			FlxG.switchState(new PlayState());
 	}
@@ -192,7 +192,7 @@ public class MenuState extends FlxState
 	//Here, we initiate another fade effect.
 	protected void onDemoComplete()
 	{
-		FlxG.fade(0xff131c1b,1,new AFlxCamera(){@Override public void callback(){onDemoFaded();}});
+		FlxG.fade(0xff131c1b,1,new IFlxCamera(){@Override public void callback(){onDemoFaded();}});
 	}
 
 	//Finally, we have another function called by FlxG.fade(), this time

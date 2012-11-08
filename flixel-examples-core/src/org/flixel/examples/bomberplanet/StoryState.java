@@ -1,7 +1,7 @@
 package org.flixel.examples.bomberplanet;
 
 import org.flixel.*;
-import org.flixel.event.AFlxCamera;
+import org.flixel.event.IFlxCamera;
 
 public class StoryState extends FlxState
 {
@@ -31,7 +31,7 @@ public class StoryState extends FlxState
 			FlxG.fade(0xff000000,1,skip);
 	}
 
-	public AFlxCamera skip = new AFlxCamera()
+	public IFlxCamera skip = new IFlxCamera()
 	{
 		@Override
 		public void callback()

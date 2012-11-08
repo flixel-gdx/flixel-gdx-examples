@@ -4,7 +4,7 @@ import org.flixel.FlxG;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTimer;
-import org.flixel.event.AFlxTimer;
+import org.flixel.event.IFlxTimer;
 
 
 /**
@@ -52,7 +52,7 @@ public class PlayState extends FlxState
 	}
 	
 	
-	AFlxTimer stop = new AFlxTimer()
+	IFlxTimer stop = new IFlxTimer()
 	{
 		@Override
 		public void callback(FlxTimer flxTimer)

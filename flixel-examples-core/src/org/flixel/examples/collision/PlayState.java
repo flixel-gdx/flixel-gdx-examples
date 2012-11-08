@@ -1,7 +1,7 @@
 package org.flixel.examples.collision;
 
 import org.flixel.*;
-import org.flixel.event.AFlxButton;
+import org.flixel.event.IFlxButton;
 
 public  class PlayState extends FlxState
 {
@@ -110,15 +110,15 @@ public  class PlayState extends FlxState
 		add(topText);
 
 		//Lets make a bunch of buttons! YEAH!!!
-		crateStorm = new FlxButton(2, FlxG.height - 22, "Crate Storm", new AFlxButton(){@Override public void callback(){onCrateStorm();}});
+		crateStorm = new FlxButton(2, FlxG.height - 22, "Crate Storm", new IFlxButton(){@Override public void callback(){onCrateStorm();}});
 		add(crateStorm);
-		flxRiderButton = new FlxButton(82, FlxG.height - 22, "Flixel Rider", new AFlxButton(){@Override public void callback(){onFlixelRider();}});
+		flxRiderButton = new FlxButton(82, FlxG.height - 22, "Flixel Rider", new IFlxButton(){@Override public void callback(){onFlixelRider();}});
 		add(flxRiderButton);
-		crateStormG1 = new FlxButton(162, FlxG.height - 22, "Blue Group", new AFlxButton(){@Override public void callback(){onBlue();}});
+		crateStormG1 = new FlxButton(162, FlxG.height - 22, "Blue Group", new IFlxButton(){@Override public void callback(){onBlue();}});
 		add(crateStormG1);
-		crateStormG2 = new FlxButton(242, FlxG.height - 22, "Red Group", new AFlxButton(){@Override public void callback(){onRed();}});
+		crateStormG2 = new FlxButton(242, FlxG.height - 22, "Red Group", new IFlxButton(){@Override public void callback(){onRed();}});
 		add(crateStormG2);
-		groupCollision = new FlxButton(320, FlxG.height - 22, "Collide Groups", new AFlxButton(){@Override public void callback(){onCollideGroups();}});
+		groupCollision = new FlxButton(320, FlxG.height - 22, "Collide Groups", new IFlxButton(){@Override public void callback(){onCollideGroups();}});
 		add(groupCollision);
 
 		//And lets get the flixel cursor visible again

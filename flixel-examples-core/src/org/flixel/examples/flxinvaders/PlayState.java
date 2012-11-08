@@ -7,7 +7,7 @@ import org.flixel.FlxObject;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
-import org.flixel.event.AFlxCollision;
+import org.flixel.event.IFlxCollision;
 
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
@@ -145,8 +145,8 @@ public class PlayState extends FlxState
 		
 		//Space invaders doesn't really even use collisions, we're just checking for overlaps between
 		// the bullets flying around and the shields and player and stuff.
-		FlxG.overlap(playerBullets,vsPlayerBullets,new AFlxCollision(){@Override public void callback(FlxObject Object1, FlxObject Object2){stuffHitStuff(Object1, Object2);};});
-		FlxG.overlap(alienBullets,vsAlienBullets,new AFlxCollision(){@Override public void callback(FlxObject Object1, FlxObject Object2){stuffHitStuff(Object1, Object2);};});
+		FlxG.overlap(playerBullets,vsPlayerBullets,new IFlxCollision(){@Override public void callback(FlxObject Object1, FlxObject Object2){stuffHitStuff(Object1, Object2);};});
+		FlxG.overlap(alienBullets,vsAlienBullets,new IFlxCollision(){@Override public void callback(FlxObject Object1, FlxObject Object2){stuffHitStuff(Object1, Object2);};});
 		
 		//THIS IS SUPER IMPORTANT and also easy to forget.  But all those objects that we added
 		// to the state earlier (i.e. all of everything) will not get automatically updated
