@@ -2,9 +2,9 @@ package org.flixel.examples.box2d;
 
 import org.flixel.FlxU;
 import org.flixel.plugin.flxbox2d.B2FlxB;
-import org.flixel.plugin.flxbox2d.B2FlxV2;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
+import org.flixel.plugin.flxbox2d.common.B2FlxV2;
 import org.flixel.plugin.flxbox2d.dynamics.joints.B2FlxFrictionJoint;
 import org.flixel.plugin.flxbox2d.dynamics.joints.B2FlxGearJoint;
 import org.flixel.plugin.flxbox2d.dynamics.joints.B2FlxPrismaticJoint;
