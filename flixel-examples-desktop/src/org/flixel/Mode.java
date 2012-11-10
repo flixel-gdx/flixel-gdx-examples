@@ -4,6 +4,6 @@ public class Mode
 {
 	public static void main(String[] args)
 	{
-		new FlxDesktopApplication(new org.flixel.examples.mode.Mode(), 620, 480);
+		new FlxDesktopApplication(new org.flixel.examples.mode.Mode(), 620, 480, true);
 	}
 }
