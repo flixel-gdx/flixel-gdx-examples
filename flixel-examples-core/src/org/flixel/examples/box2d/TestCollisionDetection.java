@@ -5,10 +5,11 @@ import org.flixel.examples.box2d.objects.Ghost;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 import org.flixel.plugin.flxbox2d.dynamics.B2FlxContactEvent;
+import org.flixel.plugin.flxbox2d.dynamics.B2FlxListener;
+
+import com.badlogic.gdx.physics.box2d.Contact;
 
 import flash.display.BlendMode;
-import flash.events.Event;
-import flash.events.Listener;
 
 /**
  *
@@ -95,13 +96,11 @@ public class TestCollisionDetection extends Test
 	}
 	
 	
-	Listener beginContact = new Listener()
-	{		
+	B2FlxListener beginContact = new B2FlxListener()
+	{			
 		@Override
-		public void onEvent(Event e)
-		{
-			B2FlxShape sprite1 = ((B2FlxContactEvent)e).sprite1;
-			B2FlxShape sprite2 = ((B2FlxContactEvent)e).sprite2;
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
+		{			
 			if(sprite1 == _ghost || sprite2 == _ghost)
 			{
 				_ghost.addOverlap();
@@ -120,41 +119,35 @@ public class TestCollisionDetection extends Test
 		}
 	};
 	
-	Listener preSolve = new Listener()
+	B2FlxListener preSolve = new B2FlxListener()
 	{
 		@Override
-		public void onEvent(Event e)
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
 		{
-			B2FlxShape sprite1 = ((B2FlxContactEvent)e).sprite1;
-			B2FlxShape sprite2 = ((B2FlxContactEvent)e).sprite2;
 			if((sprite2 == _ghost2 ) && (sprite1.categoryBits == PLAYER || sprite1.categoryBits == BOSS))
 			{
-				((B2FlxContactEvent)e).contact.setEnabled(false);
+				contact.setEnabled(false);
 			}
 		}		
 	};
 	
-	Listener postSolve = new Listener()
+	B2FlxListener postSolve = new B2FlxListener()
 	{
 		@Override
-		public void onEvent(Event e)
-		{
-			B2FlxShape sprite1 = ((B2FlxContactEvent)e).sprite1;
-			B2FlxShape sprite2 = ((B2FlxContactEvent)e).sprite2;
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
+		{			
 			if(sprite1 == _ghost2 || sprite2 == _ghost2)
 			{
-				((B2FlxContactEvent)e).contact.setEnabled(true);
+				contact.setEnabled(true);
 			}
 		}
 	};
 		
-	Listener endContact = new Listener()
+	B2FlxListener endContact = new B2FlxListener()
 	{		
 		@Override
-		public void onEvent(Event e)
-		{
-			B2FlxShape sprite1 = ((B2FlxContactEvent)e).sprite1;
-			B2FlxShape sprite2 = ((B2FlxContactEvent)e).sprite2;
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
+		{			
 			if(sprite2 == _ghost && (sprite1.categoryBits == PLAYER || sprite1.categoryBits == BOSS))
 			{
 				_ghost.removeOverlap();

@@ -12,9 +12,11 @@ import org.flixel.FlxState;
  */
 public class PlayState extends FlxState
 {
+	final float radiansToDegrees = (float) (180/Math.PI);
 	private FlxAnalog _analog1;
 	private FlxAnalog _analog2;
-	final float radiansToDegrees = (float) (180/Math.PI);	
+	private FlxAnalog _analog3;
+	private FlxAnalog _analog4;	
 	
 	@Override
 	public void create()
@@ -34,14 +36,25 @@ public class PlayState extends FlxState
 		
 		_analog1 = new FlxAnalog(75, FlxG.height-75);
 		_analog1.setAlpha(.75f);
+		add(_analog1);
 		
 		_analog2 = new FlxAnalog(FlxG.width - 75, FlxG.height-75);
 		_analog2.setAlpha(.75f);
+		add(_analog2);
+		
+		_analog3 = new FlxAnalog(75, 75);
+		_analog3.setAlpha(.75f);
+		add(_analog3);
+		
+		_analog4 = new FlxAnalog(FlxG.width-75, 75);
+		_analog4.setAlpha(.75f);
+		add(_analog4);
 		
 		add(new Player(10, 10, 0xFFFF0000, _analog1));		
 		add(new Player(FlxG.width-30, 10, 0xFF00FF00, _analog2));		
-		add(_analog1);
-		add(_analog2);		
+		add(new Player(FlxG.width/4f, FlxG.height/2f, 0xFF0000FF, _analog3));		
+		add(new Player(FlxG.width/2f, FlxG.height/2f, 0xFFFFFF00, _analog4));
+		
 	}
 	
 	@Override
