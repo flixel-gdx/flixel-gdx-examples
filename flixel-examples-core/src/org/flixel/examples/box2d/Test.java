@@ -200,6 +200,7 @@ public class Test extends B2FlxState
 		title = null;
 		info = null;
 		mouse = null;
+		FlxG.getPlugin(B2FlxDebug.class).destroy();
 		FlxG.removePluginType(B2FlxDebug.class);
 	}
 }
