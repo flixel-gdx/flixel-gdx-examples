@@ -1,5 +1,6 @@
 package org.flixel.examples.mode;
 
+import org.flixel.FlxCamera;
 import org.flixel.FlxGame;
 
 /**
@@ -12,6 +13,6 @@ public class Mode extends FlxGame
 {
 	public Mode()
 	{
-		super(320, 240, MenuState.class, 2, 50, 50, false, 640, 480, FILL_Y);
+		super(320, 240, MenuState.class, 2, 50, 50, false, 640, 480, FlxCamera.FILL_X);
 	}
 }

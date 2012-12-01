@@ -28,8 +28,8 @@ public class MenuState extends FlxState
 
 	@Override
 	public void create()
-	{
-		FlxG.width = (int) (FlxG.getStage().stageWidth / FlxCamera.defaultZoom);
+	{	
+		FlxG.width = FlxG.camera.viewportWidth;
 		FlxG.resetCameras();
 		
 		FlxG.setBgColor(0xff131c1b);
