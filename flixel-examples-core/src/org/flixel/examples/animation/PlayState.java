@@ -12,9 +12,15 @@ import org.flixel.event.IFlxAnim;
  */
 public class PlayState extends FlxState
 {
-	static public final String ImgFlixelLogo = "examples/animation/pack:flixellogo";
-	static public final String ImgZombie = "examples/animation/pack:zombietxai"; // by Txai Viegas
-	public static final String ImgDroid = "examples/animation/pack:droid";
+	public final String ImgFlixelLogo = "examples/animation/pack:flixellogo";
+	public final String ImgZombie = "examples/animation/pack:zombietxai"; // by Txai Viegas
+	public final String ImgDroid = "examples/animation/pack:droid";
+	public final String ImgZombie2 = "examples/animation/pack:zombie2";
+	public final String ImgZombie3 = "examples/animation/pack:zombie3";
+	public final String ImgChest = "examples/animation/pack:chest";
+	public final String ImgBat = "examples/animation/pack:bat";
+	public final String ImgGreenPotion = "examples/animation/pack:greenpotion";
+	
 	
 	private FlxSprite _zombie;
 
@@ -60,6 +66,36 @@ public class PlayState extends FlxState
 		s = new FlxSprite(220, 120).loadGraphic(ImgDroid, true, false, 14, 14);
 		s.addAnimation("walk", new int[]{0,1,2,3}, 20, true);
 		s.play("walk");
+		add(s);
+		
+		// Zombie from Mysterious Mayhem
+		s = new FlxSprite(20, 200).loadGraphic(ImgZombie2, true, false, 24, 39);
+		s.addAnimation("walk", new int[]{0,1,0,2}, 3);
+		s.play("walk");
+		add(s);
+		
+		// Another zombie from Mysterious Mayhem
+		s = new FlxSprite(20, 270).loadGraphic(ImgZombie3, true, false, 24, 39);
+		s.addAnimation("dig", new int[]{3,3,4,5,6,7,0,1,0,2,7,7,6,6,5,5,4,4,3,3}, 7);
+		s.play("dig");
+		add(s);
+		
+		// Chest from Mysterious Mayhem
+		s = new FlxSprite(50, 270).loadGraphic(ImgChest, true, false, 18, 23);
+		s.addAnimation("open", new int[]{0,0,0,1,2,3,4,5,6,7,8,9,8,7,6,5,4,10,10,10}, 5);
+		s.play("open");
+		add(s);
+		
+		// Bat from Mysterious Mayhem
+		s = new FlxSprite(70, 40).loadGraphic(ImgBat, true, false, 28, 23);
+		s.addAnimation("fly", new int[]{0,1},5);
+		s.play("fly");
+		add(s);
+		
+		// Green potion from Mysterious Mayhem
+		s = new FlxSprite(120, 20).loadGraphic(ImgGreenPotion, true, false, 11, 33);
+		s.addAnimation("default", new int[]{0,1,2},10);
+		s.play("default");
 		add(s);
 	}
 

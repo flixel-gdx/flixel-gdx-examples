@@ -5,6 +5,7 @@ import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxChain;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxEdge;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxPolygon;
+import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
 
 /**
  *
@@ -85,13 +86,40 @@ public class TestShapes extends Test
 		// Edge shape
 		add(new B2FlxEdge(300, 120, new float[][]{{0,0},{200, -40},{300,30}}).create());
 		
-		// Chain shape
+		// Chain shape. This can also be a loop, the begin and end point will connect.
 		add(new B2FlxChain(100, 100, new float[][]{{0,0},{100, 0},{150,50}})
 				.setPrevVertex(-5, -5f)
 				.setNextVertex(150f, 55f)
 				.create()
 			);
+			
 		
+		
+		// Shapeless. Attach shapes to it.
+		B2FlxSprite sprite = (B2FlxSprite) new B2FlxSprite(200, 200)
+			.setDraggable(true)
+			.create();
+		
+		add(sprite);
+		
+		B2FlxPolygon polyshape = (B2FlxPolygon) new B2FlxPolygon(0, 0, new float[][][]
+			{
+				{{-64,-64},{32,-32},{32,32},{-32,32}}
+			})
+			.setRestitution(.3f)
+			.setFriction(.2f)
+			.setDensity(.8f);		
+		sprite.createFixtureFromPolygon(polyshape, true);
+		
+		polyshape = (B2FlxPolygon) new B2FlxPolygon(0, 0, new float[][][]
+			{	
+				{{-32,-32},{64,-64},{32,32},{-32,32}}
+			})
+			.setRestitution(.3f)
+			.setFriction(.2f)
+			.setDensity(.8f)
+			.setSensor(true);		
+		sprite.createFixtureFromPolygon(polyshape, true);		
 	}
 }
 
