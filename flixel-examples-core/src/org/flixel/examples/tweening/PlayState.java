@@ -6,8 +6,10 @@ import org.flixel.FlxState;
 import org.flixel.plugin.tweens.TweenPlugin;
 import org.flixel.plugin.tweens.TweenSprite;
 
+import aurelienribon.tweenengine.BaseTween;
 import aurelienribon.tweenengine.Timeline;
 import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenCallback;
 
 /**
  *
@@ -47,10 +49,12 @@ public class PlayState extends FlxState
 			.repeatYoyo(2, 0.5f)
 			.start(TweenPlugin.manager);
 		
-		// Sprite 2 - angle
+		// Sprite 2 - angle + callback example. Take a look at the TweenCallback class for available triggers.
 		Tween.to(sprite2, TweenSprite.ANGLE, .75f)
 			.target(360)
 			.repeat(2, 1f)
+			.setCallback(callback)
+			.setCallbackTriggers(TweenCallback.BEGIN | TweenCallback.COMPLETE)
 			.start(TweenPlugin.manager);
 		
 		
@@ -70,13 +74,31 @@ public class PlayState extends FlxState
 				.push(Tween.to(sprite4, TweenSprite.ANGLE, .5f).target(180f))
 				.push(Tween.to(sprite4, TweenSprite.SCALE_XY, .5f).target(.5f, .5f))
 				.push(Tween.to(sprite4, TweenSprite.ALPHA, .5f).target(0.5f))
-				.push(Tween.to(sprite4, TweenSprite.X, .5f).target(250))
+				.push(Tween.to(sprite4, TweenSprite.X, .5f).target(250))				
 			.end()
 			.repeatYoyo(4, 0f) 
 			// TODO: bug when there is a delay and a negative number for repeat. See ISSUE 14 at
 			// http://code.google.com/p/java-universal-tween-engine/issues/detail?id=14
 		.start(TweenPlugin.manager);
 	}
+	
+	TweenCallback callback = new TweenCallback()
+	{
+		@Override
+		public void onEvent(int type, BaseTween<?> source)
+		{
+			switch(type)
+			{
+				case BEGIN:
+					FlxG.log("begun");
+					break;
+				case COMPLETE:
+					FlxG.log("completed");
+				default:
+					break;
+			}
+		}		
+	};
 	
 	@Override
 	public void destroy()
