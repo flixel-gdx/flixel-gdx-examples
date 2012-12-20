@@ -24,16 +24,15 @@ public class PlayState extends FlxState
 	private FlxTilemap _level;
 	private FlxGamePad _pad;
 	
-	
-
 	@Override
 	public void create()
 	{
 		//Background
 		FlxG.setBgColor(0xffacbcd7);
-
-		_pad = new FlxGamePad(FlxGamePad.FULL, FlxGamePad.A_B);
+		FlxG.width = FlxG.camera.viewportWidth;
+		FlxG.resetCameras();
 		
+		_pad = new FlxGamePad(FlxGamePad.FULL, FlxGamePad.A_B);
 		// Objects that are placed in the very front.
 		FlxSprite decoration = new FlxSprite(256,159,ImgBG);
 		decoration.moves = false;
@@ -63,6 +62,7 @@ public class PlayState extends FlxState
 						add(new Player(object.x,object.y,_pad));
 				}				
 			}
+;
 		}
 		
 		

@@ -52,6 +52,7 @@ public class PlayState extends FlxState
 	    FlxG.log("----------------------------------");
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathAbs()
 	{
 		FlxG.log(" ");
@@ -92,6 +93,7 @@ public class PlayState extends FlxState
 	    stopTimer();
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathSin()
 	{
 		FlxG.log(" ");
@@ -149,6 +151,7 @@ public class PlayState extends FlxState
 		stopTimer();
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathCos()
 	{
 		FlxG.log(" ");
@@ -207,6 +210,7 @@ public class PlayState extends FlxState
 	}
 
 	// TODO: math tan
+	@SuppressWarnings("unused")
 	public void testMathTan()
 	{
 		double result;
@@ -224,7 +228,7 @@ public class PlayState extends FlxState
 			result = Math.tan(FLOAT1);
 		}
 	}
-
+	@SuppressWarnings("unused")
 	public void testMathASin()
 	{
 		FlxG.log(" ");
@@ -264,7 +268,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 	}
-
+	@SuppressWarnings("unused")
 	public void testMathACos()
 	{
 		FlxG.log(" ");
@@ -306,6 +310,7 @@ public class PlayState extends FlxState
 	}
 	
 	// TODO: math atan
+	@SuppressWarnings("unused")
 	public void testMathATan()
 	{
 		double result;
@@ -324,6 +329,7 @@ public class PlayState extends FlxState
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	public void testMathATan2()
 	{
 		FlxG.log(" ");
@@ -364,6 +370,7 @@ public class PlayState extends FlxState
 		stopTimer();
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathLog()
 	{
 		FlxG.log(" ");
@@ -405,6 +412,7 @@ public class PlayState extends FlxState
 	}
 
 	// TODO: math sqrt
+	@SuppressWarnings("unused")
 	public void testMathSqrt()
 	{
 		double result;
@@ -423,6 +431,7 @@ public class PlayState extends FlxState
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathCeil()
 	{
 		FlxG.log(" ");
@@ -480,6 +489,7 @@ public class PlayState extends FlxState
 		stopTimer();
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathRound()
 	{
 		FlxG.log(" ");
@@ -537,6 +547,7 @@ public class PlayState extends FlxState
 		stopTimer();
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathFloor()
 	{
 		FlxG.log(" ");
@@ -594,6 +605,7 @@ public class PlayState extends FlxState
 		stopTimer();
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathExp()
 	{
 		FlxG.log(" ");
@@ -634,6 +646,7 @@ public class PlayState extends FlxState
 		stopTimer();
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathPow()
 	{
 		FlxG.log(" ");
@@ -674,6 +687,7 @@ public class PlayState extends FlxState
 		stopTimer();
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathMax()
 	{
 		FlxG.log(" ");
@@ -714,6 +728,7 @@ public class PlayState extends FlxState
 		stopTimer();		
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathMin()
 	{
 		FlxG.log(" ");
@@ -754,6 +769,7 @@ public class PlayState extends FlxState
 		stopTimer();
 	}
 
+	@SuppressWarnings("unused")
 	public void testMathRandom()
 	{
 		FlxG.log(" ");
@@ -812,6 +828,7 @@ public class PlayState extends FlxState
 	}
 
 	// TODO: Math IEEERemainder
+	@SuppressWarnings("unused")
 	public void testMathIEEERemainder()
 	{
 		double result;
@@ -830,7 +847,8 @@ public class PlayState extends FlxState
 		}
 	}
 
-	// Not tested, but it's obviously that 180 / PI is faster.
+	// Not tested, but it's obvious that 180 / PI is faster.
+	@SuppressWarnings("unused")
 	public void testMathToDegrees()
 	{
 		double result;
@@ -850,6 +868,7 @@ public class PlayState extends FlxState
 	}
 
 	// Not tested, but it's obviously that PI / 180 is faster.
+	@SuppressWarnings("unused")
 	public void testMathToRadians()
 	{
 		double result;

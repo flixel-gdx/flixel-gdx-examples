@@ -6,6 +6,6 @@ public class ESC extends FlxGame
 {
 	public ESC()
 	{
-		super(256,256,MenuState.class,2,30,30,false,512,512);
+		super(256,256,MenuState.class,2,30,30,false);
 	}
 }
