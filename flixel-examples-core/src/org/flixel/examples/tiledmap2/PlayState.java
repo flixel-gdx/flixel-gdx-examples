@@ -1,5 +1,6 @@
 package org.flixel.examples.tiledmap2;
 
+import org.flixel.FlxCamera;
 import org.flixel.FlxEmitter;
 import org.flixel.FlxG;
 import org.flixel.FlxGamePad;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.tiled.TiledLoader;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledMap;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledObject;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledObjectGroup;
+import com.badlogic.gdx.utils.Array;
 
 public class PlayState extends FlxState
 {
@@ -29,10 +31,19 @@ public class PlayState extends FlxState
 	{
 		//Background
 		FlxG.setBgColor(0xffacbcd7);
+		
+		int gameWidth = FlxG.width;
 		FlxG.width = FlxG.camera.viewportWidth;
 		FlxG.resetCameras();
 		
+		FlxG.camera.scroll.x = -(FlxG.camera.viewportWidth - gameWidth) / 2;
+		
+		FlxCamera padCamera = FlxG.addCamera(new FlxCamera(0, 0, FlxG.width, FlxG.height));
+		FlxG.cameras.removeValue(padCamera, true);
+		padCamera.bgColor = 0;
 		_pad = new FlxGamePad(FlxGamePad.FULL, FlxGamePad.A_B);
+		_pad.setAll("cameras", new Array<FlxCamera>(new FlxCamera[]{padCamera}));
+		
 		// Objects that are placed in the very front.
 		FlxSprite decoration = new FlxSprite(256,159,ImgBG);
 		decoration.moves = false;
@@ -46,8 +57,6 @@ public class PlayState extends FlxState
 			for(TiledObject object : group.objects)
 			{
 				// Draw sprites where objects occur
-//				System.out.println("Object " + object.name + " x,y = " + object.x + "," + object.y + " width,height = "
-//						+ object.width + "," + object.height);
 				
 				String name = object.name;
 				if(name != null)
@@ -62,10 +71,7 @@ public class PlayState extends FlxState
 						add(new Player(object.x,object.y,_pad));
 				}				
 			}
-;
 		}
-		
-		
 		
 		//This is the thing that spews nuts and bolts
 		FlxEmitter dispenser = new FlxEmitter(32,32,200);
@@ -78,43 +84,7 @@ public class PlayState extends FlxState
 		dispenser.start(false,10,0.035f);
 		add(dispenser);
 		
-		
-		
-
-		/*int[] data = {
-				16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,
-				16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,9,12,12,12,12,12,12,2,16,16,16,16,9,12,12,12,12,12,12,2,16,
-				16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,14,0,0,0,0,0,0,8,16,16,16,16,14,0,0,0,0,0,0,8,16,
-				16,16,16,9,12,12,12,12,12,12,12,12,12,12,12,12,2,16,16,14,0,0,0,0,0,0,4,12,12,12,12,10,0,0,0,0,0,0,8,16,
-				16,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,8,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,
-				16,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,4,12,12,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,
-				16,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,
-				16,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,
-				16,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,7,15,15,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,
-				16,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,8,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,
-				16,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,8,16,16,5,15,13,0,0,0,0,0,0,0,0,0,0,7,15,15,15,15,15,3,16,
-				16,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,8,16,16,16,16,14,0,0,0,0,0,0,0,0,0,0,8,16,16,16,16,16,16,16,
-				16,16,16,5,15,15,15,15,15,15,15,15,15,15,15,15,3,16,16,16,16,14,0,0,0,0,0,0,0,0,0,0,8,16,16,16,16,16,16,16,
-				16,16,16,16,16,9,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,10,0,0,0,0,0,0,0,0,0,0,8,16,16,16,16,16,16,16,
-				16,16,16,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,16,16,16,16,16,16,
-				16,9,12,12,12,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,16,16,16,16,16,16,
-				16,14,0,0,0,0,0,0,7,15,15,15,15,15,15,15,15,15,15,15,15,13,0,0,0,0,0,0,0,0,0,0,8,16,16,16,16,16,16,16,
-				16,14,0,0,0,0,0,0,8,9,12,12,12,12,12,12,12,12,12,12,12,10,0,0,0,0,0,0,0,0,0,0,8,9,12,12,12,12,2,16,
-				16,14,0,0,0,0,0,0,8,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,14,0,0,0,0,8,16,
-				16,14,0,0,0,0,0,0,8,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,10,0,0,0,0,8,16,
-				16,5,15,13,0,0,7,15,3,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,
-				16,9,12,10,0,0,4,12,12,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,
-				16,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,13,0,0,0,0,8,16,
-				16,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,14,0,0,0,0,8,16,
-				16,14,0,0,0,0,0,0,0,0,0,0,7,15,15,15,15,15,15,13,0,0,0,0,0,0,0,0,0,0,0,0,8,5,15,15,15,15,3,16,
-				16,14,0,0,0,0,0,0,0,0,0,0,4,12,12,12,12,12,12,10,0,0,0,0,0,0,0,0,0,0,0,0,8,16,16,16,16,16,16,16,
-				16,5,15,15,15,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,16,16,16,16,16,16,
-				16,16,16,16,16,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,16,16,16,16,16,16,16,
-				16,16,16,16,16,5,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,3,16,16,16,16,16,16,16,
-				16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16};*/
 		_level = new FlxTilemap();
-//		_level.loadMap(FlxTilemap.arrayToCSV(data, 40), Asset.ImgTiles);
-//		_level.loadMap(FlxTilemap.array2DToCSV(Asset.map.layers.get(0).tiles), Asset.ImgTiles);
 		_level.loadMap(FlxTilemap.tiledmapToCSV(map, 0), ImgTiles, 8, 8, FlxTilemap.OFF, 1);
 		
 		add(_level);
@@ -127,9 +97,7 @@ public class PlayState extends FlxState
 	{		
 		super.destroy();
 		_level = null;
-//		_player = null;
 	}
-	
 	
 	@Override
 	public void update()
