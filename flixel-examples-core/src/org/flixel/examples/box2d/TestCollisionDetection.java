@@ -8,6 +8,8 @@ import org.flixel.plugin.flxbox2d.dynamics.B2FlxContactEvent;
 import org.flixel.plugin.flxbox2d.dynamics.B2FlxListener;
 
 import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.Manifold;
 
 import flash.display.BlendMode;
 
@@ -99,7 +101,7 @@ public class TestCollisionDetection extends Test
 	B2FlxListener beginContact = new B2FlxListener()
 	{			
 		@Override
-		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
+		public void beginContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
 		{			
 			if(sprite1 == _ghost || sprite2 == _ghost)
 			{
@@ -122,19 +124,19 @@ public class TestCollisionDetection extends Test
 	B2FlxListener preSolve = new B2FlxListener()
 	{
 		@Override
-		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
+		public void preSolve(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold) 
 		{
 			if((sprite2 == _ghost2 ) && (sprite1.categoryBits == PLAYER || sprite1.categoryBits == BOSS))
 			{
 				contact.setEnabled(false);
-			}
-		}		
+			}			
+		};				
 	};
 	
 	B2FlxListener postSolve = new B2FlxListener()
 	{
 		@Override
-		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
+		public void postSolve(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, ContactImpulse impulse) 
 		{			
 			if(sprite1 == _ghost2 || sprite2 == _ghost2)
 			{
@@ -146,7 +148,7 @@ public class TestCollisionDetection extends Test
 	B2FlxListener endContact = new B2FlxListener()
 	{		
 		@Override
-		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
+		public void endContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
 		{			
 			if(sprite2 == _ghost && (sprite1.categoryBits == PLAYER || sprite1.categoryBits == BOSS))
 			{
@@ -167,5 +169,17 @@ public class TestCollisionDetection extends Test
 			}
 		}
 	};
+	
+	@Override
+	public void destroy() 
+	{
+		super.destroy();
+		_player = null;
+		_boss = null;
+		_friendly = null;
+		_enemy = null;
+		_ghost = null;
+		_ghost2 = null;
+	}
 }
 

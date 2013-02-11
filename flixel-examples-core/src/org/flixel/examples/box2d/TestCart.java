@@ -87,5 +87,13 @@ public class TestCart extends Test
 		}
 		super.update();
 	}
+	
+	@Override
+	public void destroy()
+	{
+		super.destroy();
+		_wheel1 = _wheel2 = null;
+		_pad = null;
+	}
 }
 

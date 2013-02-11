@@ -25,6 +25,7 @@ public class Test extends B2FlxState
 	public FlxText title;
 	public FlxText info;
 	public B2FlxMouseJoint mouse;
+	public final short WALL = 0x0001;
 	
 	@Override
 	public void create()
@@ -61,13 +62,13 @@ public class Test extends B2FlxState
 		
 		// Create walls
 		// Left
-		add(new B2FlxBox(0, 0, 5, FlxG.height).setType(B2FlxShape.STATIC).setCategoryBits((short) 0x0001).create());
+		add(new B2FlxBox(0, 0, 5, FlxG.height).setType(B2FlxShape.STATIC).setCategoryBits((short) WALL).create());
 		// Right
-		add(new B2FlxBox(FlxG.width-5, 0, 5, FlxG.height).setType(B2FlxShape.STATIC).setCategoryBits((short) 0x0001).create());
+		add(new B2FlxBox(FlxG.width-5, 0, 5, FlxG.height).setType(B2FlxShape.STATIC).setCategoryBits((short) WALL).create());
 		// Top
-		add(new B2FlxBox(0, 0, FlxG.width, 5).setType(B2FlxShape.STATIC).setCategoryBits((short) 0x0001).create());
+		add(new B2FlxBox(0, 0, FlxG.width, 5).setType(B2FlxShape.STATIC).setCategoryBits((short) WALL).create());
 		// Bottom
-		add(new B2FlxBox(0, FlxG.height-5, FlxG.width, 5).setType(B2FlxShape.STATIC).setCategoryBits((short) 0x0001).create());
+		add(new B2FlxBox(0, FlxG.height-5, FlxG.width, 5).setType(B2FlxShape.STATIC).setCategoryBits((short) WALL).create());
 		
 		// Add mouse joint.
 		add(mouse = new B2FlxMouseJoint());
@@ -98,9 +99,9 @@ public class Test extends B2FlxState
 //				TestEdges.class,			// Edges
 //				TestBuoyancy.class,			// Buouyancy
 				TestOneSidedPlatform.class, // One Sided Platform
-//				TestBreakable.class,		// Breakable
+				TestBreakable.class,		// Breakable
 //				TestRaycast.class,			// Raycast
-//				TestSensor.class,			// Sensor
+				TestSensor.class,			// Sensor
 				TestCollisionDetection.class// Collision Detection
 			};			
 		}

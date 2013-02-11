@@ -34,5 +34,13 @@ public class TestDistanceJoint extends Test
 			.create();
 		add(joint);
 	}
+	
+	@Override
+	public void destroy()
+	{
+		super.destroy();
+		box1 = box2 = null;
+		joint = null;
+	}
 }
 

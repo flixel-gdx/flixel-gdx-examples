@@ -63,4 +63,12 @@ public class TestOneSidedPlatform extends Test
 			}
 		});
 	}
+	
+	@Override
+	public void destroy()
+	{
+		super.destroy();
+		platform = null;
+		ball = null;
+	}
 }

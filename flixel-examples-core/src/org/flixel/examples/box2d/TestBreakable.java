@@ -4,13 +4,15 @@ import org.flixel.plugin.flxbox2d.B2FlxB;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
+import org.flixel.plugin.flxbox2d.common.math.B2FlxMath;
+import org.flixel.plugin.flxbox2d.dynamics.B2FlxContactEvent;
+import org.flixel.plugin.flxbox2d.dynamics.B2FlxListener;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.Manifold;
 
 /**
  *
@@ -18,87 +20,132 @@ import com.badlogic.gdx.physics.box2d.Manifold;
  */
 public class TestBreakable extends Test
 {
-	public B2FlxShape body;
-	public Vector2 velocity = new Vector2();
-	public float angularVelocity;
-	public B2FlxBox shape1;
-	public B2FlxBox shape2;
-	public Fixture piece1;
-	public Fixture piece2;
-	public boolean broke;
-	public boolean _break;
+	private B2FlxShape _box;
+	private Vector2 _velocity = new Vector2();
+	private float _angularVelocity;
+	private B2FlxBox _shape1;
+	private B2FlxBox _shape2;
+	private Fixture _piece1;
+	private Fixture _piece2;
+	private boolean _broke;
+	private boolean _break;
 	
 	@Override
 	public void create()
 	{
 		super.create();
 		title.setText("Breakable");
+		info.setText("Smash the box against the wall to break.");
 		
-		B2FlxB.world.setContactListener(new ContactListenerBreakable(this));
-		
-		body = new B2FlxSprite(150, 150)
+		_box = new B2FlxSprite(150, 150)
 			.setDensity(1)
 			.setAngle(45)
+			.setDraggable(true)
 			.create();
-		add(body);
+		add(_box);
 		
 		// Breakable Dynamic Body
-		shape1 = new B2FlxBox(0, 0, 30, 30, new Vector2(-.5f, 0));
-		shape2 = new B2FlxBox(0, 0, 30, 30, new Vector2(.5f, 0));
+		_shape1 = new B2FlxBox(0, 0, 30, 30, new Vector2(-.5f, 0));
+		_shape2 = new B2FlxBox(0, 0, 30, 30, new Vector2(.5f, 0));
 		
-		piece1 = body.createFixture(shape1, 1);
-		piece2 = body.createFixture(shape2, 1);
+		_piece1 = _box.createFixture(_shape1, 1);
+		_piece2 = _box.createFixture(_shape2, 1);
 		
-		broke = false;
+		_broke = false;
 		_break = false;
+		
+		contactListener.addEventListener(B2FlxContactEvent.POSTSOLVE, post);
+	}
+	
+	@Override
+	public void update()
+	{
+		super.update();
+		if(_break)
+		{
+			breakBody();
+			_broke = true;
+			_break = false;
+		}
+		
+		if(!_broke)
+		{
+			_velocity.set(_box.body.getLinearVelocity());
+			_angularVelocity = _box.body.getAngularVelocity();
+		}
 	}
 	
 	public void breakBody()
 	{
-		// Apply cached velocity for more realistic break
-		body.setLinearVelocity(velocity);
-		body.setAngularVelocity(angularVelocity);
+		// Create two bodies from one.
+		Body body1 = _piece1.getBody();
+//		Vector2 center = body1.getWorldCenter();
 		
-		// Split body in two pieces
-		// TODO: continue here
-	}
-}
-
-class ContactListenerBreakable implements ContactListener
-{
-	//private TestBreakable test;
-	
-	public ContactListenerBreakable(TestBreakable test)
-	{
-		//this.test = test;
-	}
-
-	@Override
-	public void beginContact(Contact contact)
-	{
-		// TODO Auto-generated method stub
+		body1.destroyFixture(_piece2);
+		_piece2 = null;
 		
-	}
-
-	@Override
-	public void endContact(Contact contact)
-	{
-		// TODO Auto-generated method stub
+		float x = body1.getPosition().x * B2FlxB.RATIO;
+		float y = body1.getPosition().y * B2FlxB.RATIO;
 		
-	}
-
-	@Override
-	public void preSolve(Contact contact, Manifold oldManifold)
-	{
-		// TODO Auto-generated method stub
+		// Shapeless
+		B2FlxSprite body2 = (B2FlxSprite) new B2FlxSprite(x, y)
+			.setAngle(body1.getAngle())
+			.setDraggable(true)
+			.create();
+		body2.createFixture(_shape2, 1.0f);
+		add(body2);
 		
-	}
+		// Compute consistent velocities for new bodies based on cached velocity.
+//		Vector2 center1 = body1.getWorldCenter();
+//		Vector2 center2 = body2.body.getWorldCenter();
 
-	@Override
-	public void postSolve(Contact contact, ContactImpulse impulse)
-	{
-		// TODO Auto-generated method stub
+//		Vector2 velocity1 = velocity.add(B2FlxV2.cross(angularVelocity, center1.sub(center)));
+//		Vector2 velocity2 = velocity.add(B2FlxV2.cross(angularVelocity, center2.sub(center)));
+
+		body1.setAngularVelocity(_angularVelocity);
+//		body1.setLinearVelocity(velocity1);
+
+		body2.setAngularVelocity(_angularVelocity);
+//		body2.setLinearVelocity(velocity2);
 		
 	}
 	
+	B2FlxListener post = new B2FlxListener()
+	{
+		@Override
+		public void postSolve(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, ContactImpulse impulse)
+		{
+			if(_broke)
+			{
+				// The body already broke.
+				return;
+			}
+			
+			// Should the body break?
+			int count = contact.getWorldManifold().getNumberOfContactPoints();
+			
+			float maxImpulse = 0.0f;
+			for(int i = 0; i < count; i++)
+			{
+				maxImpulse = B2FlxMath.max(maxImpulse, impulse.getNormalImpulses()[i]);
+			}
+			
+			if(maxImpulse > 40.0f)
+			{
+				_break = true;
+			}
+		}
+	};
+	
+	@Override
+	public void destroy() 
+	{
+		super.destroy();
+		_box = null;
+		_velocity = null;
+		_shape1 = null;
+		_shape2 = null;
+		_piece1 = null;
+		_piece2 = null;
+	}
 }
