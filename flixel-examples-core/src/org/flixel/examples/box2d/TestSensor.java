@@ -55,8 +55,8 @@ public class TestSensor extends Test
 		add(sensorBody);
 		
 		// Add event listeners.
-		contactListener.addEventListener(B2FlxContactEvent.BEGIN, begin);
-		contactListener.addEventListener(B2FlxContactEvent.END, end);
+		contactListener.addEventListener(B2FlxContactEvent.BEGIN, onContact);
+		contactListener.addEventListener(B2FlxContactEvent.END, onRelease);
 	}
 	
 	@Override
@@ -76,7 +76,7 @@ public class TestSensor extends Test
 		super.update();
 	}
 	
-	B2FlxListener begin = new B2FlxListener()
+	B2FlxListener onContact = new B2FlxListener()
 	{
 		@Override
 		public void beginContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact)
@@ -88,7 +88,7 @@ public class TestSensor extends Test
 		}
 	};
 	
-	B2FlxListener end = new B2FlxListener()
+	B2FlxListener onRelease = new B2FlxListener()
 	{
 		@Override
 		public void endContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact)
@@ -108,6 +108,8 @@ public class TestSensor extends Test
 		d = null;
 		bodies.clear();
 		bodies = null;
+		onContact = null;
+		onRelease = null;
 	}
 	
 }
