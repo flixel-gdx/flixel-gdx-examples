@@ -1,9 +1,9 @@
 package org.flixel.examples.tiledmap2;
 
-import org.flixel.FlxCamera;
 import org.flixel.FlxEmitter;
 import org.flixel.FlxG;
 import org.flixel.FlxGamePad;
+import org.flixel.FlxPoint;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
@@ -14,7 +14,6 @@ import com.badlogic.gdx.graphics.g2d.tiled.TiledLoader;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledMap;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledObject;
 import com.badlogic.gdx.graphics.g2d.tiled.TiledObjectGroup;
-import com.badlogic.gdx.utils.Array;
 
 public class PlayState extends FlxState
 {
@@ -32,18 +31,14 @@ public class PlayState extends FlxState
 		//Background
 		FlxG.setBgColor(0xffacbcd7);
 		
-		int gameWidth = FlxG.width;
 		FlxG.width = FlxG.camera.viewportWidth;
-		FlxG.resetCameras();
 		
-		FlxG.camera.scroll.x = -(FlxG.camera.viewportWidth - gameWidth) / 2;
+		FlxG.camera.scroll.x = -(FlxG.width - FlxG.camera.width) / 2;
 		
-		FlxCamera padCamera = FlxG.addCamera(new FlxCamera(0, 0, FlxG.width, FlxG.height));
-		FlxG.cameras.removeValue(padCamera, true);
-		padCamera.bgColor = 0;
+		FlxG.camera.width = FlxG.width;
 		_pad = new FlxGamePad(FlxGamePad.FULL, FlxGamePad.A_B);
-		_pad.setAll("cameras", new Array<FlxCamera>(new FlxCamera[]{padCamera}));
-		
+		_pad.setAll("scrollFactor", new FlxPoint(0,0));
+		FlxG.width = 320;
 		// Objects that are placed in the very front.
 		FlxSprite decoration = new FlxSprite(256,159,ImgBG);
 		decoration.moves = false;
