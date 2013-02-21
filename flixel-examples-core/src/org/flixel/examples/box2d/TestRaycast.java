@@ -78,18 +78,18 @@ public class TestRaycast extends Test
 	RayCastCallback cb = new RayCastCallback()
 	{
 		
-		private boolean hit;
-		private Vector2 point;
-		private Vector2 normal;
+		//private boolean hit;
+		//private Vector2 point;
+		//private Vector2 normal;
 
 		@Override
 		public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction)
 		{
 			FlxG.log(fixture);
-			Body body = fixture.getBody();
-			hit = true;
-			this.point = point;
-			this.normal = normal;
+			//Body body = fixture.getBody();
+			//hit = true;
+			//this.point = point;
+			//this.normal = normal;
 			return fraction;
 		}
 	};
