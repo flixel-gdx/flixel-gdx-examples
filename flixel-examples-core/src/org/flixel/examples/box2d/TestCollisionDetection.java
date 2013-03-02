@@ -58,15 +58,26 @@ public class TestCollisionDetection extends Test
 		// Player will collide against wall, boss and enemy, assigned in group 1.
 		add(_player = createBox(8, 200, 64, 64, PLAYER, (short) (WALL | BOSS | ENEMY),  (short) 1));
 		_player.loadGraphic(ImgPlayer);
+		_player.reportBeginContact = true;
+		_player.reportEndContact = true;
+		
 		// Boss will collide against wall, player and friendly, assigned in group 1.
 		add(_boss = createBox(100, 200, 64, 64, BOSS, (short) (WALL | PLAYER | FRIENDLY), (short) 1));
 		_boss.loadGraphic(ImgBoss);
+		_boss.reportBeginContact = true;
+		_boss.reportEndContact = true;
+		
 		// Friendly will collide against wall, boss and enemy, assigned in group 0.
 		add(_friendly = createBox(200, 200, 16, 16, FRIENDLY, (short) (WALL | BOSS | ENEMY | GHOST), (short) 0));
 		_friendly.loadGraphic(ImgFriendly);
+		_friendly.reportBeginContact = true;
+		_friendly.reportEndContact = true;
+		
 		// Enemy will collide against wall, player and enemy, assigned in group 0.
 		add(_enemy = createBox(300, 200, 16, 16, ENEMY, (short) (WALL | PLAYER | FRIENDLY | GHOST), (short) 0));
 		_enemy.loadGraphic(ImgEnemy);
+		_enemy.reportBeginContact = true;
+		_enemy.reportEndContact = true;
 		
 		// Ghost shows opacity when collide in the same group.
 		// White ghost doesn't collide with anything, not even walls.
