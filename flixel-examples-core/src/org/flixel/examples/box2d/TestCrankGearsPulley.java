@@ -27,7 +27,7 @@ public class TestCrankGearsPulley extends Test
 		
 		// CRANK
 		// Define crank.
-		B2FlxBox crank = (B2FlxBox) new B2FlxBox(100, 360-135, 15, 60)
+		B2FlxBox crank = new B2FlxBox(100, 360-135, 15, 60)
 			.setDensity(1f)
 			.setDraggable(true)
 			.create();
@@ -42,7 +42,7 @@ public class TestCrankGearsPulley extends Test
 		
 		
 		// Define follower.
-		B2FlxBox follower = (B2FlxBox) new B2FlxBox(100, 360-255, 15, 120)
+		B2FlxBox follower = new B2FlxBox(100, 360-255, 15, 120)
 			.setDensity(1)
 			.setDraggable(true)
 			.create();
@@ -53,7 +53,7 @@ public class TestCrankGearsPulley extends Test
 			.create();
 		
 		// Define piston
-		B2FlxBox piston = (B2FlxBox) new B2FlxBox(100-follower.width, 360-277.5f, 45, 45)
+		B2FlxBox piston = new B2FlxBox(100-follower.width, 360-277.5f, 45, 45)
 			.setDensity(1f)
 			.setDraggable(true)
 			.create();
@@ -71,7 +71,7 @@ public class TestCrankGearsPulley extends Test
 			.create();
 		
 		// Create a payload
-		B2FlxBox payload = (B2FlxBox) new B2FlxBox(100-follower.width, 360-367.5f, 45, 45)
+		B2FlxBox payload = new B2FlxBox(100-follower.width, 360-367.5f, 45, 45)
 			.setDensity(2f)
 			.setDraggable(true)
 			.create();
@@ -79,33 +79,33 @@ public class TestCrankGearsPulley extends Test
 		
 		
 		// GEARS
-		B2FlxCircle circle1 = (B2FlxCircle) new B2FlxCircle(175, 155, 25)
+		B2FlxCircle circle1 = new B2FlxCircle(175, 155, 25)
 			.setDensity(5)
 			.setDraggable(true)
 			.create();
 		add(circle1);
 		
-		B2FlxRevoluteJoint joint1 = (B2FlxRevoluteJoint) new B2FlxRevoluteJoint(null, circle1)
+		B2FlxRevoluteJoint joint1 = new B2FlxRevoluteJoint(null, circle1)
 			.setAnchorA(circle1.body.getPosition())
 			.create();
 		
-		B2FlxCircle circle2 = (B2FlxCircle) new B2FlxCircle(225, 130, 50)
+		B2FlxCircle circle2 = new B2FlxCircle(225, 130, 50)
 			.setDensity(5)
 			.setDraggable(true)
 			.create();
 		add(circle2);
 		
-		B2FlxRevoluteJoint joint2 = (B2FlxRevoluteJoint) new B2FlxRevoluteJoint(null, circle2)
+		B2FlxRevoluteJoint joint2 = new B2FlxRevoluteJoint(null, circle2)
 			.setAnchorA(circle2.body.getPosition())
 			.create();
 		
-		B2FlxBox box = (B2FlxBox) new B2FlxBox(325, 80, 20, 200)
+		B2FlxBox box = new B2FlxBox(325, 80, 20, 200)
 			.setDensity(5)
 			.setDraggable(true)
 			.create();
 		add(box);
 				
-		B2FlxPrismaticJoint joint3 = (B2FlxPrismaticJoint) new B2FlxPrismaticJoint(null, box)
+		B2FlxPrismaticJoint joint3 = new B2FlxPrismaticJoint(null, box)
 			.setAxis(new Vector2(0, 1))
 			.setLowerTranslation(-25f/B2FlxB.RATIO)
 			.setUpperTranslation(100f/B2FlxB.RATIO)
@@ -128,7 +128,7 @@ public class TestCrankGearsPulley extends Test
 		
 		
 		// PULLEY
-		B2FlxBox pulley = (B2FlxBox) new B2FlxBox(430, 180, 100, 40)
+		B2FlxBox pulley = new B2FlxBox(430, 180, 100, 40)
 			.setDensity(5)
 			.setDraggable(true)
 			.create();
@@ -145,7 +145,7 @@ public class TestCrankGearsPulley extends Test
 		
 		// FRICTION JOINT
 		// Add a circle to weigh down the pulley
-		B2FlxCircle circ = (B2FlxCircle) new B2FlxCircle(445, 60, 40)
+		B2FlxCircle circ = new B2FlxCircle(445, 60, 40)
 			.setFriction(.3f)
 			.setRestitution(.3f)
 			.setDensity(5f)

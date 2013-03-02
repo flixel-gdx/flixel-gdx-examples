@@ -27,7 +27,7 @@ public class TestDistanceJoint extends Test
 		box2 = createBox(box1.x+100, FlxG.height/2-25, 50, 50);
 		add(box2);
 		
-		joint = (B2FlxDistanceJoint) new B2FlxDistanceJoint(box1, box2)
+		joint = new B2FlxDistanceJoint(box1, box2)
 			.setAnchorA(box1.body.getWorldCenter())
 			.setAnchorB(box2.body.getWorldCenter())
 			.setShowLine(true)

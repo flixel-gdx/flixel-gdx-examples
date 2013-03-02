@@ -130,7 +130,7 @@ public class Test extends B2FlxState
 	
 	public B2FlxBox createBox(float x, float y, float width, float height)
 	{
-		return (B2FlxBox) new B2FlxBox(x, y, width, height)
+		return new B2FlxBox(x, y, width, height)
 		.setFriction(.8f)
 		.setRestitution(.3f)
 		.setDensity(.7f)

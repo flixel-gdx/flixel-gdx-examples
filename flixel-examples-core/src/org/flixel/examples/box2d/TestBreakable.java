@@ -88,7 +88,7 @@ public class TestBreakable extends Test
 		float y = body1.getPosition().y * B2FlxB.RATIO;
 		
 		// Shapeless
-		B2FlxSprite body2 = (B2FlxSprite) new B2FlxSprite(x, y)
+		B2FlxSprite body2 = new B2FlxSprite(x, y)
 			.setAngle(body1.getAngle())
 			.setDraggable(true)
 			.create();

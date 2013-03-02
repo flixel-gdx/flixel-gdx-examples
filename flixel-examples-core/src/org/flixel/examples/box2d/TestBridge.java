@@ -29,7 +29,7 @@ public class TestBridge extends Test
 		int i;
 		for(i = 0; i < numPlanks; i++)
 		{
-			plank = (B2FlxBox) new B2FlxBox(76 + 22 + 44 * i, 245, 48, 10)
+			plank = new B2FlxBox(76 + 22 + 44 * i, 245, 48, 10)
 				.setDensity(20)
 				.setFriction(.2f)
 				.setDraggable(true)

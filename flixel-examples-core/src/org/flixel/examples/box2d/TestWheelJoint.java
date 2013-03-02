@@ -21,7 +21,7 @@ public class TestWheelJoint extends Test
 		title.setText("WheelJoint");
 		info.setText("This joint is designed for vehicle suspensions.");
 		
-		B2FlxCircle circle = (B2FlxCircle) new B2FlxCircle(100, FlxG.height/2-20, 20)
+		B2FlxCircle circle = new B2FlxCircle(100, FlxG.height/2-20, 20)
 			.setType(B2FlxShape.DYNAMIC)
 			.setFriction(.8f)
 			.setRestitution(.3f)
@@ -30,7 +30,7 @@ public class TestWheelJoint extends Test
 			.create();
 		add(circle);
 		
-		B2FlxCircle circle2 = (B2FlxCircle) new B2FlxCircle(150, FlxG.height/2-20, 20)
+		B2FlxCircle circle2 = new B2FlxCircle(150, FlxG.height/2-20, 20)
 			.setFriction(.8f)
 			.setRestitution(.3f)
 			.setDensity(.7f)

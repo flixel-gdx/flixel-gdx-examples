@@ -44,7 +44,7 @@ public class TestStack extends Test
 		
 		
 		// Create ball
-		B2FlxCircle ball = (B2FlxCircle) new B2FlxCircle(10, 60, 40)
+		B2FlxCircle ball = new B2FlxCircle(10, 60, 40)
 			.setDensity(2f)
 			.setRestitution(.2f)
 			.setFriction(.5f)

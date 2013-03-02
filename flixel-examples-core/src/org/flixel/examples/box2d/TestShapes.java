@@ -96,13 +96,13 @@ public class TestShapes extends Test
 		
 		
 		// Shapeless. Attach shapes to it.
-		B2FlxSprite sprite = (B2FlxSprite) new B2FlxSprite(200, 200)
+		B2FlxSprite sprite = new B2FlxSprite(200, 200)
 			.setDraggable(true)
 			.create();
 		
 		add(sprite);
 		
-		B2FlxPolygon polyshape = (B2FlxPolygon) new B2FlxPolygon(0, 0, new float[][][]
+		B2FlxPolygon polyshape = new B2FlxPolygon(0, 0, new float[][][]
 			{
 				{{-64,-64},{32,-32},{32,32},{-32,32}}
 			})
@@ -111,7 +111,7 @@ public class TestShapes extends Test
 			.setDensity(.8f);		
 		sprite.createFixtureFromPolygon(polyshape, true);
 		
-		polyshape = (B2FlxPolygon) new B2FlxPolygon(0, 0, new float[][][]
+		polyshape = new B2FlxPolygon(0, 0, new float[][][]
 			{	
 				{{-32,-32},{64,-64},{32,32},{-32,32}}
 			})

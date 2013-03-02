@@ -34,7 +34,7 @@ public class TestCart extends Test
 		add(createBox(535, 15, 50, 50));
 		
 		// Cart
-		B2FlxBox cart = (B2FlxBox) new B2FlxBox(220, 20, 200, 20)
+		B2FlxBox cart = new B2FlxBox(220, 20, 200, 20)
 			.setDensity(1)
 			.setFriction(.3f)
 			.setDraggable(true)
@@ -42,13 +42,13 @@ public class TestCart extends Test
 		add(cart);
 		
 		// Wheels
-		add(_wheel1 = (B2FlxCircle) new B2FlxCircle(cart.x-20, 10, 20)
+		add(_wheel1 = new B2FlxCircle(cart.x-20, 10, 20)
 				.setDensity(1)
 				.setFriction(4)
 				.setDraggable(true)
 				.create());
 		
-		add(_wheel2 = (B2FlxCircle) new B2FlxCircle(cart.x+cart.width-20, 10, 20)
+		add(_wheel2 = new B2FlxCircle(cart.x+cart.width-20, 10, 20)
 			.setDensity(1)
 			.setFriction(4)
 			.setDraggable(true)

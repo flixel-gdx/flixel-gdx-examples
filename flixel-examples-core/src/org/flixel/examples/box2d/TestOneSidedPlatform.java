@@ -29,7 +29,7 @@ public class TestOneSidedPlatform extends Test
 		title.setText("One Sided Platform");
 		
 		// Platform
-		add(platform = (B2FlxBox) new B2FlxBox(FlxG.width/2-90, 285, 180, 30)
+		add(platform = new B2FlxBox(FlxG.width/2-90, 285, 180, 30)
 			.setType(B2FlxShape.STATIC)
 			.create());
 		
@@ -37,7 +37,7 @@ public class TestOneSidedPlatform extends Test
 		top = platform.position.y - 1.5f;
 		
 		// Actor
-		add(ball = (B2FlxCircle) new B2FlxCircle(FlxG.width/2-15, 330, 15)
+		add(ball = new B2FlxCircle(FlxG.width/2-15, 330, 15)
 				.setDensity(1)
 				.setFriction(0)
 				.setRestitution(0)

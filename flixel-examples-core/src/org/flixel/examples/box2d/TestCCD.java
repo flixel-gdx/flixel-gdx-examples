@@ -33,15 +33,15 @@ public class TestCCD extends Test
 			.setDraggable(true)
 			.create();
 		
-		B2FlxBox bottom = (B2FlxBox) new B2FlxBox(0, 0, 90, 9).setFixtureDef(fd);
+		B2FlxBox bottom = new B2FlxBox(0, 0, 90, 9).setFixtureDef(fd);
 		body.createFixture(bottom.fixtureDef);
 		
-		B2FlxBox left = (B2FlxBox) new B2FlxBox(0, 0, 9, 162, new B2FlxV2(-43.5f, -70.5f))
+		B2FlxBox left = new B2FlxBox(0, 0, 9, 162, new B2FlxV2(-43.5f, -70.5f))
 			.setAngle(-11.5f)
 			.setFixtureDef(fd);
 		body.createFixture(left.fixtureDef);
 		
-		B2FlxBox right = (B2FlxBox) new B2FlxBox(0, 0, 9, 162, new B2FlxV2(43.5f, -70.5f))
+		B2FlxBox right = new B2FlxBox(0, 0, 9, 162, new B2FlxV2(43.5f, -70.5f))
 			.setAngle(11.5f)
 			.setFixtureDef(fd);		
 		body.createFixture(right.fixtureDef);

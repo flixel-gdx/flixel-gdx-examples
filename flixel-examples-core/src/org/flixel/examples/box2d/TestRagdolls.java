@@ -32,7 +32,7 @@ public class TestRagdolls extends Test
 		B2FlxBox step;
 		for(int j = 1; j < 10; j++)
 		{
-			step = (B2FlxBox) new B2FlxBox(0, 160+20*j, 20*j, 20)
+			step = new B2FlxBox(0, 160+20*j, 20*j, 20)
 				.setType(B2FlxShape.STATIC)
 				.create();
 			add(step);
@@ -41,7 +41,7 @@ public class TestRagdolls extends Test
 		// Add stairs on the right
 		for(int j = 1; j < 10; j++)
 		{
-			step = (B2FlxBox) new B2FlxBox(FlxG.width-20*j, 160+20*j, 20*j, 20)
+			step = new B2FlxBox(FlxG.width-20*j, 160+20*j, 20*j, 20)
 				.setType(B2FlxShape.STATIC)
 				.create();
 			add(step);

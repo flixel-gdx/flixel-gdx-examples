@@ -80,7 +80,7 @@ public class TestCollisionDetection extends Test
 		
 	public B2FlxBox createBox(float x, float y, float width, float height, short categoryBits, short maskBits, short groupIndex, boolean sensor)
 	{
-		return (B2FlxBox) new B2FlxBox(x, y, width, height)
+		return new B2FlxBox(x, y, width, height)
 		.setFriction(.8f)
 		.setRestitution(.3f)
 		.setDensity(.7f)

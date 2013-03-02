@@ -35,7 +35,7 @@ public class TestSensor extends Test
 		B2FlxCircle circle;
 		for(int i = 0; i < 8; i++)
 		{
-			bodies.add(circle = (B2FlxCircle) new B2FlxCircle(105+i*45, 145, 15)
+			bodies.add(circle = new B2FlxCircle(105+i*45, 145, 15)
 					.setDensity(1)
 					.setCategoryBits((short) CIRCLE)
 					.setMaskBits((short) (CIRCLE | SENSOR | WALL))
@@ -45,7 +45,7 @@ public class TestSensor extends Test
 		}
 		
 		// Make a large sensor in the center.
-		sensorBody = (B2FlxCircle) new B2FlxCircle(300-60, 180-60, 60)
+		sensorBody = new B2FlxCircle(300-60, 180-60, 60)
 			.setType(B2FlxSprite.STATIC)
 			.setDensity(0)
 			.setCategoryBits((short) SENSOR)
