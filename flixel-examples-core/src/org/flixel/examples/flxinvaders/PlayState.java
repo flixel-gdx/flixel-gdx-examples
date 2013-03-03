@@ -9,8 +9,6 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.event.IFlxCollision;
 
-import com.badlogic.gdx.Application.ApplicationType;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.IntArray;
 
 public class PlayState extends FlxState
@@ -126,7 +124,7 @@ public class PlayState extends FlxState
 		add(t);
 		
 		// Show the gamepad when you're on a phone.
-		if(Gdx.app.getType() == ApplicationType.Android)
+		if(FlxG.mobile)
 		{
 			// The gamepad is added as last and will be in the front.
 			add(_pad);

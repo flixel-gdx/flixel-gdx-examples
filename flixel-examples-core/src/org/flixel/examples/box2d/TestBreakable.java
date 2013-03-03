@@ -41,12 +41,15 @@ public class TestBreakable extends Test
 			.setDensity(1)
 			.setAngle(45)
 			.setDraggable(true)
-			.create();
+			.setReportPostSolve(true)
+			.create();		
 		add(_box);
 		
 		// Breakable Dynamic Body
 		_shape1 = new B2FlxBox(0, 0, 30, 30, new Vector2(-.5f, 0));
+		_shape1.reportPostSolve = true;
 		_shape2 = new B2FlxBox(0, 0, 30, 30, new Vector2(.5f, 0));
+		_shape2.reportPostSolve = true;
 		
 		_piece1 = _box.createFixture(_shape1, 1);
 		_piece2 = _box.createFixture(_shape2, 1);

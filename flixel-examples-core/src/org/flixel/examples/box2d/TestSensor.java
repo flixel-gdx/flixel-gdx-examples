@@ -40,6 +40,8 @@ public class TestSensor extends Test
 					.setCategoryBits((short) CIRCLE)
 					.setMaskBits((short) (CIRCLE | SENSOR | WALL))
 					.setDraggable(true)
+					.setReportBeginContact(true)
+					.setReportEndContact(true)
 					.create());
 			add(circle);
 		}

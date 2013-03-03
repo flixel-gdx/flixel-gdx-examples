@@ -143,7 +143,8 @@ public class Test extends B2FlxState
 		FlxButton button = new FlxButton(x, y, label, callback);
 		button.ignoreDrawDebug = true;
 		button.scrollFactor.x = button.scrollFactor.y = 0;
-		button.setSolid(true);
+		button.setSolid(false);
+		button.moves = false;
 		return button;
 	}
 	
