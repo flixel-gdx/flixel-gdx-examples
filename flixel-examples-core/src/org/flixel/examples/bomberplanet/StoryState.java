@@ -18,6 +18,7 @@ public class StoryState extends FlxState
 		add(new FlxSprite(0,0,ImgStars));
 
 		text = new FlxText(40,FlxG.height,FlxG.width-80,"Crashing on this island was about the best I could hope for, given the condition of the ship.  According to my records there should be an abandoned spacepad on a mountain nearby.  My best chance for escape lies in locating this spacepad...\n\n...if it even exists.\n\nThankfully, my suit's speed boosters still work (X) and I might be able to use these spent fuel cells to help get by obstacles (C).\n\nLet's see what's out there...");
+		text.moves = true;
 		text.velocity.y = -10;
 		add(text);
 	}

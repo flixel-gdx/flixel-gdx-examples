@@ -18,14 +18,13 @@ public class PlayState extends FlxState
 		text.setSize(20);
 		add(text);
 		
-		
 		FlxText text2 = new FlxText(10, 100, 200, "flixel-\nandroid");
-		text2.setColor(0xFF0000FF);
-		//text2.setFormat(null, 0.5f, 0xFFFF0000, "left");
+		text2.setColor(0x0000FF);
+		//text2.setFormat(null, 0.5f, 0xFF0000, "left");
 		add(text2);
 		
 		FlxText text3 = new FlxText(10, 140, 200, "FlxText");
-		text3.setColor(0xFF0000FF);
+		text3.setColor(0x0000FF);
 		text3.setAlignment("center");
 		text3.setShadow(0xFFFFFFFF);
 		add(text3);
@@ -33,8 +32,9 @@ public class PlayState extends FlxState
 		FlxText text4 = new FlxText(10, 160, 200);
 		
 		text4.setFormat(null, 32);text4.setText("012345");
-		text4.setColor(0xFFFF0000);
-		text4.setShadow(0xFFFFFFFF);
+		text4.setColor(0xFF0000);
+		text4.setShadow(0x770000FF);
+		text4.setAlpha(0.5f);
 		add(text4);
 	}
 }
