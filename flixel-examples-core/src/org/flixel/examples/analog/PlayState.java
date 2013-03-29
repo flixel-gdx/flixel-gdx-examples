@@ -3,6 +3,7 @@ package org.flixel.examples.analog;
 import org.flixel.FlxAnalog;
 import org.flixel.FlxG;
 import org.flixel.FlxPoint;
+import org.flixel.examples.box2d.Test;
 
 /**
  * Just a simple test for single analog.

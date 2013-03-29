@@ -1,6 +1,5 @@
 package org.flixel.examples.box2d;
 
-import org.flixel.FlxU;
 import org.flixel.plugin.flxbox2d.B2FlxB;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
@@ -34,7 +33,7 @@ public class TestCrankGearsPulley extends Test
 		add(crank);
 		
 		new B2FlxRevoluteJoint(null, crank)
-			.setMotorSpeed(1f * -FlxU.PI)
+			.setMotorSpeed((float) (1f * -Math.PI))
 			.setMaxMotorTorque(5000f)
 			.setEnableMotor(true)
 			.setAnchorA(new B2FlxV2(100+crank.center.x, 360-75))

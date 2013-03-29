@@ -69,7 +69,7 @@ public class PlayState extends FlxState
 			}
 			//If not, oh well we'll just put them in the default locations
 			else{
-				box = new FlxButton((i * 35) + 9, 50, String.valueOf(i+1));
+				box = new FlxButton((i * 35) + 9, 50, String.valueOf(i + 1));
 				if (i * 35 > 360){
 					box.y = 85;
 					box.x = (i * 35 -2) - 339;

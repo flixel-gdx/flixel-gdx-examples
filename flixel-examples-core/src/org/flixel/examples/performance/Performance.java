@@ -7,7 +7,7 @@ public class Performance extends FlxGame
 
 	public Performance()
 	{
-		super(480, 320, PlayState.class);
+		super(480, 800, PlayState.class);
 	}
 	
 }

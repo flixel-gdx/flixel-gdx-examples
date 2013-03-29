@@ -1,7 +1,6 @@
 package org.flixel.examples.box2d;
 
 import org.flixel.FlxG;
-import org.flixel.FlxU;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxPolygon;
@@ -117,7 +116,7 @@ public class TestBridge extends Test
 			
 			add(new B2FlxPolygon(FlxG.random() * 400 + 100, FlxG.random() * 150 + 50, new float[][][]{vertices})
 					.setFixtureDef(fd)
-					.setAngle(FlxG.random() * FlxU.PI)
+					.setAngle((float) (FlxG.random() * Math.PI))
 					.setDraggable(true)
 					.create()
 				);

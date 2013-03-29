@@ -1,6 +1,5 @@
 package org.flixel.examples.animation;
 
-import org.flixel.FlxG;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.event.IFlxAnim;
@@ -27,13 +26,12 @@ public class PlayState extends FlxState
 	@Override
 	public void create()
 	{
-		FlxG.setBgColor(0xFF333333);
-		
 		// Shiny flixel logo.
 		FlxSprite s = new FlxSprite(20, 20);
 		s.loadGraphic(ImgFlixelLogo, true);
 		s.addAnimation("shine", new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4}, 14);
 		s.play("shine");
+		s.drawLine(0, 0, 30, 30, 0xFFFF00FF);
 		add(s);
 		
 		

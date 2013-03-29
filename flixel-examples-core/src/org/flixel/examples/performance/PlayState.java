@@ -2,6 +2,7 @@ package org.flixel.examples.performance;
 
 import org.flixel.FlxG;
 import org.flixel.FlxState;
+import org.flixel.FlxText;
 import org.flixel.FlxU;
 
 import com.badlogic.gdx.math.MathUtils;
@@ -16,23 +17,21 @@ public class PlayState extends FlxState
 	public static final int sInt = 90;
 	public long start;
 	public long elapsed;
+	public FlxText output;
 
 	@Override
 	public void create()
 	{
-		FlxG.log("ITERATIONS " + ITERATIONS);
-		FlxG.log("==================================");
+		output = new FlxText(0, 0, 200);
+		add(output);
+		
+		log("ITERATIONS " + ITERATIONS);
+		log("==================================");
 		
 		testMathAbs();
-		testMathSin();
-		testMathCos();
-		testMathASin();
-		testMathACos();
 		testMathATan2();
-		testMathLog();
 		testMathFloor();
 		testMathRound();
-		testMathExp();
 		testMathPow();
 		testMathMax();
 		testMathMin();
@@ -47,19 +46,22 @@ public class PlayState extends FlxState
 	public void stopTimer()
 	{
 		elapsed = System.currentTimeMillis() - start;
-		FlxG.log("elapsed time = " + elapsed + "ms");
-	    FlxG.log((elapsed * 1000.0) / 1000000 + " ms per execution");
-	    FlxG.log("----------------------------------");
+		log("elapsed time = " + elapsed + "ms");
+	    log((elapsed * 1000.0) / 1000000 + " ms per execution");
+	    log("----------------------------------");
 	}
 
+	public void log(String string)
+	{
+		output.setText(output.getText() + string + "\n");
+		FlxG.log(string);
+	}
+	
 	@SuppressWarnings("unused")
 	public void testMathAbs()
 	{
-		FlxG.log(" ");
-		FlxG.log("TestMathAbs");
-		FlxG.log("Math.abs");
+		//dry run to give everything time to start up
 		float result;
-		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
 			result = Math.abs(FLOAT3);
@@ -73,240 +75,42 @@ public class PlayState extends FlxState
 			result = Math.abs(FLOAT3);
 			result = Math.abs(FLOAT3);
 		}
+		
+		log(" ");
+		log("TestMathAbs");
+		log("Math.abs");
+		startTimer();
+		for(int i = ITERATIONS - 1; i >= 0; i--)
+		{
+			result = Math.abs(FLOAT2);
+			result = Math.abs(FLOAT3);
+			result = Math.abs(FLOAT2);
+			result = Math.abs(FLOAT3);
+			result = Math.abs(FLOAT2);
+			result = Math.abs(FLOAT3);
+			result = Math.abs(FLOAT2);
+			result = Math.abs(FLOAT3);
+			result = Math.abs(FLOAT2);
+			result = Math.abs(FLOAT3);
+		}
 		stopTimer();
 		
-		FlxG.log("FlxU.abs");
+		log("FlxU.abs");
 		startTimer();
 	    for(int i = ITERATIONS - 1; i >= 0; i--)
 		{	    	
+			result = FlxU.abs(FLOAT2);
 			result = FlxU.abs(FLOAT3);
+			result = FlxU.abs(FLOAT2);
 			result = FlxU.abs(FLOAT3);
+			result = FlxU.abs(FLOAT2);
 			result = FlxU.abs(FLOAT3);
+			result = FlxU.abs(FLOAT2);
 			result = FlxU.abs(FLOAT3);
-			result = FlxU.abs(FLOAT3);
-			result = FlxU.abs(FLOAT3);
-			result = FlxU.abs(FLOAT3);
-			result = FlxU.abs(FLOAT3);
-			result = FlxU.abs(FLOAT3);
+			result = FlxU.abs(FLOAT2);
 			result = FlxU.abs(FLOAT3);
 		}
 	    stopTimer();
-	}
-
-	@SuppressWarnings("unused")
-	public void testMathSin()
-	{
-		FlxG.log(" ");
-		FlxG.log("TestMathSin");
-		FlxG.log("Math.sin");
-		double result;
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = Math.sin(FLOAT1);
-			result = Math.sin(FLOAT1);
-			result = Math.sin(FLOAT1);
-			result = Math.sin(FLOAT1);
-			result = Math.sin(FLOAT1);
-			result = Math.sin(FLOAT1);
-			result = Math.sin(FLOAT1);
-			result = Math.sin(FLOAT1);
-			result = Math.sin(FLOAT1);
-			result = Math.sin(FLOAT1);
-		}
-		stopTimer();
-		
-		FlxG.log("FlxU.sin");
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = FlxU.sin(FLOAT1);
-			result = FlxU.sin(FLOAT1);
-			result = FlxU.sin(FLOAT1);
-			result = FlxU.sin(FLOAT1);
-			result = FlxU.sin(FLOAT1);
-			result = FlxU.sin(FLOAT1);
-			result = FlxU.sin(FLOAT1);
-			result = FlxU.sin(FLOAT1);
-			result = FlxU.sin(FLOAT1);
-			result = FlxU.sin(FLOAT1);
-		}
-		stopTimer();
-		
-		FlxG.log("Gdx.sin");
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = MathUtils.sin(FLOAT1);
-			result = MathUtils.sin(FLOAT1);
-			result = MathUtils.sin(FLOAT1);
-			result = MathUtils.sin(FLOAT1);
-			result = MathUtils.sin(FLOAT1);
-			result = MathUtils.sin(FLOAT1);
-			result = MathUtils.sin(FLOAT1);
-			result = MathUtils.sin(FLOAT1);
-			result = MathUtils.sin(FLOAT1);
-			result = MathUtils.sin(FLOAT1);
-		}
-		stopTimer();
-	}
-
-	@SuppressWarnings("unused")
-	public void testMathCos()
-	{
-		FlxG.log(" ");
-		FlxG.log("TestMathCos");
-		FlxG.log("Math.cos");
-		double result;
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = Math.cos(FLOAT1);
-			result = Math.cos(FLOAT1);
-			result = Math.cos(FLOAT1);
-			result = Math.cos(FLOAT1);
-			result = Math.cos(FLOAT1);
-			result = Math.cos(FLOAT1);
-			result = Math.cos(FLOAT1);
-			result = Math.cos(FLOAT1);
-			result = Math.cos(FLOAT1);
-			result = Math.cos(FLOAT1);
-		}
-		stopTimer();
-		
-		FlxG.log("FlxU.cos");		
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = FlxU.cos(FLOAT1);
-			result = FlxU.cos(FLOAT1);
-			result = FlxU.cos(FLOAT1);
-			result = FlxU.cos(FLOAT1);
-			result = FlxU.cos(FLOAT1);
-			result = FlxU.cos(FLOAT1);
-			result = FlxU.cos(FLOAT1);
-			result = FlxU.cos(FLOAT1);
-			result = FlxU.cos(FLOAT1);
-			result = FlxU.cos(FLOAT1);
-		}
-		stopTimer();
-		
-		FlxG.log("Gdx.cos");		
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = MathUtils.cos(FLOAT1);
-			result = MathUtils.cos(FLOAT1);
-			result = MathUtils.cos(FLOAT1);
-			result = MathUtils.cos(FLOAT1);
-			result = MathUtils.cos(FLOAT1);
-			result = MathUtils.cos(FLOAT1);
-			result = MathUtils.cos(FLOAT1);
-			result = MathUtils.cos(FLOAT1);
-			result = MathUtils.cos(FLOAT1);
-			result = MathUtils.cos(FLOAT1);
-		}
-		stopTimer();
-	}
-
-	// TODO: math tan
-	@SuppressWarnings("unused")
-	public void testMathTan()
-	{
-		double result;
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = Math.tan(FLOAT1);
-			result = Math.tan(FLOAT1);
-			result = Math.tan(FLOAT1);
-			result = Math.tan(FLOAT1);
-			result = Math.tan(FLOAT1);
-			result = Math.tan(FLOAT1);
-			result = Math.tan(FLOAT1);
-			result = Math.tan(FLOAT1);
-			result = Math.tan(FLOAT1);
-			result = Math.tan(FLOAT1);
-		}
-	}
-	@SuppressWarnings("unused")
-	public void testMathASin()
-	{
-		FlxG.log(" ");
-		FlxG.log("TestMathASin");
-		FlxG.log("Math.asin");
-		double result;
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = Math.asin(FLOAT4);
-			result = Math.asin(FLOAT4);
-			result = Math.asin(FLOAT4);
-			result = Math.asin(FLOAT4);
-			result = Math.asin(FLOAT4);
-			result = Math.asin(FLOAT4);
-			result = Math.asin(FLOAT4);
-			result = Math.asin(FLOAT4);
-			result = Math.asin(FLOAT4);
-			result = Math.asin(FLOAT4);
-		}
-		stopTimer();
-		
-		FlxG.log("FlxU.asin");
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = FlxU.asin(FLOAT4);
-			result = FlxU.asin(FLOAT4);
-			result = FlxU.asin(FLOAT4);
-			result = FlxU.asin(FLOAT4);
-			result = FlxU.asin(FLOAT4);
-			result = FlxU.asin(FLOAT4);
-			result = FlxU.asin(FLOAT4);
-			result = FlxU.asin(FLOAT4);
-			result = FlxU.asin(FLOAT4);
-			result = FlxU.asin(FLOAT4);
-		}
-		stopTimer();
-	}
-	@SuppressWarnings("unused")
-	public void testMathACos()
-	{
-		FlxG.log(" ");
-		FlxG.log("TestMathACos");
-		FlxG.log("Math.acos");
-		double result;
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = Math.acos(FLOAT1);
-			result = Math.acos(FLOAT1);
-			result = Math.acos(FLOAT1);
-			result = Math.acos(FLOAT1);
-			result = Math.acos(FLOAT1);
-			result = Math.acos(FLOAT1);
-			result = Math.acos(FLOAT1);
-			result = Math.acos(FLOAT1);
-			result = Math.acos(FLOAT1);
-			result = Math.acos(FLOAT1);
-		}
-		stopTimer();
-		
-		FlxG.log("FlxU.acos");
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = FlxU.acos(FLOAT1);
-			result = FlxU.acos(FLOAT1);
-			result = FlxU.acos(FLOAT1);
-			result = FlxU.acos(FLOAT1);
-			result = FlxU.acos(FLOAT1);
-			result = FlxU.acos(FLOAT1);
-			result = FlxU.acos(FLOAT1);
-			result = FlxU.acos(FLOAT1);
-			result = FlxU.acos(FLOAT1);
-			result = FlxU.acos(FLOAT1);
-		}
-		stopTimer();
 	}
 	
 	// TODO: math atan
@@ -332,9 +136,9 @@ public class PlayState extends FlxState
 	@SuppressWarnings("unused")
 	public void testMathATan2()
 	{
-		FlxG.log(" ");
-		FlxG.log("TestMathATan2");
-		FlxG.log("Math.atan2");
+		log(" ");
+		log("TestMathATan2");
+		log("Math.atan2");
 		double result;
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
@@ -352,7 +156,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 		
-		FlxG.log("Gdx.atan2");
+		log("Gdx.atan2");
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
@@ -366,47 +170,6 @@ public class PlayState extends FlxState
 			result = MathUtils.atan2(FLOAT1, FLOAT4);
 			result = MathUtils.atan2(FLOAT1, FLOAT4);
 			result = MathUtils.atan2(FLOAT1, FLOAT4);
-		}
-		stopTimer();
-	}
-
-	@SuppressWarnings("unused")
-	public void testMathLog()
-	{
-		FlxG.log(" ");
-		FlxG.log("TestMathLog");
-		FlxG.log("Math.log");
-		double result;
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = Math.log(FLOAT1);
-			result = Math.log(FLOAT1);
-			result = Math.log(FLOAT1);
-			result = Math.log(FLOAT1);
-			result = Math.log(FLOAT1);
-			result = Math.log(FLOAT1);
-			result = Math.log(FLOAT1);
-			result = Math.log(FLOAT1);
-			result = Math.log(FLOAT1);
-			result = Math.log(FLOAT1);
-		}
-		stopTimer();
-		
-		FlxG.log("FlxU.log");
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = FlxU.log(FLOAT1);
-			result = FlxU.log(FLOAT1);
-			result = FlxU.log(FLOAT1);
-			result = FlxU.log(FLOAT1);
-			result = FlxU.log(FLOAT1);
-			result = FlxU.log(FLOAT1);
-			result = FlxU.log(FLOAT1);
-			result = FlxU.log(FLOAT1);
-			result = FlxU.log(FLOAT1);
-			result = FlxU.log(FLOAT1);
 		}
 		stopTimer();
 	}
@@ -434,9 +197,9 @@ public class PlayState extends FlxState
 	@SuppressWarnings("unused")
 	public void testMathCeil()
 	{
-		FlxG.log(" ");
-		FlxG.log("TestMathCeil");
-		FlxG.log("Math.ceil");
+		log(" ");
+		log("TestMathCeil");
+		log("Math.ceil");
 		double result;
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
@@ -454,7 +217,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 		
-		FlxG.log("FlxU.ceil");
+		log("FlxU.ceil");
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
@@ -471,7 +234,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 		
-		FlxG.log("Gdx.ceil");
+		log("Gdx.ceil");
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
@@ -492,9 +255,9 @@ public class PlayState extends FlxState
 	@SuppressWarnings("unused")
 	public void testMathRound()
 	{
-		FlxG.log(" ");
-		FlxG.log("TestMathRound");
-		FlxG.log("Math.round");
+		log(" ");
+		log("TestMathRound");
+		log("Math.round");
 		double result;
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
@@ -512,7 +275,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 		
-		FlxG.log("FlxU.round");
+		log("FlxU.round");
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
@@ -529,7 +292,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 		
-		FlxG.log("Gdx.round");
+		log("Gdx.round");
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
@@ -550,9 +313,9 @@ public class PlayState extends FlxState
 	@SuppressWarnings("unused")
 	public void testMathFloor()
 	{
-		FlxG.log(" ");
-		FlxG.log("TestMathFloor");
-		FlxG.log("Math.floor");
+		log(" ");
+		log("TestMathFloor");
+		log("Math.floor");
 		double result;
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
@@ -570,7 +333,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 		
-		FlxG.log("FlxU.floor");		
+		log("FlxU.floor");		
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
@@ -587,7 +350,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 		
-		FlxG.log("Gdx.floor");		
+		log("Gdx.floor");		
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
@@ -601,47 +364,6 @@ public class PlayState extends FlxState
 			result = MathUtils.floor(FLOAT1);
 			result = MathUtils.floor(FLOAT1);
 			result = MathUtils.floor(FLOAT1);
-		}
-		stopTimer();
-	}
-
-	@SuppressWarnings("unused")
-	public void testMathExp()
-	{
-		FlxG.log(" ");
-		FlxG.log("TestMathExp");
-		FlxG.log("Math.exp");
-		double result;
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = Math.exp(FLOAT1);
-			result = Math.exp(FLOAT1);
-			result = Math.exp(FLOAT1);
-			result = Math.exp(FLOAT1);
-			result = Math.exp(FLOAT1);
-			result = Math.exp(FLOAT1);
-			result = Math.exp(FLOAT1);
-			result = Math.exp(FLOAT1);
-			result = Math.exp(FLOAT1);
-			result = Math.exp(FLOAT1);
-		}
-		stopTimer();
-		
-		FlxG.log("FlxU.exp");
-		startTimer();
-		for(int i = ITERATIONS - 1; i >= 0; i--)
-		{
-			result = FlxU.exp(FLOAT1);
-			result = FlxU.exp(FLOAT1);
-			result = FlxU.exp(FLOAT1);
-			result = FlxU.exp(FLOAT1);
-			result = FlxU.exp(FLOAT1);
-			result = FlxU.exp(FLOAT1);
-			result = FlxU.exp(FLOAT1);
-			result = FlxU.exp(FLOAT1);
-			result = FlxU.exp(FLOAT1);
-			result = FlxU.exp(FLOAT1);
 		}
 		stopTimer();
 	}
@@ -649,9 +371,9 @@ public class PlayState extends FlxState
 	@SuppressWarnings("unused")
 	public void testMathPow()
 	{
-		FlxG.log(" ");
-		FlxG.log("TestMathPow");
-		FlxG.log("Math.pow");
+		log(" ");
+		log("TestMathPow");
+		log("Math.pow");
 		double result;
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
@@ -670,7 +392,7 @@ public class PlayState extends FlxState
 		stopTimer();
 		
 		startTimer();
-		FlxG.log("FlxU.pow");
+		log("FlxU.pow");
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
 			result = FlxU.pow(FLOAT1, FLOAT2);
@@ -690,9 +412,9 @@ public class PlayState extends FlxState
 	@SuppressWarnings("unused")
 	public void testMathMax()
 	{
-		FlxG.log(" ");
-		FlxG.log("TestMathMax");
-		FlxG.log("Math.max");
+		log(" ");
+		log("TestMathMax");
+		log("Math.max");
 		double result;		
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
@@ -710,7 +432,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 		
-		FlxG.log("FlxU.max");
+		log("FlxU.max");
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
@@ -731,9 +453,9 @@ public class PlayState extends FlxState
 	@SuppressWarnings("unused")
 	public void testMathMin()
 	{
-		FlxG.log(" ");
-		FlxG.log("TestMathMin");
-		FlxG.log("Math.min");
+		log(" ");
+		log("TestMathMin");
+		log("Math.min");
 		double result;
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
@@ -751,7 +473,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 		
-		FlxG.log("FlxU.min");
+		log("FlxU.min");
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
@@ -772,9 +494,9 @@ public class PlayState extends FlxState
 	@SuppressWarnings("unused")
 	public void testMathRandom()
 	{
-		FlxG.log(" ");
-		FlxG.log("TestMathRandom");
-		FlxG.log("Math.random");
+		log(" ");
+		log("TestMathRandom");
+		log("Math.random");
 		double result;
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
@@ -792,7 +514,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 		
-		FlxG.log("FlxG.random");
+		log("FlxG.random");
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
@@ -809,7 +531,7 @@ public class PlayState extends FlxState
 		}
 		stopTimer();
 		
-		FlxG.log("Gdx.random");
+		log("Gdx.random");
 		startTimer();
 		for(int i = ITERATIONS - 1; i >= 0; i--)
 		{
