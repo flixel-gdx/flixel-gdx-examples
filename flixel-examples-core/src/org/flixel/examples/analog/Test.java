@@ -5,7 +5,11 @@ import org.flixel.FlxG;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
+import org.flixel.FlxU;
 import org.flixel.event.IFlxButton;
+import org.flixel.plugin.flxbox2d.B2FlxState;
+
+import com.badlogic.gdx.utils.Array;
 
 /**
  *
@@ -13,8 +17,7 @@ import org.flixel.event.IFlxButton;
  */
 public class Test extends FlxState
 {
-	@SuppressWarnings("rawtypes")
-	private static Class[] tests;
+	private static Array<Class<?extends FlxState>> tests;
 	public static int currentTest = 0;
 	
 	@Override
@@ -35,12 +38,10 @@ public class Test extends FlxState
 		
 		if(tests == null)
 		{
-			tests = new Class[]	
-			{
-				PlayState.class,		// Single Analog
-				PlayState2.class,		// Dual Analog
-				PlayState3.class		// Triple Analog
-			};
+			tests = new Array<Class<?extends FlxState>>();	
+			tests.add(PlayState.class);  // Single Analog
+			tests.add(PlayState2.class); // Dual Analog
+			tests.add(PlayState3.class); // Triple Analog			
 		}
 
 		// Mobile
@@ -52,6 +53,19 @@ public class Test extends FlxState
 		else
 		{
 			add(new FlxText(0, 0, 300, "'Left/Right' arrows to go to previous/next example."));
+		}
+		
+		if(FlxU.getClassName(this, true).equals("Test"))
+		{
+			try
+			{				
+				FlxG.switchState((B2FlxState)tests.get(currentTest).newInstance());
+			}
+			catch(Exception e)
+			{
+				FlxG.log(e.getMessage());
+				return;
+			}
 		}
 	}
 	
@@ -78,11 +92,11 @@ public class Test extends FlxState
 	
 	private void next()
 	{
-		if(tests.length <= ++currentTest)
+		if(tests.size <= ++currentTest)
 			currentTest = 0;
 		try
 		{				
-			FlxG.switchState((FlxState)tests[currentTest].newInstance());
+			FlxG.switchState(tests.get(currentTest).newInstance());
 		}
 		catch(Exception e)
 		{
@@ -94,10 +108,10 @@ public class Test extends FlxState
 	private void prev()
 	{
 		if(0 > --currentTest)
-			currentTest = tests.length-1;
+			currentTest = tests.size-1;
 		try
 		{				
-			FlxG.switchState((FlxState)tests[currentTest].newInstance());
+			FlxG.switchState(tests.get(currentTest).newInstance());
 		}
 		catch(Exception e)
 		{

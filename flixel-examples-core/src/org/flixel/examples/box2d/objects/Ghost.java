@@ -22,10 +22,6 @@ public class Ghost extends B2FlxBox
 		loadGraphic(ImgGhost);
 		setDraggable(true);
 		create();
-		reportBeginContact = true;
-		reportEndContact = true;
-		reportPostSolve = true;
-		reportPreSolve = true;
 		_overlapCount = 0;
 	}
 	
