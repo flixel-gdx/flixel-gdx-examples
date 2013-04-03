@@ -4,7 +4,7 @@ import org.flixel.FlxG;
 import org.flixel.examples.box2d.objects.Ghost;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
-import org.flixel.plugin.flxbox2d.dynamics.B2FlxListener;
+import org.flixel.plugin.flxbox2d.events.IB2FlxListener;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -130,80 +130,59 @@ public class TestCollisionDetection extends Test
 		return createBox(x, y, width, height, categoryBits, maskBits, groupIndex, false);
 	}
 	
-	
-	B2FlxListener beginPlayerBoss = new B2FlxListener()
-	{			
-		@Override
-		public void beginContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
-		{
-			sprite1.blend = BlendMode.LINEAR_DODGE;
-			sprite2.blend = BlendMode.LINEAR_DODGE;
-		}
-	};
-	
-	B2FlxListener beginGhost = new B2FlxListener()
+	IB2FlxListener beginGhost = new IB2FlxListener()
 	{
 		@Override
-		public void beginContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact)
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{
 			_ghost2.addOverlap();
 			_ghost2.setAlpha(0.5f);
 		}
 	};
 	
-	B2FlxListener preGhost = new B2FlxListener()
+	IB2FlxListener preGhost = new IB2FlxListener()
 	{
 		@Override
-		public void preSolve(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold) 
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{
 			contact.setEnabled(false);
 		}
 	};
 	
-	B2FlxListener postGhost = new B2FlxListener()
+	IB2FlxListener postGhost = new IB2FlxListener()
 	{		
 		@Override
-		public void postSolve(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, ContactImpulse impulse) 
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{			
 			contact.setEnabled(true);
 		}
 	};
 	
-	B2FlxListener endGhost = new B2FlxListener()
+	IB2FlxListener endGhost = new IB2FlxListener()
 	{
 		@Override
-		public void endContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{
 			_ghost2.removeOverlap();
 			if(!_ghost2.gotOverlaps())
 				_ghost2.setAlpha(1f);
 		}
 	};
-		
-	B2FlxListener endPlayerBoss = new B2FlxListener()
-	{		
-		@Override
-		public void endContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
-		{
-			sprite1.blend = BlendMode.NORMAL;
-			sprite2.blend = BlendMode.NORMAL;
-		}
-	};
 	
-	B2FlxListener applyBlend = new B2FlxListener()
+	IB2FlxListener applyBlend = new IB2FlxListener()
 	{
 		@Override
-		public void beginContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact)
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{
 			sprite1.blend = BlendMode.LINEAR_DODGE;
 			sprite2.blend = BlendMode.LINEAR_DODGE;
 		}
 	};
 	
-	B2FlxListener removeBlend = new B2FlxListener()
+	IB2FlxListener removeBlend = new IB2FlxListener()
 	{
 		@Override
-		public void endContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{
 			sprite1.blend = BlendMode.NORMAL;
 			sprite2.blend = BlendMode.NORMAL;
@@ -219,8 +198,6 @@ public class TestCollisionDetection extends Test
 		_ghost2 = null;		
 		applyBlend = null;
 		removeBlend = null;
-		beginPlayerBoss = null;
-		endPlayerBoss = null;
 		beginGhost = null;
 		endGhost = null;
 		postGhost = null;

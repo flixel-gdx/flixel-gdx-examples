@@ -76,7 +76,6 @@ public class Test extends B2FlxState
 		
 		if(tests == null)
 		{
-			FlxG.log("create neww");
 			tests = new Array<Class<? extends FlxState>>();
 			tests.add(TestShapes.class);			// Shapes
 			tests.add(TestDistanceJoint.class);		// DistanceJoint

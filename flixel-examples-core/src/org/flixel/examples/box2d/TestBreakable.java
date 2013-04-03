@@ -5,13 +5,14 @@ import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
 import org.flixel.plugin.flxbox2d.common.math.B2FlxMath;
-import org.flixel.plugin.flxbox2d.dynamics.B2FlxListener;
+import org.flixel.plugin.flxbox2d.events.IB2FlxListener;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.Manifold;
 
 /**
  *
@@ -110,10 +111,10 @@ public class TestBreakable extends Test
 		
 	}
 	
-	B2FlxListener post = new B2FlxListener()
+	IB2FlxListener post = new IB2FlxListener()
 	{
 		@Override
-		public void postSolve(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, ContactImpulse impulse)
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{
 			if(_broke)
 			{
