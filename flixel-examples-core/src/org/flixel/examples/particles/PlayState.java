@@ -9,8 +9,8 @@ import org.flixel.FlxPoint;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
+import org.flixel.FlxU;
 import org.flixel.event.IFlxButton;
-
 
 public class PlayState extends FlxState
 {
@@ -42,6 +42,8 @@ public class PlayState extends FlxState
 		FlxG.setFramerate(60);
 		FlxG.setFlashFramerate(60);
 		
+		FlxG.debug = true;
+		
 		//Here we actually initialize out emitter
 		//The parameters are X Y Size (Maximum number of particles the emitter can store)
 		theEmitter = new FlxEmitter(10, FlxG.height / 2, 200);
@@ -67,11 +69,11 @@ public class PlayState extends FlxState
 		for (int i = 0; i < theEmitter.getMaxSize()/2; i++) 
 		{
 			whitePixel = new FlxParticle();
-			whitePixel.makeGraphic(2, 2, 0xFFFFFFFF);
+			whitePixel.makeGraphic(FlxU.round((FlxG.random() * 6) + 1), FlxU.round((FlxG.random() * 6) + 1),0xFF000000 + (int) (FlxG.random()*0xFFFFFF));
 			whitePixel.visible = false; // Make sure the particle doesn't show up at (0, 0)
 			theEmitter.add(whitePixel);
 			whitePixel = new FlxParticle();
-			whitePixel.makeGraphic(1, 1, 0xFFFFFFFF);
+			whitePixel.makeGraphic(FlxU.round((FlxG.random() * 6) + 1), FlxU.round((FlxG.random() * 6) + 1),0xFF000000 +(int) (FlxG.random()* 0xFFFFFF));
 			whitePixel.visible = false;
 			theEmitter.add(whitePixel);
 		}
