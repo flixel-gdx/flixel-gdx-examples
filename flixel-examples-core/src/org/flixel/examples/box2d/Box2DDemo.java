@@ -1,6 +1,7 @@
 package org.flixel.examples.box2d;
 
 import org.flixel.FlxCamera;
+import org.flixel.FlxG;
 import org.flixel.FlxGame;
 
 /**
@@ -13,5 +14,6 @@ public class Box2DDemo extends FlxGame
 	{
 		super(640, 360, Test.class, 1, 50, 50, false, FlxCamera.FILL_X);
 		forceDebugger = true;
+		FlxG.debug = true;
 	}
 }

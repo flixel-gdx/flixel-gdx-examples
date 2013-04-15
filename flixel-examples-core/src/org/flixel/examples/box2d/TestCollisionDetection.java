@@ -4,8 +4,7 @@ import org.flixel.FlxG;
 import org.flixel.examples.box2d.objects.Ghost;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
-import org.flixel.plugin.flxbox2d.dynamics.B2FlxContactEvent;
-import org.flixel.plugin.flxbox2d.dynamics.B2FlxListener;
+import org.flixel.plugin.flxbox2d.events.IB2FlxListener;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -26,9 +25,6 @@ public class TestCollisionDetection extends Test
 	
 	private B2FlxBox _player;
 	private B2FlxBox _boss;
-	private B2FlxBox _friendly;
-	private B2FlxBox _enemy;
-	private Ghost _ghost;
 	private Ghost _ghost2;
 	
 	// Categories must be by power of 2.
@@ -49,44 +45,70 @@ public class TestCollisionDetection extends Test
 			
 		setGravity(0, 0);
 		FlxG.setBgColor(0xff0076a3);
-			
-		contactListener.addEventListener(B2FlxContactEvent.BEGIN, beginContact);
-		contactListener.addEventListener(B2FlxContactEvent.PRESOLVE, preSolve);
-		contactListener.addEventListener(B2FlxContactEvent.POSTSOLVE, postSolve);
-		contactListener.addEventListener(B2FlxContactEvent.END, endContact);
 		
 		// Player will collide against wall, boss and enemy, assigned in group 1.
 		add(_player = createBox(8, 200, 64, 64, PLAYER, (short) (WALL | BOSS | ENEMY),  (short) 1));
+		_player.ID = 23;
 		_player.loadGraphic(ImgPlayer);
-		_player.reportBeginContact = true;
-		_player.reportEndContact = true;
 		
 		// Boss will collide against wall, player and friendly, assigned in group 1.
 		add(_boss = createBox(100, 200, 64, 64, BOSS, (short) (WALL | PLAYER | FRIENDLY), (short) 1));
 		_boss.loadGraphic(ImgBoss);
-		_boss.reportBeginContact = true;
-		_boss.reportEndContact = true;
 		
-		// Friendly will collide against wall, boss and enemy, assigned in group 0.
-		add(_friendly = createBox(200, 200, 16, 16, FRIENDLY, (short) (WALL | BOSS | ENEMY | GHOST), (short) 0));
-		_friendly.loadGraphic(ImgFriendly);
-		_friendly.reportBeginContact = true;
-		_friendly.reportEndContact = true;
-		
-		// Enemy will collide against wall, player and enemy, assigned in group 0.
-		add(_enemy = createBox(300, 200, 16, 16, ENEMY, (short) (WALL | PLAYER | FRIENDLY | GHOST), (short) 0));
-		_enemy.loadGraphic(ImgEnemy);
-		_enemy.reportBeginContact = true;
-		_enemy.reportEndContact = true;
+		float x, y;
+		B2FlxBox s;
+		for(int i = 0; i < 5; i++)
+		{
+			x = FlxG.random() * 350 + 50;
+			y = FlxG.random() * 350 + 50;
+			// Friendly will collide against wall, boss and enemy, assigned in group 0.
+			add(s = createBox(x, y, 16, 16, FRIENDLY, (short) (WALL | BOSS | ENEMY | GHOST), (short) 0));
+			s.loadGraphic(ImgFriendly);	
+			
+			x = FlxG.random() * 300 + 50;
+			y = FlxG.random() * 300 + 50;
+			// Enemy will collide against wall, player and enemy, assigned in group 0.
+			add(s = createBox(x, y, 16, 16, ENEMY, (short) (WALL | PLAYER | FRIENDLY | GHOST), (short) 0));
+			s.loadGraphic(ImgEnemy);
+		}
 		
 		// Ghost shows opacity when collide in the same group.
 		// White ghost doesn't collide with anything, not even walls.
 		// The ghost will always be sprite2 in the demo. Why? Because it's added as last. 
 		// Pretty strange he. Take a look at the callbacks below.
-		add(_ghost = new Ghost(20, 20, GHOST, (short) 0, (short) 1, true));
+		add(new Ghost(20, 20, GHOST, (short) 0, (short) 1, true));
 		// Purple ghost collides with walls, friendly and enemy, but not the player and boss.
 		add(_ghost2 = new Ghost(180, 20, GHOST, (short) (WALL | FRIENDLY | ENEMY), (short) 1, false));
 		_ghost2.setColor(0xFF800080);
+		
+		
+		// Player vs Boss
+		contact.onBeginContact(_player, _boss, applyBlend);
+		contact.onEndContact(_player, _boss, removeBlend);
+		
+		// Player vs Friendly
+		contact.onBeginContact(_player, ENEMY, applyBlend);
+		contact.onEndContact(_player, ENEMY, removeBlend);
+		
+		// Boss vs Friendly
+		contact.onBeginContact(_boss, FRIENDLY, applyBlend);
+		contact.onEndContact(_boss, FRIENDLY, removeBlend);
+						
+		// Player vs Ghost
+		contact.onBeginContact(_player, _ghost2, beginGhost);
+		contact.onPreSolve(_player, _ghost2, preGhost);
+		contact.onPostSolve(_player, _ghost2, postGhost);
+		contact.onEndContact(_player, _ghost2, endGhost);
+
+		// Boss vs Ghost
+		contact.onBeginContact(_boss, _ghost2, beginGhost);
+		contact.onPreSolve(_boss, _ghost2, preGhost);
+		contact.onPostSolve(_boss, _ghost2, postGhost);
+		contact.onEndContact(_boss, _ghost2, endGhost);
+		
+		// Friendly vs Enemy
+		contact.onBeginContact(FRIENDLY, ENEMY, applyBlend);
+		contact.onEndContact(FRIENDLY, ENEMY, removeBlend);
 	}
 		
 	public B2FlxBox createBox(float x, float y, float width, float height, short categoryBits, short maskBits, short groupIndex, boolean sensor)
@@ -108,76 +130,62 @@ public class TestCollisionDetection extends Test
 		return createBox(x, y, width, height, categoryBits, maskBits, groupIndex, false);
 	}
 	
-	
-	B2FlxListener beginContact = new B2FlxListener()
-	{			
-		@Override
-		public void beginContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
-		{			
-			if(sprite1 == _ghost || sprite2 == _ghost)
-			{
-				_ghost.addOverlap();
-				_ghost.setAlpha(0.5f);
-			}
-			else if((sprite1 == _ghost2 || sprite2 == _ghost2) && (sprite1.categoryBits == PLAYER || sprite1.categoryBits == BOSS))
-			{
-				_ghost2.addOverlap();
-				_ghost2.setAlpha(0.5f);
-			}
-			else if(sprite1.categoryBits == PLAYER || sprite1.categoryBits == BOSS)
-			{
-				sprite1.blend = BlendMode.LINEAR_DODGE;
-				sprite2.blend = BlendMode.LINEAR_DODGE;
-			}
-		}
-	};
-	
-	B2FlxListener preSolve = new B2FlxListener()
+	IB2FlxListener beginGhost = new IB2FlxListener()
 	{
 		@Override
-		public void preSolve(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold) 
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{
-			if((sprite2 == _ghost2 ) && (sprite1.categoryBits == PLAYER || sprite1.categoryBits == BOSS))
-			{
-				contact.setEnabled(false);
-			}			
-		};				
-	};
-	
-	B2FlxListener postSolve = new B2FlxListener()
-	{
-		@Override
-		public void postSolve(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, ContactImpulse impulse) 
-		{			
-			if(sprite1 == _ghost2 || sprite2 == _ghost2)
-			{
-				contact.setEnabled(true);
-			}
+			_ghost2.addOverlap();
+			_ghost2.setAlpha(0.5f);
 		}
 	};
-		
-	B2FlxListener endContact = new B2FlxListener()
+	
+	IB2FlxListener preGhost = new IB2FlxListener()
+	{
+		@Override
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
+		{
+			contact.setEnabled(false);
+		}
+	};
+	
+	IB2FlxListener postGhost = new IB2FlxListener()
 	{		
 		@Override
-		public void endContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact) 
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{			
-			if(sprite2 == _ghost && (sprite1.categoryBits == PLAYER || sprite1.categoryBits == BOSS))
-			{
-				_ghost.removeOverlap();
-				if(!_ghost.gotOverlaps())
-					_ghost.setAlpha(1f);
-			}
-			else if(sprite2 == _ghost2  && (sprite1.categoryBits == PLAYER || sprite1.categoryBits == BOSS))
-			{				
-				_ghost2.removeOverlap();
-				if(!_ghost2.gotOverlaps())
-					_ghost2.setAlpha(1f);
-			}
-			else if(sprite1.categoryBits == PLAYER || sprite1.categoryBits == BOSS)
-			{
-				sprite1.blend = BlendMode.NORMAL;
-				sprite2.blend = BlendMode.NORMAL;
-			}
+			contact.setEnabled(true);
+		}
+	};
+	
+	IB2FlxListener endGhost = new IB2FlxListener()
+	{
+		@Override
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
+		{
+			_ghost2.removeOverlap();
+			if(!_ghost2.gotOverlaps())
+				_ghost2.setAlpha(1f);
+		}
+	};
+	
+	IB2FlxListener applyBlend = new IB2FlxListener()
+	{
+		@Override
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
+		{
+			sprite1.blend = BlendMode.LINEAR_DODGE;
+			sprite2.blend = BlendMode.LINEAR_DODGE;
+		}
+	};
+	
+	IB2FlxListener removeBlend = new IB2FlxListener()
+	{
+		@Override
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
+		{
+			sprite1.blend = BlendMode.NORMAL;
+			sprite2.blend = BlendMode.NORMAL;
 		}
 	};
 	
@@ -187,10 +195,13 @@ public class TestCollisionDetection extends Test
 		super.destroy();
 		_player = null;
 		_boss = null;
-		_friendly = null;
-		_enemy = null;
-		_ghost = null;
-		_ghost2 = null;
+		_ghost2 = null;		
+		applyBlend = null;
+		removeBlend = null;
+		beginGhost = null;
+		endGhost = null;
+		postGhost = null;
+		preGhost = null;
 	}
 }
 

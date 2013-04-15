@@ -2,6 +2,7 @@ package org.flixel.examples.box2d;
 
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
+import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxU;
 import org.flixel.event.IFlxButton;
@@ -12,6 +13,8 @@ import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 import org.flixel.plugin.flxbox2d.dynamics.joints.B2FlxMouseJoint;
 import org.flixel.plugin.flxbox2d.system.debug.B2FlxDebug;
 
+import com.badlogic.gdx.utils.Array;
+
 /**
  * A parent class for testing.
  * 
@@ -19,8 +22,7 @@ import org.flixel.plugin.flxbox2d.system.debug.B2FlxDebug;
  */
 public class Test extends B2FlxState
 {
-	@SuppressWarnings("rawtypes")
-	private static Class[] tests;
+	private static Array<Class<?extends FlxState>> tests;
 	public static int currentTest = 0;
 	public FlxText title;
 	public FlxText info;
@@ -30,13 +32,12 @@ public class Test extends B2FlxState
 	@Override
 	public void create()
 	{		
-		super.create();
-		FlxG.debug = true;
+		super.create();		
 		FlxG.visualDebug = true;
 		FlxG.setBgColor(0xff000000);
-		
-		// Debug renderer.
-		FlxG.addPlugin(new B2FlxDebug());
+				
+		if(FlxG.mobile)
+			B2FlxDebug.drawCollisions = false;
 //		B2FlxDebug.drawAABBs = true;
 		
 		B2FlxB.world.setWarmStarting(true);
@@ -75,36 +76,35 @@ public class Test extends B2FlxState
 		
 		if(tests == null)
 		{
-			tests = new Class[]	
-			{
-				TestShapes.class,			// Shapes
-				TestDistanceJoint.class,	// DistanceJoint
-				TestRopeJoint.class,		// RopeJoint
-				TestRevoluteJoint.class,	// RevoluteJoint
-				TestPrismaticJoint.class,	// PrismaticJoint
-				TestPulleyJoint.class,		// PulleyJoint
-				TestGearJoint.class,		// GearJoint
-				TestFrictionJoint.class,	// FrictionJoint
-				TestWeldJoint.class,		// WeldJoint
-				TestWheelJoint.class,		// WheelJoint
-				TestCart.class,				// Cart
-				
-				TestRagdolls.class,			// Ragdolls
-				TestCompound.class,			// Compound Shapes
-				TestCrankGearsPulley.class, // Crank Gears Pulley
-				TestBridge.class,			// Bridge
-				TestStack.class,			// Stack
-				TestCCD.class,				// Continuous Collision Detection
-//				TestTheoJansen.class,		// Theo Jansen
-//				TestEdges.class,			// Edges
-//				TestBuoyancy.class,			// Buouyancy
-				TestOneSidedPlatform.class, // One Sided Platform
-				TestBreakable.class,		// Breakable
-//				TestRaycast.class,			// Raycast
-				TestSensor.class,			// Sensor
-				TestCollisionDetection.class// Collision Detection
-			};			
-		}
+			tests = new Array<Class<? extends FlxState>>();
+			tests.add(TestShapes.class);			// Shapes
+			tests.add(TestDistanceJoint.class);		// DistanceJoint
+			tests.add(TestRopeJoint.class);			// RopeJoint
+			tests.add(TestRevoluteJoint.class);		// RevoluteJoint
+			tests.add(TestPrismaticJoint.class);	// PrismaticJoint
+			tests.add(TestPulleyJoint.class);		// PrismaticJoint
+			tests.add(TestGearJoint.class);			// GearJoint
+			tests.add(TestFrictionJoint.class);		// FrictionJoint
+			tests.add(TestWeldJoint.class);			// WeldJoint
+			tests.add(TestWheelJoint.class);		// WheelJoint
+			tests.add(TestCart.class);				// Cart
+			tests.add(TestRagdolls.class);			// Ragdolls
+			tests.add(TestCompound.class);			// Compound Shapes
+			tests.add(TestCrankGearsPulley.class);	// Crank Gears Pulley
+			tests.add(TestBridge.class);			// Bridge
+			tests.add(TestStack.class);				// Stack
+			tests.add(TestCCD.class);				// Continuous Collision Detection
+			tests.add(TestOneSidedPlatform.class);	// One Sided Platform
+			tests.add(TestBreakable.class);			// Breakable
+			tests.add(TestSensor.class);			// Sensor
+			tests.add(TestCollisionDetection.class);// Collision Detection
+						
+//			TheoJansen.class 			// Theo Jansen
+//			TestEdges.class,			// Edges
+//			TestBuoyancy.class,			// Buouyancy 
+//			TestRaycast.class,			// Raycast				
+		};			
+		
 		
 		// Mobile
 		if(FlxG.mobile)
@@ -118,7 +118,7 @@ public class Test extends B2FlxState
 		{
 			try
 			{				
-				FlxG.switchState((B2FlxState)tests[currentTest].newInstance());
+				FlxG.switchState((B2FlxState)tests.get(currentTest).newInstance());
 			}
 			catch(Exception e)
 			{
@@ -162,11 +162,11 @@ public class Test extends B2FlxState
 	
 	private void next()
 	{
-		if(tests.length <= ++currentTest)
+		if(tests.size <= ++currentTest)
 			currentTest = 0;
 		try
 		{				
-			FlxG.switchState((B2FlxState)tests[currentTest].newInstance());
+			FlxG.switchState((B2FlxState)tests.get(currentTest).newInstance());
 		}
 		catch(Exception e)
 		{
@@ -178,10 +178,10 @@ public class Test extends B2FlxState
 	private void prev()
 	{
 		if(0 > --currentTest)
-			currentTest = tests.length-1;
+			currentTest = tests.size-1;
 		try
 		{				
-			FlxG.switchState((B2FlxState)tests[currentTest].newInstance());
+			FlxG.switchState((B2FlxState)tests.get(currentTest).newInstance());
 		}
 		catch(Exception e)
 		{
@@ -202,8 +202,6 @@ public class Test extends B2FlxState
 		title = null;
 		info = null;
 		mouse = null;
-		FlxG.getPlugin(B2FlxDebug.class).destroy();
-		FlxG.removePluginType(B2FlxDebug.class);
 	}
 }
 

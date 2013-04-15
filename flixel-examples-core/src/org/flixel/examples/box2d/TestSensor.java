@@ -4,11 +4,12 @@ import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
 import org.flixel.plugin.flxbox2d.common.math.B2FlxMath;
-import org.flixel.plugin.flxbox2d.dynamics.B2FlxContactEvent;
-import org.flixel.plugin.flxbox2d.dynamics.B2FlxListener;
+import org.flixel.plugin.flxbox2d.events.IB2FlxListener;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -40,8 +41,6 @@ public class TestSensor extends Test
 					.setCategoryBits((short) CIRCLE)
 					.setMaskBits((short) (CIRCLE | SENSOR | WALL))
 					.setDraggable(true)
-					.setReportBeginContact(true)
-					.setReportEndContact(true)
 					.create());
 			add(circle);
 		}
@@ -57,8 +56,8 @@ public class TestSensor extends Test
 		add(sensorBody);
 		
 		// Add event listeners.
-		contactListener.addEventListener(B2FlxContactEvent.BEGIN, onContact);
-		contactListener.addEventListener(B2FlxContactEvent.END, onRelease);
+		contact.onBeginContact(sensorBody, CIRCLE, onContact);
+		contact.onEndContact(sensorBody, CIRCLE, onRelease);
 	}
 	
 	@Override
@@ -78,27 +77,21 @@ public class TestSensor extends Test
 		super.update();
 	}
 	
-	B2FlxListener onContact = new B2FlxListener()
+	IB2FlxListener onContact = new IB2FlxListener()
 	{
 		@Override
-		public void beginContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact)
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{
-			if(sprite1.categoryBits == CIRCLE && sprite2.categoryBits == SENSOR)
-			{				
-				sprite1.userData.put("touch", true);
-			}
+			sprite2.userData.put("touch", true);			
 		}
 	};
 	
-	B2FlxListener onRelease = new B2FlxListener()
+	IB2FlxListener onRelease = new IB2FlxListener()
 	{
 		@Override
-		public void endContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact)
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{
-			if(sprite1.categoryBits == CIRCLE && sprite2.categoryBits == SENSOR)
-			{				
-				sprite1.userData.put("touch", false);
-			}
+			sprite2.userData.put("touch", false);			
 		}
 	};
 	

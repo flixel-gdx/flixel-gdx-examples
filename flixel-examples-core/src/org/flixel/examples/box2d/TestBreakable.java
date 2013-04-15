@@ -5,14 +5,14 @@ import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
 import org.flixel.plugin.flxbox2d.common.math.B2FlxMath;
-import org.flixel.plugin.flxbox2d.dynamics.B2FlxContactEvent;
-import org.flixel.plugin.flxbox2d.dynamics.B2FlxListener;
+import org.flixel.plugin.flxbox2d.events.IB2FlxListener;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.Manifold;
 
 /**
  *
@@ -29,6 +29,7 @@ public class TestBreakable extends Test
 	private Fixture _piece2;
 	private boolean _broke;
 	private boolean _break;
+	private final short WALL = 0x0001; 	
 	
 	@Override
 	public void create()
@@ -41,15 +42,12 @@ public class TestBreakable extends Test
 			.setDensity(1)
 			.setAngle(45)
 			.setDraggable(true)
-			.setReportPostSolve(true)
 			.create();		
 		add(_box);
 		
 		// Breakable Dynamic Body
 		_shape1 = new B2FlxBox(0, 0, 30, 30, new Vector2(-.5f, 0));
-		_shape1.reportPostSolve = true;
 		_shape2 = new B2FlxBox(0, 0, 30, 30, new Vector2(.5f, 0));
-		_shape2.reportPostSolve = true;
 		
 		_piece1 = _box.createFixture(_shape1, 1);
 		_piece2 = _box.createFixture(_shape2, 1);
@@ -57,7 +55,7 @@ public class TestBreakable extends Test
 		_broke = false;
 		_break = false;
 		
-		contactListener.addEventListener(B2FlxContactEvent.POSTSOLVE, post);
+		contact.onPostSolve(_box, WALL, post);
 	}
 	
 	@Override
@@ -113,10 +111,10 @@ public class TestBreakable extends Test
 		
 	}
 	
-	B2FlxListener post = new B2FlxListener()
+	IB2FlxListener post = new IB2FlxListener()
 	{
 		@Override
-		public void postSolve(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, ContactImpulse impulse)
+		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{
 			if(_broke)
 			{
