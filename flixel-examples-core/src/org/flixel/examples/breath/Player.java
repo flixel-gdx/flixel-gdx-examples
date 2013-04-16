@@ -2,8 +2,6 @@ package org.flixel.examples.breath;
 
 import org.flixel.*;
 
-import flash.display.BlendMode;
-
 public class Player extends FlxSprite {
     
     //private String PlayerImage = "examples/breath/data/pack:bird_player_image";
@@ -30,7 +28,7 @@ public class Player extends FlxSprite {
         glow = new FlxSprite(X,Y,GlowImage);
         glow.scale = new FlxPoint(4,4);
         glow.setAlpha(1);
-        glow.blend = BlendMode.SCREEN;
+        glow.blend = "screen";
         
         this.loadGraphic(NewPlayerImage, true, true);
 
@@ -99,24 +97,23 @@ public class Player extends FlxSprite {
         super.update();
     }
 
-    @Override 
-    public void draw() {
+    public void drawGlow() {
+    	/*
         FlxPoint firefly_point = new FlxPoint();
         
         getScreenXY(firefly_point);
 
-      //  darkness.stamp(
-      //      glow,
-      //      (int)(firefly_point.x - (glow.width / 2)),
-      //      (int)(firefly_point.y - (glow.height/ 2))
-      //  );
-        
+        darkness.stamp(
+            glow,
+            (int)(firefly_point.x - (glow.width / 2)),
+            (int)(firefly_point.y - (glow.height/ 2))
+        );
+        */
+    	
         glow.x = (int)(x - ((glow.width) / 2f));
         glow.y = (int)(y - ((glow.height) / 2f));
         
-        //glow.draw();
-
-        super.draw();
+        glow.draw();
     }
     
 }

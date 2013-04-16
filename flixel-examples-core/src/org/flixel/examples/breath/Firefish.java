@@ -2,7 +2,6 @@ package org.flixel.examples.breath;
 
 import org.flixel.*;
 import org.flixel.event.IFlxCollision;
-import flash.display.BlendMode;
 
 public class Firefish extends FlxSprite {
     
@@ -20,7 +19,7 @@ public class Firefish extends FlxSprite {
 
     public Player player;
 
-    private FlxPoint display_test_point;
+    //private FlxPoint display_test_point;
     private FlxTilemap water;
     //private FlxTilemap walls;        
     
@@ -48,11 +47,11 @@ public class Firefish extends FlxSprite {
         glow = new FlxSprite(X,Y,GlowImage);
         glow.scale = new FlxPoint(2,2);
         glow.setAlpha(1);
-        glow.blend = BlendMode.SCREEN;
+        glow.blend = "screen";
         
         maxVelocity.x = maxVelocity.y = 200;
 
-        display_test_point = new FlxPoint();
+        //display_test_point = new FlxPoint();
         
         get_new_destination();
         
@@ -89,8 +88,8 @@ public class Firefish extends FlxSprite {
         super.update();
     }
 
-    @Override
-    public void draw() {
+    public void drawGlow() {
+        /*
         getScreenXY(display_test_point);
 
         if(display_test_point.x > FlxG.width * 2 ||
@@ -98,23 +97,23 @@ public class Firefish extends FlxSprite {
             display_test_point.y > FlxG.height * 2 ||
             display_test_point.y < -FlxG.height) {
             return;
-       }
+        }
        
-       FlxPoint firefly_point = new FlxPoint();
+        FlxPoint firefly_point = new FlxPoint();
         
-       getScreenXY(firefly_point);
+        getScreenXY(firefly_point);
 
-       // darkness.stamp(
-       //     glow,
-       //     (int)(firefly_point.x - (glow.width / 2f)),
-       //     (int)(firefly_point.y - (glow.height/ 2f))
-       // );
-
+        darkness.stamp(
+            glow,
+            (int)(firefly_point.x - (glow.width / 2f)),
+            (int)(firefly_point.y - (glow.height/ 2f))
+        );
+        */
+    	
         glow.x = (int)(x - (glow.width / 2f));
         glow.y = (int)(y - (glow.height/ 2f));
         
-        super.draw();
-        //glow.draw();
+        glow.draw();
     }
 
     @Override

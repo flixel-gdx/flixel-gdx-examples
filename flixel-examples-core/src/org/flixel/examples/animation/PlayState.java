@@ -18,7 +18,7 @@ public class PlayState extends FlxState
 	public final String ImgZombie3 = "examples/animation/pack:zombie3";
 	public final String ImgChest = "examples/animation/pack:chest";
 	public final String ImgBat = "examples/animation/pack:bat";
-	public final String ImgGreenPotion = "examples/animation/pack:greenpotion";
+	public final String ImgGreenPotion = "examples/animation/item_diamondlarge.png";
 	
 	
 	private FlxSprite _zombie;
@@ -33,7 +33,6 @@ public class PlayState extends FlxState
 		s.play("shine");
 		s.drawLine(0, 0, 30, 30, 0xFFFF00FF);
 		add(s);
-		
 		
 		// NOTE: the zombie image is facing to the left. Normally you should stick sprites facing to the right.
 		s = new FlxSprite(20, 60).loadGraphic(ImgZombie, true, true, 36, 41);
@@ -91,9 +90,11 @@ public class PlayState extends FlxState
 		add(s);
 		
 		// Green potion from Mysterious Mayhem
-		s = new FlxSprite(120, 20).loadGraphic(ImgGreenPotion, true, false, 11, 33);
-		s.addAnimation("default", new int[]{0,1,2},10);
-		s.play("default");
+		//s = new FlxSprite(120, 20).loadGraphic(ImgGreenPotion, true, false, 11, 33);
+		//s.addAnimation("default", new int[]{0,1,2},10);
+		//s.play("default");
+		//s.scale.x=4;
+		s = new FlxSprite(120, 20, ImgGreenPotion);
 		add(s);
 	}
 

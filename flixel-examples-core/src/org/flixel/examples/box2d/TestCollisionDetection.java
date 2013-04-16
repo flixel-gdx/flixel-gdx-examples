@@ -174,8 +174,8 @@ public class TestCollisionDetection extends Test
 		@Override
 		public void onContact(B2FlxShape sprite1, B2FlxShape sprite2, Contact contact, Manifold oldManifold, ContactImpulse impulse)
 		{
-			sprite1.blend = BlendMode.LINEAR_DODGE;
-			sprite2.blend = BlendMode.LINEAR_DODGE;
+			sprite1.blend = BlendMode.ADD;
+			sprite2.blend = BlendMode.ADD;
 		}
 	};
 	

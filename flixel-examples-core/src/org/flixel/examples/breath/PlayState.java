@@ -3,7 +3,9 @@ package org.flixel.examples.breath;
 import org.flixel.*;
 import org.flixel.event.IFlxCamera;
 
-import flash.display.BlendMode;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 
 public class PlayState extends FlxState {
     
@@ -28,7 +30,7 @@ public class PlayState extends FlxState {
 
     private int darkness_color = 0xee000000;
     public static FlxSprite world_darkness;
-        
+    
     private boolean player_dead = false;
     private float player_death_length = 1.0f;
     private float player_death_timer = 0.0f;
@@ -45,20 +47,32 @@ public class PlayState extends FlxState {
     private boolean game_started = false;
 
     private boolean cheats = true;
+    
+    public static FrameBuffer frame_buffer;
+    
+    public FlxSprite frame_buffer_fill;
         
     @Override 
     public void create() {
     	FlxG.setBgColor(Breath.bgcolor);
     	
+    	frame_buffer = new FrameBuffer(Pixmap.Format.RGBA8888, FlxG.width, FlxG.height, true);
+    	
         title_text = new FlxText(4, 24, 290, "\"I Can Hold My Breath Forever\"\nUse arrow keys to move.");
         title_text.setFormat(GardeniaFont, 8, 0xffffffff);
             
         PlayState.world_darkness = new FlxSprite(0,0);
-        world_darkness.makeGraphic(FlxG.width, FlxG.height, darkness_color);
         world_darkness.scrollFactor.x = world_darkness.scrollFactor.y = 0;
-        world_darkness.blend = BlendMode.MULTIPLY;
+        world_darkness.setPixels(new TextureRegion(frame_buffer.getColorBufferTexture()));
+        world_darkness.framePixels.flip(false, true);
+        world_darkness.blend = "multiply";
         world_darkness.setAlpha(0);
-            
+        world_darkness.visible = false;
+        
+        frame_buffer_fill = new FlxSprite(0,0);
+        frame_buffer_fill.makeGraphic(FlxG.width, FlxG.height, darkness_color);
+        frame_buffer_fill.scrollFactor.x = frame_buffer_fill.scrollFactor.y = 0;
+        
         world = new World();
 
         background = new FlxSprite(0,0,BackgroundImage);
@@ -97,7 +111,7 @@ public class PlayState extends FlxState {
         this.add(world.octopus);
         this.add(notes);
         this.add(player);
-        //this.add(world_darkness);
+        this.add(world_darkness);
         this.add(darkness);
         this.add(oxygen_timer_display);
         this.add(story_overlay);
@@ -267,7 +281,8 @@ public class PlayState extends FlxState {
             
         // World darkness init and kill titles (when the player dives into the pond);
         if(world_darkness.getAlpha() < 1 && (world_darkness.getAlpha() > 0 || player.overlaps(world.darkness_init_area))) {
-            world_darkness.setAlpha(world_darkness.getAlpha() + FlxG.elapsed);
+            world_darkness.visible = true;
+        	world_darkness.setAlpha(world_darkness.getAlpha() + FlxG.elapsed);
             title_text.setAlpha(title_text.getAlpha() - FlxG.elapsed);
         }
             
@@ -282,6 +297,17 @@ public class PlayState extends FlxState {
     @Override 
     public void draw() {
         //world_darkness.fill(darkness_color);
+    	
+    	FlxG.batch.end();
+    	frame_buffer.begin();
+        FlxG.batch.begin();
+        frame_buffer_fill.draw();
+        player.drawGlow();
+        world.firefish_group.callAll("drawGlow");
+    	FlxG.batch.end();
+    	frame_buffer.end();
+    	FlxG.batch.begin();
+    	
         super.draw();
     }
         

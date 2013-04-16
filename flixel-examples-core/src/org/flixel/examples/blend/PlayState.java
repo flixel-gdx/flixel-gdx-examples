@@ -19,7 +19,7 @@ public class PlayState extends FlxState
 
 	private FlxSprite _flamingo;
 	
-	private int[][] _blends;
+	private String[] _blends;
 	private int _count;
 	
 	@Override
@@ -28,7 +28,7 @@ public class PlayState extends FlxState
 		add(new FlxSprite().loadGraphic(ImgBg));
 		add(_flamingo = new FlxSprite().loadGraphic(ImgFlamingo));
 		_count = 0;
-		_blends = new int[][]{BlendMode.NORMAL, BlendMode.LINEAR_DODGE, BlendMode.SCREEN, BlendMode.MULTIPLY};
+		_blends = new String[]{BlendMode.NORMAL, BlendMode.ADD, BlendMode.SCREEN, BlendMode.MULTIPLY};
 	}
 
 	@Override

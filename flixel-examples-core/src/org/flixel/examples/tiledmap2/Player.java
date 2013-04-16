@@ -6,8 +6,6 @@ import org.flixel.FlxGamePad;
 import org.flixel.FlxSprite;
 import com.badlogic.gdx.Input.Keys;
 
-import flash.display.BlendMode;
-
 public class Player extends FlxSprite
 {
 	private static String ImgPlayer = "examples/tiledmap2/pack:player";
@@ -29,8 +27,6 @@ public class Player extends FlxSprite
 		height = 10;
 		offset.x = 3;
 		offset.y = 3;
-		
-		blend = BlendMode.LINEAR_DODGE;
 		
 		addAnimation("idle",new int[]{0},0,false);
 		addAnimation("walk",new int[]{1,2,3,0},10,true);
