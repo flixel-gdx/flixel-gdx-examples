@@ -98,6 +98,7 @@ public class Test extends B2FlxState
 			tests.add(TestBreakable.class);			// Breakable
 			tests.add(TestSensor.class);			// Sensor
 			tests.add(TestCollisionDetection.class);// Collision Detection
+			tests.add(TestExplosion.class);			// Explosion & Implosion
 						
 //			TheoJansen.class 			// Theo Jansen
 //			TestEdges.class,			// Edges
