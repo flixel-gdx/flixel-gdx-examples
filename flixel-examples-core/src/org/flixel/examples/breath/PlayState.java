@@ -332,4 +332,9 @@ public class PlayState extends FlxState {
         // Play sound effect
         FlxG.play(RevNoiseSound);
     }
+    
+    @Override
+    public void destroy() {
+    	frame_buffer.dispose();
+    }
 }
