@@ -32,7 +32,8 @@ public class Test extends B2FlxState
 	@Override
 	public void create()
 	{		
-		super.create();		
+		super.create();
+		B2FlxB.setGravity(0, 9.8f);
 		FlxG.visualDebug = true;
 		FlxG.setBgColor(0xff000000);
 				
