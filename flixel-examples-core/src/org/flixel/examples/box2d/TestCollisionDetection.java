@@ -2,6 +2,7 @@ package org.flixel.examples.box2d;
 
 import org.flixel.FlxG;
 import org.flixel.examples.box2d.objects.Ghost;
+import org.flixel.plugin.flxbox2d.B2FlxB;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 import org.flixel.plugin.flxbox2d.events.IB2FlxListener;
@@ -43,7 +44,7 @@ public class TestCollisionDetection extends Test
 		title.setText("Collision Detection");
 		info.setText("Collision and overlap");
 			
-		setGravity(0, 0);
+		B2FlxB.setGravity(0, 0);
 		FlxG.setBgColor(0xff0076a3);
 		
 		// Player will collide against wall, boss and enemy, assigned in group 1.
@@ -83,32 +84,32 @@ public class TestCollisionDetection extends Test
 		
 		
 		// Player vs Boss
-		contact.onBeginContact(_player, _boss, applyBlend);
-		contact.onEndContact(_player, _boss, removeBlend);
+		B2FlxB.contact.onBeginContact(_player, _boss, applyBlend);
+		B2FlxB.contact.onEndContact(_player, _boss, removeBlend);
 		
 		// Player vs Friendly
-		contact.onBeginContact(_player, ENEMY, applyBlend);
-		contact.onEndContact(_player, ENEMY, removeBlend);
+		B2FlxB.contact.onBeginContact(_player, ENEMY, applyBlend);
+		B2FlxB.contact.onEndContact(_player, ENEMY, removeBlend);
 		
 		// Boss vs Friendly
-		contact.onBeginContact(_boss, FRIENDLY, applyBlend);
-		contact.onEndContact(_boss, FRIENDLY, removeBlend);
+		B2FlxB.contact.onBeginContact(_boss, FRIENDLY, applyBlend);
+		B2FlxB.contact.onEndContact(_boss, FRIENDLY, removeBlend);
 						
 		// Player vs Ghost
-		contact.onBeginContact(_player, _ghost2, beginGhost);
-		contact.onPreSolve(_player, _ghost2, preGhost);
-		contact.onPostSolve(_player, _ghost2, postGhost);
-		contact.onEndContact(_player, _ghost2, endGhost);
+		B2FlxB.contact.onBeginContact(_player, _ghost2, beginGhost);
+		B2FlxB.contact.onPreSolve(_player, _ghost2, preGhost);
+		B2FlxB.contact.onPostSolve(_player, _ghost2, postGhost);
+		B2FlxB.contact.onEndContact(_player, _ghost2, endGhost);
 
 		// Boss vs Ghost
-		contact.onBeginContact(_boss, _ghost2, beginGhost);
-		contact.onPreSolve(_boss, _ghost2, preGhost);
-		contact.onPostSolve(_boss, _ghost2, postGhost);
-		contact.onEndContact(_boss, _ghost2, endGhost);
+		B2FlxB.contact.onBeginContact(_boss, _ghost2, beginGhost);
+		B2FlxB.contact.onPreSolve(_boss, _ghost2, preGhost);
+		B2FlxB.contact.onPostSolve(_boss, _ghost2, postGhost);
+		B2FlxB.contact.onEndContact(_boss, _ghost2, endGhost);
 		
 		// Friendly vs Enemy
-		contact.onBeginContact(FRIENDLY, ENEMY, applyBlend);
-		contact.onEndContact(FRIENDLY, ENEMY, removeBlend);
+		B2FlxB.contact.onBeginContact(FRIENDLY, ENEMY, applyBlend);
+		B2FlxB.contact.onEndContact(FRIENDLY, ENEMY, removeBlend);
 	}
 		
 	public B2FlxBox createBox(float x, float y, float width, float height, short categoryBits, short maskBits, short groupIndex, boolean sensor)

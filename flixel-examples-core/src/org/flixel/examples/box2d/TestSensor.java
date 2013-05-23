@@ -1,5 +1,6 @@
 package org.flixel.examples.box2d;
 
+import org.flixel.plugin.flxbox2d.B2FlxB;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
@@ -56,8 +57,8 @@ public class TestSensor extends Test
 		add(sensorBody);
 		
 		// Add event listeners.
-		contact.onBeginContact(sensorBody, CIRCLE, onContact);
-		contact.onEndContact(sensorBody, CIRCLE, onRelease);
+		B2FlxB.contact.onBeginContact(sensorBody, CIRCLE, onContact);
+		B2FlxB.contact.onEndContact(sensorBody, CIRCLE, onRelease);
 	}
 	
 	@Override

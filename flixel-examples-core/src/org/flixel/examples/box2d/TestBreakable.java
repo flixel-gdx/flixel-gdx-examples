@@ -55,7 +55,7 @@ public class TestBreakable extends Test
 		_broke = false;
 		_break = false;
 		
-		contact.onPostSolve(_box, WALL, post);
+		B2FlxB.contact.onPostSolve(_box, WALL, post);
 	}
 	
 	@Override
