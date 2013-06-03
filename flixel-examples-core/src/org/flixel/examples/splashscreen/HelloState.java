@@ -15,7 +15,15 @@ public class HelloState extends FlxState
 	public void create()
 	{
 		FlxG.setBgColor(0xFF000000);
-		add(new FlxText(10, 10, 200, "Hello flixel-gdx"));
+		add(new FlxText(10, 10, 200, "Hello flixel-gdx. Press R to restart the example"));		
+	}
+	
+	@Override
+	public void update() {
+		if(FlxG.keys.R){
+			FlxG.switchState(new PlayState());
+		}
+		super.update();
 	}
 
 }
