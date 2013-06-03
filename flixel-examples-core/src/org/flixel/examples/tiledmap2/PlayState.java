@@ -10,14 +10,11 @@ import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.tiled.TiledLoader;
-import com.badlogic.gdx.graphics.g2d.tiled.TiledMap;
-import com.badlogic.gdx.graphics.g2d.tiled.TiledObject;
-import com.badlogic.gdx.graphics.g2d.tiled.TiledObjectGroup;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 
 public class PlayState extends FlxState
 {
-	public static TiledMap map = TiledLoader.createMap(Gdx.files.internal("examples/tiledmap2/map01.tmx"));
+//	public static TiledMap map = TiledLoader.createMap(Gdx.files.internal("examples/tiledmap2/map01.tmx"));
 	private static String ImgBG = "examples/tiledmap2/pack:bg";
 	private static String ImgGibs = "examples/tiledmap2/pack:gibs";
 	private static String ImgTiles = "examples/tiledmap2/pack:tiles";
@@ -47,26 +44,26 @@ public class PlayState extends FlxState
 		add(new FlxText(32,36,96,"collision").setFormat(null,16,0xFF778ea1,"center"));
 		add(new FlxText(32,60,96,"DEMO").setFormat(null,24,0xFF778ea1,"center"));
 		
-		for(TiledObjectGroup group : map.objectGroups)
-		{
-			for(TiledObject object : group.objects)
-			{
-				// Draw sprites where objects occur
-				
-				String name = object.name;
-				if(name != null)
-				{
-					if(name.equals("crate"))
-						add(new Crate(object.x,object.y));
-					else if(name.equals("elevator"))
-						add(new Elevator(object.x,object.y,object.height));
-					else if(name.equals("pusher"))
-						add(new Pusher(object.x,object.y,object.width));
-					else if(name.equals("player"))
-						add(new Player(object.x,object.y,_pad));
-				}				
-			}
-		}
+//		for(TiledObjectGroup group : map.objectGroups)
+//		{
+//			for(TiledObject object : group.objects)
+//			{
+//				// Draw sprites where objects occur
+//				
+//				String name = object.name;
+//				if(name != null)
+//				{
+//					if(name.equals("crate"))
+//						add(new Crate(object.x,object.y));
+//					else if(name.equals("elevator"))
+//						add(new Elevator(object.x,object.y,object.height));
+//					else if(name.equals("pusher"))
+//						add(new Pusher(object.x,object.y,object.width));
+//					else if(name.equals("player"))
+//						add(new Player(object.x,object.y,_pad));
+//				}				
+//			}
+//		}
 		
 		//This is the thing that spews nuts and bolts
 		FlxEmitter dispenser = new FlxEmitter(32,32,200);
@@ -80,7 +77,7 @@ public class PlayState extends FlxState
 		add(dispenser);
 		
 		_level = new FlxTilemap();
-		_level.loadMap(FlxTilemap.tiledmapToCSV(map, 0), ImgTiles, 8, 8, FlxTilemap.OFF, 1);
+//		_level.loadMap(FlxTilemap.tiledmapToCSV(map, 0), ImgTiles, 8, 8, FlxTilemap.OFF, 1);
 		
 		add(_level);
 		add(_pad);

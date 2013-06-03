@@ -163,6 +163,12 @@
             android:label="BomberPlanet"
             android:screenOrientation="portrait" >
         </activity>
+        <activity 
+            android:name=".SplashScreen"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="SplashScreen"
+            android:screenOrientation="portrait" >            
+        </activity>
         <activity
             android:name=".Performance"
             android:configChanges="keyboard|keyboardHidden|orientation"

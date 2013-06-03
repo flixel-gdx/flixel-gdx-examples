@@ -27,6 +27,7 @@
 		<item>TweenDemo</item>
 		<item>VibrationDemo</item>
 		<item>BomberPlanet</item>
+		<item>SplashScreen</item>
 		<item>Performance</item>
     </string-array>
 </resources>
