@@ -9,9 +9,6 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-
 public class PlayState extends FlxState
 {
 //	public static TiledMap map = TiledLoader.createMap(Gdx.files.internal("examples/tiledmap2/map01.tmx"));
