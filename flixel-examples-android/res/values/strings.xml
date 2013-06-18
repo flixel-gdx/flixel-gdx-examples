@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">flixel-android</string>
+    <string name="app_name">flixel-gdx examples</string>
     <string-array name="demos">
         <item>PathFinding</item>
         <item>FlxCollisions</item>
@@ -27,6 +27,7 @@
 		<item>TweenDemo</item>
 		<item>VibrationDemo</item>
 		<item>BomberPlanet</item>
+		<item>QuadTreeDemo</item>
 		<item>SplashScreen</item>
 		<item>Performance</item>
     </string-array>

@@ -31,7 +31,7 @@ public class RagDoll extends FlxGroup
 			.setDraggable(true)
 			.create();
 		head.body.applyLinearImpulse(new Vector2(FlxG.random() * 100 - 50,  FlxG.random() * 100 -50), 
-				head.body.getWorldCenter());
+				head.body.getWorldCenter(), true);
 		add(head);
 		
 		// 1st Torso

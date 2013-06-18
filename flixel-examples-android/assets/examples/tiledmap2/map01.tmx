@@ -9,13 +9,15 @@
   </data>
  </layer>
  <objectgroup name="objects" width="40" height="30">
-  <object type="dispenser" x="37" y="37" width="13" height="14">
+  <object name="dispenser" type="dispenser" x="37" y="37" width="13" height="14">
    <properties>
+    <property name="bounce" value="0.3"/>
+    <property name="gravity" value="300"/>
     <property name="maxvx" value="250"/>
-    <property name="maxvy" value="20"/>
-    <property name="minvx" value="120"/>
+    <property name="maxvy" value="50"/>
+    <property name="minvx" value="100"/>
     <property name="minvy" value="-50"/>
-    <property name="quantity" value="0.05"/>
+    <property name="quantity" value="100"/>
    </properties>
   </object>
   <object name="elevator" type="elevator" x="200" y="80" height="112"/>

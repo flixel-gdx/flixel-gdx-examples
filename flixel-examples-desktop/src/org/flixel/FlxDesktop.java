@@ -6,14 +6,15 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+
 //import org.example.ExampleActivity;
 
 //import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 
 public class FlxDesktop
 {
-
-	public static void main(String[] args)
+	public FlxDesktop(final FlxGame game)
 	{
 		SwingUtilities.invokeLater(new Runnable()
 		{
@@ -34,8 +35,14 @@ public class FlxDesktop
 				// -------------------------------------------------------------
 
 				String[] resolutions =
-				{ "HVGA (320x480)", "WVGA800 (480x800)", "WVGA854 (480x854)", "Galaxy Tab (600x1024)",
-						"Motorola Xoom (800x1280)" };
+					{ 
+						"HVGA (320x480)", 
+						"WVGA800 (480x800)", 
+						"WVGA854 (480x854)",
+						"SVGA (600x800)",
+						"WSVGA (600x1024)",
+						"WXGA (800x1280)" 
+					};
 				String resolutionResult = (String) JOptionPane.showInputDialog(null, "Select your display",
 						"Initialization", JOptionPane.PLAIN_MESSAGE, null, resolutions, "HVGA (320x480)");
 
@@ -51,14 +58,14 @@ public class FlxDesktop
 					m.find();
 					int w = Integer.parseInt(m.group(isPortrait ? 1 : 2));
 					int h = Integer.parseInt(m.group(isPortrait ? 2 : 1));
-					launch(w, h);
+					launch(game, w, h);
 				}
 			}
 		});
 	}
 
-	public static void launch(int width, int height)
+	public static void launch(FlxGame game, int width, int height)
 	{
-		//new LwjglApplication(new ExampleActivity(), "", width, height, false);
+		new LwjglApplication(game, "", width, height, false);
 	}
 }

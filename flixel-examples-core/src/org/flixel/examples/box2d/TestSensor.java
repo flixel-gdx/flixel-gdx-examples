@@ -71,8 +71,8 @@ public class TestSensor extends Test
 			{
 				d = B2FlxMath.SubtractVV(sensorBody.body.getWorldCenter(), b.body.getPosition());
 				d.nor();
-				d.mul(strength);
-				b.body.applyForce(d, b.body.getPosition());
+				d.scl(strength);
+				b.body.applyForce(d, b.body.getPosition(), true);
 			}
 		}
 		super.update();

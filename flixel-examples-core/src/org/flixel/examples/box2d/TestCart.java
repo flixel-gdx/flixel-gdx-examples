@@ -77,13 +77,13 @@ public class TestCart extends Test
 	{
 		if(FlxG.keys.pressed("A") || _pad.buttonLeft.status == FlxButton.PRESSED)
 		{				
-			_wheel1.body.applyTorque(-20);
-			_wheel2.body.applyTorque(-20);
+			_wheel1.body.applyTorque(-20, true);
+			_wheel2.body.applyTorque(-20, true);
 		}
 		else if(FlxG.keys.pressed("D") || _pad.buttonRight.status == FlxButton.PRESSED)
 		{				
-			_wheel1.body.applyTorque(20);
-			_wheel2.body.applyTorque(20);
+			_wheel1.body.applyTorque(20, true);
+			_wheel2.body.applyTorque(20, true);
 		}
 		super.update();
 	}
