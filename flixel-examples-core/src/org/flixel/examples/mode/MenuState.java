@@ -11,9 +11,8 @@ public class MenuState extends FlxState
 	protected String ImgEnemy = "examples/mode/pack:bot";
 	public String ImgGibs = "examples/mode/pack:spawner_gibs";
 	public String ImgCursor = "examples/mode/pack:cursor";
-//	public String SndHit = "examples/mode/menu_hit.mp3";
+	public String SndHit = "examples/mode/menu_hit.mp3";
 	public String SndHit2 = "examples/mode/menu_hit_2.mp3";
-	public FlxSound SndHit3;
 
 	//Replay data for the "Attract Mode" gameplay demos
 	public String Attract1 = "examples/mode/attract1.fgr";
@@ -34,7 +33,7 @@ public class MenuState extends FlxState
 		FlxG.resetCameras();
 		
 		FlxG.setBgColor(0xff131c1b);
-		SndHit3 = new FlxSound().loadEmbedded(SndHit2, false, true, FlxSound.SFX);
+
 		//Simple use of flixel save game object.
 		//Tracks number of times the game has been played.
 		FlxSave save = new FlxSave();
@@ -106,8 +105,7 @@ public class MenuState extends FlxState
 			title2.velocity.x = 0;
 
 			//Then, play a cool sound, change their color, and blow up pieces everywhere
-//			FlxG.play(SndHit);
-			SndHit3.play(true);
+			FlxG.play(SndHit);
 			FlxG.flash(0xffd8eba2,0.5f);
 			FlxG.shake(0.035f,0.5f);
 			title1.setColor(0xd8eba2);
@@ -154,8 +152,7 @@ public class MenuState extends FlxState
 		if(!fading && ((FlxG.keys.X && FlxG.keys.C) || attractMode)) 
 		{
 			fading = true;
-//			FlxG.play(SndHit2);
-			SndHit3.play(true);
+			FlxG.play(SndHit2);
 			FlxG.flash(0xffd8eba2,0.5f);
 			FlxG.fade(0xff131c1b,1,new IFlxCamera(){@Override public void callback(){onFade();}});
 		}
@@ -177,8 +174,7 @@ public class MenuState extends FlxState
 	protected void onPlay()
 	{
 		playButton.exists = false;
-//		FlxG.play(SndHit2);
-		SndHit3.play(true);
+		FlxG.play(SndHit2);
 	}
 
 	//This function is passed to FlxG.fade() when we are ready to go to the next game state.
