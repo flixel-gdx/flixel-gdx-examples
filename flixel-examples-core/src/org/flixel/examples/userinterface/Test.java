@@ -1,8 +1,7 @@
-package org.flixel.examples.analog;
+package org.flixel.examples.userinterface;
 
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
-import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxU;
@@ -16,33 +15,23 @@ import com.badlogic.gdx.utils.Array;
  */
 public class Test extends FlxState
 {
+	public static final String FntRobotoRegular = "examples/userinterface/Roboto-Regular.ttf";
 	private static Array<Class<?extends FlxState>> tests;
 	public static int currentTest = 0;
-	
+
 	@Override
 	public void create()
 	{
-		FlxG.setBgColor(0xFF131C1B);
-		
-		// Add some wall around the edges.
-		FlxSprite s;
-		add(s = new FlxSprite(0, 0).makeGraphic(FlxG.width, 2));
-		s.immovable = true;
-		add(s = new FlxSprite(0, FlxG.height-2).makeGraphic(FlxG.width, 2));
-		s.immovable = true;
-		add(s = new FlxSprite(0, 0).makeGraphic(2, FlxG.height));
-		s.immovable = true;
-		add(s = new FlxSprite(FlxG.width-2, 0).makeGraphic(2, FlxG.height));
-		s.immovable = true;
-		
+		FlxG.setBgColor(0xFF111111);
 		if(tests == null)
 		{
 			tests = new Array<Class<?extends FlxState>>();	
-			tests.add(PlayState.class);  // Single Analog
-			tests.add(PlayState2.class); // Dual Analog
-			tests.add(PlayState3.class); // Triple Analog			
+			tests.add(CheckBoxState.class);
+			tests.add(RadioButtonState.class);
+			tests.add(InputTextState.class);
+			tests.add(SwitchState.class);
 		}
-
+		
 		// Mobile
 		if(FlxG.mobile)
 		{

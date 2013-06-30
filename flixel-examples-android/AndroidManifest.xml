@@ -158,6 +158,12 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
+            android:name=".UserInterfaceDemo"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="UserInterfaceDemo"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".BomberPlanet"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="BomberPlanet"
