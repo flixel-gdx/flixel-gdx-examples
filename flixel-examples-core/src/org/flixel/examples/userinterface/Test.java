@@ -30,6 +30,7 @@ public class Test extends FlxState
 			tests.add(RadioButtonState.class);
 			tests.add(InputTextState.class);
 			tests.add(SwitchState.class);
+			tests.add(ButtonState.class);
 		}
 		
 		// Mobile

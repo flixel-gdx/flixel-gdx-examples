@@ -22,8 +22,8 @@ public class SwitchState extends Test
 		FlxText text;
 		for(int i = 0; i < 6; i++)
 		{
-			text = new FlxText(10, 30 + i * 100, FlxG.width, "LIGHT")
-			.setFormat(FntRobotoRegular, 120 - (i * 10), 0x333333);
+			text = new FlxText(10, 30 + i * 60, FlxG.width, "LIGHT")
+			.setFormat(FntRobotoRegular, 18, 0x333333);
 			add(text);
 			texts.add(text);
 		}		
