@@ -2,7 +2,7 @@ package org.flixel.examples.box2d;
 
 import org.flixel.FlxG;
 import org.flixel.plugin.flxbox2d.B2FlxB;
-import org.flixel.plugin.flxbox2d.collision.RayCastOutput;
+//import org.flixel.plugin.flxbox2d.collision.RayCastOutput;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.common.B2FlxV2;
 
@@ -87,9 +87,9 @@ public class TestRaycast extends Test
 		if(f != null)
 		{
 //			RayCastInput input = new RayCastInput(p1, p2);
-			RayCastOutput output = new RayCastOutput();
+//			RayCastOutput output = new RayCastOutput();
 //			f.rayCast(output, input); //TODO: ray cast implementation is not complete by libGDX.
-			lambda = output.fraction;
+//			lambda = output.fraction;
 		}
 		
 		FlxG.log(p1.x + " :  " + p1.y + " == " + p2.x + " :  " + p2.y);
