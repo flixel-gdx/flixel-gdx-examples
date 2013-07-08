@@ -1,9 +1,9 @@
 package org.flixel.examples.userinterface;
 
 import org.flixel.FlxText;
-import org.flixel.ui.FlxRadioButton;
 import org.flixel.ui.FlxRadioButtonGroup;
 import org.flixel.ui.FlxUIGroup;
+import org.flixel.ui.FlxUISkin;
 import org.flixel.ui.event.IFlxRadioButtonGroup;
 
 /**
@@ -12,6 +12,8 @@ import org.flixel.ui.event.IFlxRadioButtonGroup;
  */
 public class RadioButtonState extends Test
 {
+	private final String ImgRadioButton = "examples/userinterface/holo_dark/radiobutton.png";
+	
 	@Override
 	public void create()
 	{
@@ -36,19 +38,24 @@ public class RadioButtonState extends Test
 			}
 		};
 		
-		createRadioButton("A", "Android", radioGroup, radioButtonGroup);
-		createRadioButton("B", "Linux", radioGroup, radioButtonGroup);
-		createRadioButton("C", "iOS", radioGroup, radioButtonGroup);
-		createRadioButton("D", "HTML5", radioGroup, radioButtonGroup);
-		createRadioButton("E", "Windows", radioGroup, radioButtonGroup);
+		// Setup skin
+		FlxUISkin skin = new FlxUISkin();
+		skin.DISABLED = 3;
+		skin.HIGHLIGHT_DISABLED = 4;
+		skin.ACTIVE_NORMAL = 5;
+		skin.ACTIVE_HIGHTLIGHT = 6;
+		skin.ACTIVE_PRESSED = 7;
+		skin.ACTIVE_DISABLED = 8;
+		skin.ACTIVE_HIGHTLIGHT_DISABLED = 9;
+		skin.setImage(ImgRadioButton, 32, 32);
+		skin.labelPosition = FlxUISkin.LABEL_RIGHT;
+		skin.setFormat(FntRobotoRegular, 18);
+		
+		radioButtonGroup.add(createRadioButton("A", skin, "Android", radioGroup));
+		radioButtonGroup.add(createRadioButton("B", skin, "Linux", radioGroup));
+		radioButtonGroup.add(createRadioButton("C", skin, "iOS", radioGroup));
+		radioButtonGroup.add(createRadioButton("D", skin, "HTML5", radioGroup));
+		radioButtonGroup.add(createRadioButton("E", skin, "Windows", radioGroup));
 		radioGroup.setCheck(3);
-	}
-	
-	public FlxRadioButton createRadioButton(String ID, String label, FlxRadioButtonGroup radioGroup, FlxUIGroup group)
-	{
-		FlxRadioButton radio = new FlxRadioButton(0, 0, ID, radioGroup, label);
-		radio.label.setFormat(FntRobotoRegular, 18);
-		group.add(radio);
-		return radio;
 	}
 }

@@ -2,6 +2,7 @@ package org.flixel.examples.userinterface;
 
 import org.flixel.ui.FlxDialogBox;
 import org.flixel.ui.FlxInputText;
+import org.flixel.ui.FlxUISkin;
 
 /**
  * 
@@ -9,41 +10,39 @@ import org.flixel.ui.FlxInputText;
  */
 public class InputTextState extends Test
 {
+	private final String ImgTextField = "examples/userinterface/holo_dark/textfield.png";
+	
 	@Override
 	public void create()
 	{
 		super.create();
-		FlxInputText inputText = new FlxInputText(10, 60, "INPUT TEXT");
-		inputText.label.setFormat(FntRobotoRegular, 14, 0x0099CC);
-		inputText.textField.setFormat(FntRobotoRegular, 18);
-		inputText.setMaxLength(26);
+		
+		// Setup skin
+		FlxUISkin skin = new FlxUISkin();
+		skin.DISABLED = 1;
+		skin.HIGHLIGHT = 2;
+		skin.PRESSED = 2;
+		skin.ACTIVE_NORMAL = 2;
+		skin.labelPosition = FlxUISkin.LABEL_TOP;
+		skin.setImage(ImgTextField, 328, 32);
+		skin.setFormat(FntRobotoRegular, 14, 0x0099CC);
+		
+		FlxInputText inputText = createInputText(10, 60, skin, "INPUT TEXT");
 		add(inputText);
 		
-		inputText = new FlxInputText(10, 120, "NUMERIC ONLY");
-		inputText.label.setFormat(FntRobotoRegular, 14, 0x0099CC);
-		inputText.textField.setFormat(FntRobotoRegular, 18);
+		inputText = createInputText(10, 120, skin, "NUMERIC ONLY");
 		inputText.setFilterMode(FlxInputText.ONLY_NUMERIC);
-		inputText.setMaxLength(26);
 		add(inputText);
 		
-		inputText = new FlxInputText(10, 180, "UPPER CASE");
-		inputText.label.setFormat(FntRobotoRegular, 14, 0x0099CC);
-		inputText.textField.setFormat(FntRobotoRegular, 18);
+		inputText = createInputText(10, 180, skin, "UPPER CASE");
 		inputText.setForceCase(FlxInputText.UPPER_CASE);
-		inputText.setMaxLength(26);
 		add(inputText);
 		
-		inputText = new FlxInputText(10, 240, "PASSWORD MODE");
-		inputText.label.setFormat(FntRobotoRegular, 14, 0x0099CC);
-		inputText.textField.setFormat(FntRobotoRegular, 18);
+		inputText = createInputText(10, 240,  skin, "PASSWORD MODE");
 		inputText.setPasswordMode(true);
-		inputText.setMaxLength(26);
 		add(inputText);
 		
-		FlxDialogBox dialog = new FlxDialogBox(10, 300, 300, "DIALOG BOX", "Enter your message");
-		dialog.label.setFormat(FntRobotoRegular, 14, 0x0099CC);
-		dialog.textField.setFormat(FntRobotoRegular, 18);
-		dialog.setMaxLength(26);
+		FlxDialogBox dialog = createDialogBox(10, 300, skin, "DIALOG BOX");
 		add(dialog);
 	}
 }

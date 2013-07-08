@@ -6,6 +6,16 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxU;
 import org.flixel.event.IFlxButton;
+import org.flixel.ui.FlxCheckBox;
+import org.flixel.ui.FlxDialogBox;
+import org.flixel.ui.FlxInputText;
+import org.flixel.ui.FlxNinePatchButton;
+import org.flixel.ui.FlxRadioButton;
+import org.flixel.ui.FlxRadioButtonGroup;
+import org.flixel.ui.FlxSwitch;
+import org.flixel.ui.FlxTab;
+import org.flixel.ui.FlxUISkin;
+import org.flixel.ui.event.IFlxUIListener;
 
 import com.badlogic.gdx.utils.Array;
 
@@ -31,17 +41,19 @@ public class Test extends FlxState
 			tests.add(InputTextState.class);
 			tests.add(SwitchState.class);
 			tests.add(ButtonState.class);
+			tests.add(TabState.class);
+			tests.add(SkinState.class);
 		}
 		
 		// Mobile
 		if(FlxG.mobile)
 		{
-			add(createButton(0, 0, "Previous", new IFlxButton(){@Override public void callback(){prev();}}));
-			add(createButton(80, 0, "Next", new IFlxButton(){@Override public void callback(){next();}}));
+			add(createButton(0, FlxG.height-30, "Previous", new IFlxButton(){@Override public void callback(){prev();}}));
+			add(createButton(80, FlxG.height-30, "Next", new IFlxButton(){@Override public void callback(){next();}}));
 		}
 		else
 		{
-			add(new FlxText(0, 0, 300, "'Left/Right' arrows to go to previous/next example."));
+			add(new FlxText(0, FlxG.height-30, 300, "'Left/Right' arrows to go to previous/next example."));
 		}
 		
 		if(FlxU.getClassName(this, true).equals("Test"))
@@ -66,6 +78,52 @@ public class Test extends FlxState
 		button.setSolid(false);
 		button.moves = false;
 		return button;
+	}
+	
+	
+	public FlxCheckBox createCheckBox(String ID, FlxUISkin skin, String label)
+	{
+		return new FlxCheckBox(0, 0, ID, skin, label);
+	}
+	
+	public FlxRadioButton createRadioButton(String ID, FlxUISkin skin, String label, FlxRadioButtonGroup radioGroup)
+	{		
+		return new FlxRadioButton(0, 0, ID, skin, radioGroup, label);
+	}
+	
+	public FlxInputText createInputText(float x, float y, FlxUISkin skin, String label)
+	{
+		FlxInputText inputText = new FlxInputText(x, y, skin, label);
+		inputText.textField.setFormat(FntRobotoRegular, 18);
+		inputText.setMaxLength(26);
+		return inputText;
+	}
+	
+	public FlxDialogBox createDialogBox(float x, float y, FlxUISkin skin, String label)
+	{
+		FlxDialogBox dialog = new FlxDialogBox(10, 300, skin, 300, label, "Enter your message");
+		dialog.textField.setFormat(FntRobotoRegular, 18);
+		dialog.setMaxLength(26);
+		return dialog;
+	}
+	
+	public FlxSwitch createSwitch(float x, float y, FlxUISkin skin, String label)
+	{
+		FlxSwitch _switch = new FlxSwitch(130, 398, skin, label);
+		return _switch;
+	}
+	
+	public FlxNinePatchButton createNinePatchButton(float x, float y, FlxUISkin skin, String label, IFlxUIListener onClick, int width, int height)
+	{
+		FlxNinePatchButton button = new FlxNinePatchButton(x, y, skin, label, onClick, width, height);
+		button.stretch();
+		return button;
+	}
+	
+	public FlxTab createTab(FlxUISkin skin, String label)
+	{
+		FlxTab tab = new FlxTab(skin, label);
+		return tab;
 	}
 
 	@Override

@@ -10,7 +10,7 @@ public class UserInterfaceDemo extends FlxGame
 {
 	public UserInterfaceDemo()
 	{
-		super(480, 800, ButtonState.class);
+		super(480, 800, Test.class);
 		forceDebugger = true;
 	}
 }

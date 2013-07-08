@@ -2,6 +2,7 @@ package org.flixel.examples.userinterface;
 
 import org.flixel.ui.FlxCheckBox;
 import org.flixel.ui.FlxUIGroup;
+import org.flixel.ui.FlxUISkin;
 
 
 /**
@@ -10,35 +11,45 @@ import org.flixel.ui.FlxUIGroup;
  */
 public class CheckBoxState extends Test
 {
-	
-	private FlxUIGroup _checkBoxGroup;
+	private final String ImgCheckBox = "examples/userinterface/holo_dark/checkbox.png";
 
 	@Override
 	public void create()
 	{
 		super.create();
-		add(_checkBoxGroup = new FlxUIGroup(10, 20, "CHECKBOXES"));
-		_checkBoxGroup.label.setFormat(FntRobotoRegular, 14,0x0099CC);
-		createCheckBox("A1", "Unchecked", _checkBoxGroup);
 		
-		FlxCheckBox box = createCheckBox("A2", "Checked", _checkBoxGroup);
+		FlxUIGroup checkBoxGroup;
+		add(checkBoxGroup = new FlxUIGroup(10, 20, "CHECKBOXES"));
+		checkBoxGroup.label.setFormat(FntRobotoRegular, 14, 0x0099CC);
+		
+		// Setup skin
+		FlxUISkin skin = new FlxUISkin();
+		skin.DISABLED = 3;
+		skin.HIGHLIGHT_DISABLED = 4;
+		skin.ACTIVE_NORMAL = 5;
+		skin.ACTIVE_HIGHTLIGHT = 6;
+		skin.ACTIVE_PRESSED = 7;
+		skin.ACTIVE_DISABLED = 8;
+		skin.ACTIVE_HIGHTLIGHT_DISABLED = 9;
+		skin.labelPosition = FlxUISkin.LABEL_RIGHT;
+		skin.setImage(ImgCheckBox, 32, 32);
+		skin.setFormat(FntRobotoRegular, 18);
+		
+		checkBoxGroup.add(createCheckBox("A0", skin, "I like flixel-gdx"));
+		checkBoxGroup.add(createCheckBox("A1", skin, "Unchecked"));
+		
+		FlxCheckBox box = createCheckBox("A2", skin, "Checked");
 		box.setActive(true);
+		checkBoxGroup.add(box);
 		
-		box = createCheckBox("A3", "Disabled", _checkBoxGroup);
+		box = createCheckBox("A3", skin, "Disabled");
 		box.setEnable(false);
+		checkBoxGroup.add(box);
 		
-		box = createCheckBox("A4", "Disabled Checked", _checkBoxGroup);
+		box = createCheckBox("A4", skin, "Disabled Checked");
 		box.setEnable(false);
 		box.setActive(true);
+		checkBoxGroup.add(box);
 	}
-	
-	public FlxCheckBox createCheckBox(String ID, String label, FlxUIGroup group)
-	{
-		FlxCheckBox box = new FlxCheckBox(0, 0, ID, label);
-		box.label.setFormat(FntRobotoRegular, 18);
-		group.add(box);
-		return box;
-	}
-
 }
 

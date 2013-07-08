@@ -3,6 +3,7 @@ package org.flixel.examples.userinterface;
 import org.flixel.FlxG;
 import org.flixel.FlxText;
 import org.flixel.ui.FlxSwitch;
+import org.flixel.ui.FlxUISkin;
 import org.flixel.ui.event.IFlxUIListener;
 
 import com.badlogic.gdx.utils.Array;
@@ -13,6 +14,9 @@ import com.badlogic.gdx.utils.Array;
  */
 public class SwitchState extends Test
 {
+	private final String ImgSwitch = "examples/userinterface/holo_dark/switch.png";
+
+	
 	@Override
 	public void create()
 	{
@@ -26,14 +30,24 @@ public class SwitchState extends Test
 			.setFormat(FntRobotoRegular, 18, 0x333333);
 			add(text);
 			texts.add(text);
-		}		
+		}
+		
+		// Setup skin
+		FlxUISkin skin = new FlxUISkin();
+		skin.NORMAL = 0;
+		skin.PRESSED = -1;
+		skin.HIGHLIGHT = -1;
+		skin.DISABLED = -1;
+		skin.ACTIVE_NORMAL = 1;
+		skin.labelPosition = FlxUISkin.LABEL_LEFT;
+		skin.labelOffset.x = -10;
+		skin.setFormat(FntRobotoRegular, 18);
+		skin.setImage(ImgSwitch, 107, 34);
 		
 		final FlxSwitch _switch;
-		add(_switch = new FlxSwitch(130, 398, "Turn the lights"));
-		_switch.labelOffset.x = -10;
-		_switch.label.setFormat(FntRobotoRegular, 18);
+		add(_switch = createSwitch(130, 398, skin, "Turn the lights"));
 		_switch.onUp = new IFlxUIListener()
-		{			
+		{
 			@Override
 			public void callback()
 			{
