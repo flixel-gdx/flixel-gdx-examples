@@ -181,6 +181,12 @@
             android:label="Performance"
             android:screenOrientation="portrait" >
         </activity>
+         <activity
+            android:name=".GestureDemo"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="Performance"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>
