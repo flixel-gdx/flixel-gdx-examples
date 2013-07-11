@@ -30,5 +30,6 @@
 		<item>QuadTreeDemo</item>
 		<item>SplashScreen</item>
 		<item>Performance</item>
+		<item>GestureDemo</item>
     </string-array>
 </resources>
