@@ -39,6 +39,7 @@ public class Test extends FlxState
 			tests.add(CheckBoxState.class);
 			tests.add(RadioButtonState.class);
 			tests.add(InputTextState.class);
+			tests.add(TextAreaState.class);
 			tests.add(SwitchState.class);
 			tests.add(ButtonState.class);
 			tests.add(TabState.class);
@@ -91,18 +92,18 @@ public class Test extends FlxState
 		return new FlxRadioButton(0, 0, ID, skin, radioGroup, label);
 	}
 	
-	public FlxInputText createInputText(float x, float y, FlxUISkin skin, String label)
+	public FlxInputText createInputText(float x, float y, FlxUISkin skin, String label, int width, int height)
 	{
-		FlxInputText inputText = new FlxInputText(x, y, skin, label);
-		inputText.textField.setFormat(FntRobotoRegular, 18);
-		inputText.setMaxLength(26);
+		FlxInputText inputText = new FlxInputText(x, y, skin, label, width, height);		
+		inputText.getTextField().setFormat(FntRobotoRegular, 18);
+//		inputText.setMaxLength(26);
 		return inputText;
 	}
 	
-	public FlxDialogBox createDialogBox(float x, float y, FlxUISkin skin, String label)
+	public FlxDialogBox createDialogBox(float x, float y, FlxUISkin skin, String label, int width, int height)
 	{
-		FlxDialogBox dialog = new FlxDialogBox(10, 300, skin, 300, label, "Enter your message");
-		dialog.textField.setFormat(FntRobotoRegular, 18);
+		FlxDialogBox dialog = new FlxDialogBox(x, y, skin, width, height, label, "Enter your message");
+		dialog.getTextField().setFormat(FntRobotoRegular, 18);
 		dialog.setMaxLength(26);
 		return dialog;
 	}
