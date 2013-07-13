@@ -72,8 +72,7 @@ public class TextAreaState extends Test
 		inputText.setText("flixel-gdx's awesome UI components.");
 		add(inputText);
 		
-		// TODO: weird bug dialog with multi lines / nine patch...
-		FlxDialogBox dialog = createDialogBox(10, 550, skin, "DIALOG", 200, 91);
+		FlxDialogBox dialog = createDialogBox(10, 520, skin, "DIALOG", 200, 91);
 		dialog.getTextField().offset.y = -10;
 		dialog.setMaxLength(0);
 		dialog.setMaxLines(4);

@@ -96,7 +96,6 @@ public class Test extends FlxState
 	{
 		FlxInputText inputText = new FlxInputText(x, y, skin, label, width, height);		
 		inputText.getTextField().setFormat(FntRobotoRegular, 18);
-//		inputText.setMaxLength(26);
 		return inputText;
 	}
 	
@@ -104,7 +103,6 @@ public class Test extends FlxState
 	{
 		FlxDialogBox dialog = new FlxDialogBox(x, y, skin, width, height, label, "Enter your message");
 		dialog.getTextField().setFormat(FntRobotoRegular, 18);
-		dialog.setMaxLength(26);
 		return dialog;
 	}
 	

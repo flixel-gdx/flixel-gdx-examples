@@ -33,22 +33,23 @@ public class InputTextState extends Test
 		skin.setImage(ImgTextField, 328, 32);		
 		skin.setFormat(FntRobotoRegular, 14, 0x0099CC);
 		
-		FlxInputText inputText = createInputText(10, 60, skin, "INPUT TEXT", 300, 32);
+		FlxInputText inputText = createInputText(10, 60, skin, "INPUT TEXT", 326, 32);
 		add(inputText);
 		
-		inputText = createInputText(10, 120, skin, "NUMERIC ONLY", 0, 32);
+		inputText = createInputText(10, 120, skin, "NUMERIC ONLY", 326, 32);
 		inputText.setFilterMode(FlxInputText.ONLY_NUMERIC);
 		add(inputText);
 		
-		inputText = createInputText(10, 180, skin, "UPPER CASE", 0, 32);
+		inputText = createInputText(10, 180, skin, "UPPER CASE", 326, 32);
 		inputText.setForceCase(FlxInputText.UPPER_CASE);
 		add(inputText);
 		
-		inputText = createInputText(10, 240, skin, "PASSWORD MODE", 0, 32);
+		inputText = createInputText(10, 240, skin, "PASSWORD MODE (MAX. 4)", 326, 32);
 		inputText.setPasswordMode(true);
+		inputText.setMaxLength(4);
 		add(inputText);
 		
-		FlxDialogBox dialog = createDialogBox(10, 360, skin, "DIALOG BOX", 0, 32);
+		FlxDialogBox dialog = createDialogBox(10, 360, skin, "DIALOG BOX", 326, 32);
 		add(dialog);
 		
 		skin = new FlxUISkin();
