@@ -6,16 +6,6 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxU;
 import org.flixel.event.IFlxButton;
-import org.flixel.ui.FlxCheckBox;
-import org.flixel.ui.FlxDialogBox;
-import org.flixel.ui.FlxInputText;
-import org.flixel.ui.FlxNinePatchButton;
-import org.flixel.ui.FlxRadioButton;
-import org.flixel.ui.FlxRadioButtonGroup;
-import org.flixel.ui.FlxSwitch;
-import org.flixel.ui.FlxTab;
-import org.flixel.ui.FlxUISkin;
-import org.flixel.ui.event.IFlxUIListener;
 
 import com.badlogic.gdx.utils.Array;
 
@@ -33,16 +23,22 @@ public class Test extends FlxState
 	public void create()
 	{
 		FlxG.setBgColor(0xFF111111);
+		FlxG.height = FlxG.camera.viewportHeight;		
+		FlxG.camera.height = FlxG.height;
+		FlxG.height = 480;
+		
 		if(tests == null)
 		{
 			tests = new Array<Class<?extends FlxState>>();	
 			tests.add(CheckBoxState.class);
 			tests.add(RadioButtonState.class);
+			tests.add(LabelState.class);
 			tests.add(InputTextState.class);
 			tests.add(TextAreaState.class);
 			tests.add(SwitchState.class);
 			tests.add(ButtonState.class);
 			tests.add(TabState.class);
+//			tests.add(TabVerticalState.class);
 			tests.add(SkinState.class);
 		}
 		
@@ -80,56 +76,11 @@ public class Test extends FlxState
 		button.moves = false;
 		return button;
 	}
-	
-	
-	public FlxCheckBox createCheckBox(String ID, FlxUISkin skin, String label)
-	{
-		return new FlxCheckBox(0, 0, ID, skin, label);
-	}
-	
-	public FlxRadioButton createRadioButton(String ID, FlxUISkin skin, String label, FlxRadioButtonGroup radioGroup)
-	{		
-		return new FlxRadioButton(0, 0, ID, skin, radioGroup, label);
-	}
-	
-	public FlxInputText createInputText(float x, float y, FlxUISkin skin, String label, int width, int height)
-	{
-		FlxInputText inputText = new FlxInputText(x, y, skin, label, width, height);		
-		inputText.getTextField().setFormat(FntRobotoRegular, 18);
-		return inputText;
-	}
-	
-	public FlxDialogBox createDialogBox(float x, float y, FlxUISkin skin, String label, int width, int height)
-	{
-		FlxDialogBox dialog = new FlxDialogBox(x, y, skin, width, height, label, "Enter your message");
-		dialog.getTextField().setFormat(FntRobotoRegular, 18);
-		return dialog;
-	}
-	
-	public FlxSwitch createSwitch(float x, float y, FlxUISkin skin, String label)
-	{
-		FlxSwitch _switch = new FlxSwitch(130, 398, skin, label);
-		return _switch;
-	}
-	
-	public FlxNinePatchButton createNinePatchButton(float x, float y, FlxUISkin skin, String label, IFlxUIListener onClick, int width, int height)
-	{
-		FlxNinePatchButton button = new FlxNinePatchButton(x, y, skin, label, onClick, width, height);
-		button.stretch();
-		return button;
-	}
-	
-	public FlxTab createTab(FlxUISkin skin, String label)
-	{
-		FlxTab tab = new FlxTab(skin, label);
-		return tab;
-	}
 
 	@Override
 	public void update()
 	{
 		super.update();
-		FlxG.collide();
 		if(FlxG.keys.justPressed("RIGHT"))
 			next();
 		else if(FlxG.keys.justPressed("LEFT"))

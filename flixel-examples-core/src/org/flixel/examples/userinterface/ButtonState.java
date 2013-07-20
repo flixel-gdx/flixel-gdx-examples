@@ -1,7 +1,7 @@
 package org.flixel.examples.userinterface;
 
-import org.flixel.ui.FlxUISkin;
-import org.flixel.ui.FlxUISkin.NinePatch;
+import org.flixel.ui.FlxNinePatchButton;
+
 
 
 /**
@@ -9,42 +9,30 @@ import org.flixel.ui.FlxUISkin.NinePatch;
  * @author Ka Wing Chin
  */
 public class ButtonState extends Test
-{
-	public static final String ImgTopLeft = "examples/userinterface/holo_dark/ninepatch_button_topleft.png";
-	public static final String ImgTopCenter = "examples/userinterface/holo_dark/ninepatch_button_topcenter.png";
-	public static final String ImgTopRight = "examples/userinterface/holo_dark/ninepatch_button_topright.png";
-	public static final String ImgBottomLeft = "examples/userinterface/holo_dark/ninepatch_button_bottomleft.png";
-	public static final String ImgBottomCenter = "examples/userinterface/holo_dark/ninepatch_button_bottomcenter.png";
-	public static final String ImgBottomRight= "examples/userinterface/holo_dark/ninepatch_button_bottomright.png";
-	public static final String ImgMiddleLeft = "examples/userinterface/holo_dark/ninepatch_button_middleleft.png";
-	public static final String ImgMiddleCenter = "examples/userinterface/holo_dark/ninepatch_button_middlecenter.png";
-	public static final String ImgMiddleRight = "examples/userinterface/holo_dark/ninepatch_button_middleright.png";
-	
+{	
 	@Override
 	public void create()
 	{
 		super.create();
-		FlxUISkin skin = new FlxUISkin();
-		skin.HIGHLIGHT_DISABLED = 3;
-		skin.DISABLED = 4;
-		skin.setImage(ImgMiddleCenter, 1, 1);
-		skin.setFormat(FntRobotoRegular, 18);
-		skin.setNinePatch(NinePatch.TOP_LEFT, ImgTopLeft, 8, 8);
-		skin.setNinePatch(NinePatch.TOP_CENTER, ImgTopCenter, 1, 8);
-		skin.setNinePatch(NinePatch.TOP_RIGHT, ImgTopRight, 8, 8);
-		skin.setNinePatch(NinePatch.MIDDLE_LEFT, ImgMiddleLeft, 8, 1);
-		skin.setNinePatch(NinePatch.MIDDLE_CENTER, ImgMiddleCenter, 1, 1);
-		skin.setNinePatch(NinePatch.MIDDLE_RIGHT, ImgMiddleRight, 8, 1);
-		skin.setNinePatch(NinePatch.BOTTOM_LEFT, ImgBottomLeft, 8, 8);
-		skin.setNinePatch(NinePatch.BOTTOM_CENTER, ImgBottomCenter, 1, 8);
-		skin.setNinePatch(NinePatch.BOTTOM_RIGHT, ImgBottomRight, 8, 8);
-		skin.labelOffset.y = 0;
+				
+		// A button that stretch automatically to the bounding of the textfield.
+		add(new FlxNinePatchButton(20, 10, null, "Auto Width", 0, 0, null));
 		
+		// This button got an extra line. 
+		add(new FlxNinePatchButton(150, 10, null, "Extra\nline", 0, 0, null));
 		
-		add(createNinePatchButton(100, 50, skin, "Auto Width", null, 0, 0));
-		add(createNinePatchButton(100, 150, skin, "Fixed Width", null, 200, 0));
-		add(createNinePatchButton(100, 250, skin, "Extra\nline", null, 0, 0));
-		add(createNinePatchButton(100, 350, skin, "Amazing\nNine\nPatch", null, 0, 0));
-		add(createNinePatchButton(100, 450, skin, "Amazing Nine Patch", null, 0, 0));
+		// Just some fixed button by 50 x 50.
+		add(new FlxNinePatchButton(20, 70, null, "1", 50, 50, null));
+		add(new FlxNinePatchButton(20, 140, null, "2", 50, 50, null));
+		add(new FlxNinePatchButton(20, 210, null, "3", 50, 50, null));
+		
+		// A big fixed button. The text will vertical align in the middle. 
+		add(new FlxNinePatchButton(100, 70, null, "Fixed Width", 200, 100, null));
+		
+		// Even more new lines.
+		add(new FlxNinePatchButton(100, 190, null, "flixel-gdx's\nNine\nPatch", 0, 0, null));
+		
+		// How cool is a nine patch button?
+		add(new FlxNinePatchButton(20, 280, null, "Amazing Nine\nPatch Button", 150, 0, null));
 	}
 }

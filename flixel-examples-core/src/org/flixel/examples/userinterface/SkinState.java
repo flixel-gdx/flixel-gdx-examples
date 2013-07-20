@@ -2,6 +2,7 @@ package org.flixel.examples.userinterface;
 
 import org.flixel.FlxG;
 import org.flixel.ui.FlxCheckBox;
+import org.flixel.ui.FlxRadioButton;
 import org.flixel.ui.FlxRadioButtonGroup;
 import org.flixel.ui.FlxUIGroup;
 import org.flixel.ui.FlxUISkin;
@@ -21,6 +22,8 @@ public class SkinState extends Test
 		super.create();
 		FlxG.setBgColor(0xFFFFFFFF);
 		
+		// This example uses the HOLO_LIGHT theme from Android 4.2.
+		
 		FlxUIGroup checkBoxGroup;
 		add(checkBoxGroup = new FlxUIGroup(10, 20, "CHECKBOXES"));
 		checkBoxGroup.label.setFormat(FntRobotoRegular, 14, 0x0099CC);
@@ -38,28 +41,32 @@ public class SkinState extends Test
 		skin.labelPosition = FlxUISkin.LABEL_RIGHT;
 		skin.setFormat(FntRobotoRegular, 18, 0x111111);
 		
-		checkBoxGroup.add(createCheckBox("A1", skin, "Unchecked"));
-		FlxCheckBox box; 
-		checkBoxGroup.add(box = createCheckBox("A2", skin, "Checked"));
-		box.setActive(true);		
-		checkBoxGroup.add(box = createCheckBox("A3", skin, "Disabled"));
+		checkBoxGroup.add(new FlxCheckBox(0, 0, "A0", skin, "I like flixel-gdx"));
+		checkBoxGroup.add(new FlxCheckBox(0, 0, "A1", skin, "Unchecked"));
+		
+		FlxCheckBox box = new FlxCheckBox(0, 0, "A2", skin, "Checked");
+		box.setActive(true);
+		checkBoxGroup.add(box);
+		
+		box = new FlxCheckBox(0, 0, "A3", skin, "Disabled");
 		box.setEnable(false);
-		checkBoxGroup.add(box = createCheckBox("A4", skin, "Disabled Checked"));
+		checkBoxGroup.add(box);
+		
+		box = new FlxCheckBox(0, 0, "A4", skin, "Disabled Checked");
 		box.setEnable(false);
 		box.setActive(true);
+		checkBoxGroup.add(box);
 		
 		final FlxRadioButtonGroup radioGroup = new FlxRadioButtonGroup();
 		FlxUIGroup radioButtonGroup;
-		add(radioButtonGroup = new FlxUIGroup(10, 300, "RADIOBUTTONS"));
+		add(radioButtonGroup = new FlxUIGroup(10, 290, "RADIOBUTTONS"));
 		radioButtonGroup.label.setFormat(FntRobotoRegular, 14, 0x0099CC);
 		
 		// Reuse the skin
-		skin.setImage(ImgRadioButton, 32, 32);		
-		radioButtonGroup.add(createRadioButton("A", skin, "Android", radioGroup));
-		radioButtonGroup.add(createRadioButton("B", skin, "Linux", radioGroup));
-		radioButtonGroup.add(createRadioButton("C", skin, "iOS", radioGroup));
-		radioButtonGroup.add(createRadioButton("D", skin, "HTML5", radioGroup));
-		radioButtonGroup.add(createRadioButton("E", skin, "Windows", radioGroup));
+		skin.setImage(ImgRadioButton, 32, 32);
+		radioButtonGroup.add(new FlxRadioButton(0, 0, "A", radioGroup, skin, "Android"));
+		radioButtonGroup.add(new FlxRadioButton(0, 0, "B", radioGroup, skin, "HTML5"));
+		radioButtonGroup.add(new FlxRadioButton(0, 0, "C", radioGroup, skin, "iOS"));
 		radioGroup.setCheck(3);
 	}
 }
