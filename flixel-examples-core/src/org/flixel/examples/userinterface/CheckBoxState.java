@@ -1,6 +1,5 @@
 package org.flixel.examples.userinterface;
 
-import org.flixel.FlxG;
 import org.flixel.ui.FlxCheckBox;
 import org.flixel.ui.FlxUIGroup;
 import org.flixel.ui.FlxUISkin;

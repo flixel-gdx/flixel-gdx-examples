@@ -38,7 +38,7 @@ public class Test extends FlxState
 			tests.add(SwitchState.class);
 			tests.add(ButtonState.class);
 			tests.add(TabState.class);
-//			tests.add(TabVerticalState.class);
+			tests.add(TabVerticalState.class);
 			tests.add(SkinState.class);
 		}
 		
