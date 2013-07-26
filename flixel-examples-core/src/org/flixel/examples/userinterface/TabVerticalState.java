@@ -31,11 +31,11 @@ public class TabVerticalState extends Test
 		tabGroup.setDefault(0);
 
 		// Add content
-		tabGroup.addContent(0, new FlxText(50, 50, FlxG.width-50, "You can place any items in the tab!").setFormat(FntRobotoRegular, 18));
-		tabGroup.addContent(1, new FlxText(50, 50, FlxG.width-50, "You can also set the tabs vertically.").setFormat(FntRobotoRegular, 18));
-		tabGroup.addContent(2, new FlxText(50, 50, FlxG.width-50, "And you can also give width of the tab holder.").setFormat(FntRobotoRegular, 18));
-		tabGroup.addContent(3, new FlxText(50, 50, FlxG.width-50, "The tabs automagically resize.").setFormat(FntRobotoRegular, 18));
-		tabGroup.addContent(4, new FlxText(50, 50, FlxG.width-50, "Ain't it cool?!").setFormat(FntRobotoRegular, 18));		
+		tabGroup.addContent(0, new FlxText(80, 50, FlxG.width-80, "You can place any items in the tab!").setFormat(FntRobotoRegular, 18));
+		tabGroup.addContent(1, new FlxText(80, 50, FlxG.width-80, "You can also set the tabs vertically.").setFormat(FntRobotoRegular, 18));
+		tabGroup.addContent(2, new FlxText(80, 50, FlxG.width-80, "And you can also give width of the tab holder.").setFormat(FntRobotoRegular, 18));
+		tabGroup.addContent(3, new FlxText(80, 50, FlxG.width-80, "The tabs automagically resize.").setFormat(FntRobotoRegular, 18));
+		tabGroup.addContent(4, new FlxText(80, 50, FlxG.width-80, "Ain't it cool?!").setFormat(FntRobotoRegular, 18));		
 	}
 }
 
