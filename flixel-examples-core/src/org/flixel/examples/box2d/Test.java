@@ -95,6 +95,8 @@ public class Test extends B2FlxState
 			tests.add(TestBridge.class);			// Bridge
 			tests.add(TestStack.class);				// Stack
 			tests.add(TestCCD.class);				// Continuous Collision Detection
+			tests.add(TestBuoyancy.class);			// Buouyancy 
+			tests.add(TestGravity.class);			// Gravity
 			tests.add(TestOneSidedPlatform.class);	// One Sided Platform
 			tests.add(TestBreakable.class);			// Breakable
 			tests.add(TestSensor.class);			// Sensor
@@ -103,7 +105,6 @@ public class Test extends B2FlxState
 						
 //			TheoJansen.class 			// Theo Jansen
 //			TestEdges.class,			// Edges
-//			TestBuoyancy.class,			// Buouyancy 
 //			TestRaycast.class,			// Raycast				
 		};			
 		

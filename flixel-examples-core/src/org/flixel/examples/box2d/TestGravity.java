@@ -1,36 +1,35 @@
 package org.flixel.examples.box2d;
 
+import org.flixel.FlxButton;
 import org.flixel.FlxG;
-import org.flixel.FlxSprite;
+import org.flixel.FlxText;
+import org.flixel.event.IFlxButton;
 import org.flixel.plugin.flxbox2d.B2FlxB;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxPolygon;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxSprite;
-import org.flixel.plugin.flxbox2d.controllers.B2BuoyancyController;
+import org.flixel.plugin.flxbox2d.controllers.B2GravityController;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 /**
  *
  * @author Ka Wing Chin
  */
-public class TestBuoyancy extends Test
-{	
+public class TestGravity extends Test
+{
 	@Override
 	public void create()
 	{
 		super.create();
-		title.setText("Buoyancy");
+		title.setText("Gravity");
+		info.setText("Circles aren't affected by the gravity changes.");
+		B2FlxB.setGravity(0, 0);
 		
-		B2BuoyancyController bc = new B2BuoyancyController();
-		bc.mSurfaceNormal.set(0, -1);
-		bc.mSurfaceHeight = -200 / B2FlxB.RATIO;
-		bc.mFluidDensity = 2;
-		bc.mLinearDrag = 5;
-		bc.mAngularDrag = 2;
-		bc.mGravity.set(0, 9.8f);
-		B2FlxB.addController(bc);
+		final Vector2 gravity = new Vector2(0, 0);
+		final B2GravityController gc = new B2GravityController(gravity);
+		B2FlxB.addController(gc);
 		
 		FixtureDef fd = new FixtureDef();
 		fd.density = 1;
@@ -42,16 +41,6 @@ public class TestBuoyancy extends Test
 		{
 			add(new B2FlxBox(FlxG.random() * 400 + 100, FlxG.random() * 150 + 50, 
 					FlxG.random() * 10 + 20, FlxG.random() * 10 + 20)
-				.setFixtureDef(fd)
-				.setDraggable(true)
-				.create()
-			);
-		}
-		
-		for(i = 0; i < 5; i++)
-		{
-			add(new B2FlxCircle(FlxG.random() * 400 + 100, FlxG.random() * 150 + 50, 
-					FlxG.random() * 5 +10)
 				.setFixtureDef(fd)
 				.setDraggable(true)
 				.create()
@@ -99,58 +88,54 @@ public class TestBuoyancy extends Test
 					.setDraggable(true)
 					.create()
 				);
+			
+			
+			int length = B2FlxB.world.getBodyCount();
+			B2FlxB.getBodies();
+			for(i = 0; i < length; i++)
+			{
+				gc.addBody(B2FlxB.bodies.get(i));
+			}
 		}
 		
-		
-		// Add some exciting bath toys
-		add(new B2FlxBox(10, 290, 80, 20)
-			.setDensity(3)
-			.setDraggable(true)
-			.create());
-		
-		B2FlxSprite toy = new B2FlxSprite(300, 300)
-			.setDraggable(true)
-			.create();
-		add(toy);
-		
-		fd = new FixtureDef();
-		fd.density = 2;
-		B2FlxCircle circ = new B2FlxCircle(30, 120, 7).setFixtureDef(fd);
-		circ.setShapePosition(30, 0);
-		toy.createFixture(circ.fixtureDef);
-		
-		circ.setShapePosition(-30, 0);
-		toy.createFixture(circ.fixtureDef);
-		
-		circ.setShapePosition(0, 30);
-		toy.createFixture(circ.fixtureDef);
-		
-		circ.setShapePosition(0, -30);
-		toy.createFixture(circ.fixtureDef);
-		
-		circ.disposeShape();
-		
-		toy.createFixture(new B2FlxBox(0, 0, 60, 4).setFixtureDef(fd));
-		toy.createFixture(new B2FlxBox(0, 0, 4, 60).setFixtureDef(fd));
-		
-		
-		int length = B2FlxB.world.getBodyCount();
-		B2FlxB.getBodies();
-		for(i = 0; i < length; i++)
+		for(i = 0; i < 5; i++)
 		{
-			bc.addBody(B2FlxB.bodies.get(i));
+			add(new B2FlxCircle(FlxG.random() * 400 + 100, FlxG.random() * 150 + 50, 
+					FlxG.random() * 5 +10)
+				.setFixtureDef(fd)
+				.setDraggable(true)
+				.create()
+			);
 		}
 		
-		// Draw water line
-		FlxSprite water = new FlxSprite(0, 200);
-		water.makeGraphic(FlxG.width, 1, 0xFF0000FF);
-		add(water);
+		final FlxText text = new FlxText(50, 185, 80, "0").setFormat(null, 16, 0xFFFFFF, "center");
+		text.ignoreDrawDebug = true;
+		add(text);
 		
-		// It's not water without transparency...
-		water = new FlxSprite(0, 201);
-		water.makeGraphic(FlxG.width, FlxG.height-201, 0xFF0000FF);
-		water.setAlpha(.2f);
-		add(water);
+		FlxButton button = new FlxButton(50, 160, "INCREASE", new IFlxButton()
+		{			
+			@Override
+			public void callback()
+			{
+				gravity.y += 1;
+				gc.setGravity(0, gravity.y);
+				text.setText(Float.toString(gravity.y));
+			}
+		});
+		button.ignoreDrawDebug = true;
+		add(button);
+		button = new FlxButton(50, 210, "DECREASE", new IFlxButton()
+		{			
+			@Override
+			public void callback()
+			{
+				gravity.y -= 1f;
+				gc.setGravity(0, gravity.y);
+				text.setText(Float.toString(gravity.y));
+			}
+		});
+		button.ignoreDrawDebug = true;
+		add(button);		
 	}
 }
 
