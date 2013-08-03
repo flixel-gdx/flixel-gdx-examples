@@ -32,7 +32,7 @@ public class PlayState extends FlxState
 	public void create()
 	{
 		TmxMapLoader loader = new TmxMapLoader();
-		Parameters args = new TmxMapLoader.Parameters();
+		Parameters args = new Parameters();
 		args.yUp = false;
 		map = loader.load(MAP, args);		
 
