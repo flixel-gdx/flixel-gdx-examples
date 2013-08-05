@@ -1,7 +1,7 @@
 package org.flixel.examples.flxinvaders;
 
 import org.flixel.FlxG;
-import org.flixel.FlxGamePad;
+import org.flixel.FlxVirtualPad;
 import org.flixel.FlxGroup;
 import org.flixel.FlxObject;
 import org.flixel.FlxSprite;
@@ -26,7 +26,7 @@ public class PlayState extends FlxState
 	// Global score
 	private static String score;
 	// Gamepad
-	private FlxGamePad _pad;
+	private FlxVirtualPad _pad;
 	
 	//This is where we create the main game state!
 	//Inside this function we will create and orient all the important game objects.
@@ -59,7 +59,7 @@ public class PlayState extends FlxState
 		// is creating a big pile of bullets that we can recycle, because there are only
 		// ever like 10 bullets or something on screen at once anyways.
 		
-		_pad = new FlxGamePad(FlxGamePad.LEFT_RIGHT, FlxGamePad.A);
+		_pad = new FlxVirtualPad(FlxVirtualPad.LEFT_RIGHT, FlxVirtualPad.A);
 		
 		//Now that we have a list of bullets, we can initialize the player (and give them the bullets)
 		player = new PlayerShip(_pad);

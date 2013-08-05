@@ -2,18 +2,18 @@ package org.flixel.examples.flxinvaders;
 
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
-import org.flixel.FlxGamePad;
+import org.flixel.FlxVirtualPad;
 import org.flixel.FlxSprite;
 
 public class PlayerShip extends FlxSprite		//Class declaration for the player's little ship
 {
-	private FlxGamePad _pad;
+	private FlxVirtualPad _pad;
 	private boolean _justPressed;
 	
 	private static final String ImgShip = "examples/flxinvaders/pack:ship";	//Graphic of the player's ship
 	
 	//Constructor for the player - just initializing a simple sprite using a graphic.
-	public PlayerShip(FlxGamePad Pad)
+	public PlayerShip(FlxVirtualPad Pad)
 	{
 		//This initializes this sprite object with the graphic of the ship and
 		// positions it in the middle of the screen.

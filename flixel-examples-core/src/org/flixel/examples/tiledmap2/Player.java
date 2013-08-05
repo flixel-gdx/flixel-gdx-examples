@@ -2,7 +2,7 @@ package org.flixel.examples.tiledmap2;
 
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
-import org.flixel.FlxGamePad;
+import org.flixel.FlxVirtualPad;
 import org.flixel.FlxSprite;
 import com.badlogic.gdx.Input.Keys;
 
@@ -10,9 +10,9 @@ public class Player extends FlxSprite
 {
 	private static String ImgPlayer = "examples/tiledmap2/pack:player";
 	
-	private FlxGamePad _pad;
+	private FlxVirtualPad _pad;
 	
-	public Player(float X, float Y, FlxGamePad Pad)
+	public Player(float X, float Y, FlxVirtualPad Pad)
 	{
 		super(X, Y);	
 		loadGraphic(ImgPlayer,true);

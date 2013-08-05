@@ -2,7 +2,7 @@ package org.flixel.examples.tiledmap2;
 
 import org.flixel.FlxEmitter;
 import org.flixel.FlxG;
-import org.flixel.FlxGamePad;
+import org.flixel.FlxVirtualPad;
 import org.flixel.FlxPoint;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
@@ -26,7 +26,7 @@ public class PlayState extends FlxState
 
 	public static TiledMap map;
 	private FlxTilemap _level;
-	private FlxGamePad _pad;
+	private FlxVirtualPad _pad;
 
 	@Override
 	public void create()
@@ -44,7 +44,7 @@ public class PlayState extends FlxState
 		FlxG.camera.scroll.x = -(FlxG.width - FlxG.camera.width) / 2;
 
 		FlxG.camera.width = FlxG.width;
-		_pad = new FlxGamePad(FlxGamePad.FULL, FlxGamePad.A_B);
+		_pad = new FlxVirtualPad(FlxVirtualPad.DPAD_FULL, FlxVirtualPad.A_B);
 		_pad.setAll("scrollFactor", new FlxPoint(0, 0));
 		FlxG.width = 320;
 		// Objects that are placed in the very front.

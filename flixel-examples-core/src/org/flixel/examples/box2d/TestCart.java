@@ -2,7 +2,7 @@ package org.flixel.examples.box2d;
 
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
-import org.flixel.FlxGamePad;
+import org.flixel.FlxVirtualPad;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
 import org.flixel.plugin.flxbox2d.dynamics.joints.B2FlxRevoluteJoint;
@@ -18,7 +18,7 @@ public class TestCart extends Test
 {
 	private B2FlxCircle _wheel1;
 	private B2FlxCircle _wheel2;
-	private FlxGamePad _pad;
+	private FlxVirtualPad _pad;
 	
 	
 	@Override
@@ -62,7 +62,7 @@ public class TestCart extends Test
 		
 		FlxG.camera.follow(cart);
 		
-		_pad = new FlxGamePad(FlxGamePad.LEFT_RIGHT, FlxGamePad.NONE);
+		_pad = new FlxVirtualPad(FlxVirtualPad.LEFT_RIGHT, FlxVirtualPad.DPAD_NONE);
 		if(Gdx.app.getType() == ApplicationType.Android)
 		{
 			_pad.setDPadPositionY(-20);
