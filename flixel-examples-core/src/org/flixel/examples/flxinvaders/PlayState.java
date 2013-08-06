@@ -1,13 +1,13 @@
 package org.flixel.examples.flxinvaders;
 
 import org.flixel.FlxG;
-import org.flixel.FlxVirtualPad;
 import org.flixel.FlxGroup;
 import org.flixel.FlxObject;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.event.IFlxCollision;
+import org.flixel.ui.FlxVirtualPad;
 
 import com.badlogic.gdx.utils.IntArray;
 

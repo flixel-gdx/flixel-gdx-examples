@@ -1,8 +1,8 @@
 package org.flixel.examples.analog;
 
-import org.flixel.FlxAnalog;
 import org.flixel.FlxG;
 import org.flixel.FlxPoint;
+import org.flixel.ui.FlxAnalog;
 
 /**
  * Just a simple test for single analog.

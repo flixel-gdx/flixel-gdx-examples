@@ -1,8 +1,8 @@
 package org.flixel.examples.analog;
 
-import org.flixel.FlxAnalog;
 import org.flixel.FlxSprite;
 import org.flixel.event.IFlxAnalog;
+import org.flixel.ui.FlxAnalog;
 
 public class Player extends FlxSprite
 {

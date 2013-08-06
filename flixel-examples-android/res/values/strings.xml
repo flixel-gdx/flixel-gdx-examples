@@ -32,5 +32,6 @@
 		<item>SplashScreen</item>
 		<item>Performance</item>
 		<item>GestureDemo</item>
+		<item>ControllerDemo</item>
     </string-array>
 </resources>

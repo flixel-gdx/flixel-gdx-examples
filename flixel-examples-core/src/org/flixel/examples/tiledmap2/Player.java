@@ -2,8 +2,9 @@ package org.flixel.examples.tiledmap2;
 
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
-import org.flixel.FlxVirtualPad;
 import org.flixel.FlxSprite;
+import org.flixel.ui.FlxVirtualPad;
+
 import com.badlogic.gdx.Input.Keys;
 
 public class Player extends FlxSprite

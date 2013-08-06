@@ -2,8 +2,8 @@ package org.flixel.examples.flxinvaders;
 
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
-import org.flixel.FlxVirtualPad;
 import org.flixel.FlxSprite;
+import org.flixel.ui.FlxVirtualPad;
 
 public class PlayerShip extends FlxSprite		//Class declaration for the player's little ship
 {

@@ -2,12 +2,12 @@ package org.flixel.examples.tiledmap2;
 
 import org.flixel.FlxEmitter;
 import org.flixel.FlxG;
-import org.flixel.FlxVirtualPad;
 import org.flixel.FlxPoint;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
+import org.flixel.ui.FlxVirtualPad;
 
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapObject;

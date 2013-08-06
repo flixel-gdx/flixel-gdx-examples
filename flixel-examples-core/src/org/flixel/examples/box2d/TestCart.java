@@ -2,10 +2,10 @@ package org.flixel.examples.box2d;
 
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
-import org.flixel.FlxVirtualPad;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
 import org.flixel.plugin.flxbox2d.dynamics.joints.B2FlxRevoluteJoint;
+import org.flixel.ui.FlxVirtualPad;
 
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
