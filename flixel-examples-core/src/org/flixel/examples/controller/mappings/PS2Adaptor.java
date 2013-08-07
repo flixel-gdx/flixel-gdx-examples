@@ -30,6 +30,7 @@ public class PS2Adaptor extends GamepadMapping
 		BUTTON_START = 9;
 		BUTTON_MODE = 8;
 		
+		// Analog got swapped...
 		AXIS_LEFT_X = 1;
 		AXIS_LEFT_Y = 0;
 		AXIS_RIGHT_X = 3;

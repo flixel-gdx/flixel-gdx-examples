@@ -2,31 +2,21 @@ package org.flixel.examples.controller;
 
 import org.flixel.FlxG;
 import org.flixel.FlxGroup;
-import org.flixel.FlxState;
-import org.flixel.FlxText;
+import org.flixel.FlxObject;
 import org.flixel.FlxTilemap;
-import org.flixel.examples.controller.mappings.OuyaController;
-import org.flixel.examples.controller.mappings.PS2Adaptor;
-import org.flixel.examples.controller.mappings.PSPFuSa;
-import org.flixel.examples.controller.mappings.Xbox360Controller;
-import org.flixel.plugin.GamepadManager;
-import org.flixel.system.input.gamepad.Gamepad;
-import org.flixel.system.input.gamepad.GamepadMapping;
+import org.flixel.event.IFlxCollision;
 
 /**
  * This demo demonstrates how use the controller plugin.
  * 
  * @author Ka Wing Chin
  */
-public class PlayState extends FlxState
+public class PlayState extends Test
 {
 	private String ImgMap = "examples/controller/map.png";
 	private String ImgTiles = "examples/controller/pack:tiles";
 	
-	private FlxTilemap level;	
-	private Gamepad gamepad1;
-	private Gamepad gamepad2;
-	private Gamepad gamepad3;
+	private FlxTilemap level;
 	private Player player1;
 	private Player player2;
 	private Player player3;
@@ -41,34 +31,9 @@ public class PlayState extends FlxState
 	@Override
 	public void create()
 	{
+		super.create();
 		FlxG.setBgColor(0xff4B6A9E);
-		
-		// Add the GamepadManager plugin.
-		FlxG.addPlugin(new GamepadManager());
-		
-		// Create some mappings, ID is placed between brackets.
-		// PSP (FuSa GamePad).
-		GamepadMapping psp = new PSPFuSa();		
-		// Dual Shock 2 + Logic3 Adapter (PS(R) Gamepad Adaptor).
-		GamepadMapping ds2 = new PS2Adaptor();
-		// Xbox 360 Controller (ID varies).
-		GamepadMapping xbox360 = new Xbox360Controller();		
-		// Ouya Controller (Ouya Controller)
-		GamepadMapping ouya = new OuyaController();
-		
-		// Add the mappings.
-		GamepadManager.addMapping(psp);
-		GamepadManager.addMapping(ds2);
-		GamepadManager.addMapping(ouya);
-		GamepadManager.addMapping(xbox360);
-		
-		// Create gamepads. You can add as many as you like.
-		GamepadManager.addGamepad(gamepad1 = new Gamepad()); // 1st controller
-		GamepadManager.addGamepad(gamepad2 = new Gamepad()); // 2nd controller
-		GamepadManager.addGamepad(gamepad3 = new Gamepad()); // 3rd controller
 				
-		add(new FlxText(20,20,200,"requires gamepad!").setFormat(null,16,0xFF778ea1,"center"));
-		
 		add(bullets = new FlxGroup());
 		bullets.add(bullet1 = new FlxGroup());
 		bullets.add(bullet2 = new FlxGroup());
@@ -83,8 +48,7 @@ public class PlayState extends FlxState
 		level = new FlxTilemap();
 		level.loadMap(FlxTilemap.imageToCSV(ImgMap,false,2),ImgTiles,0,0,FlxTilemap.ALT);
 		level.follow();
-		add(level);
-		
+		add(level);		
 	}
 
 	@Override
@@ -93,22 +57,36 @@ public class PlayState extends FlxState
 		super.update();
 		FlxG.collide(players);
 		FlxG.collide(bullets);
-		FlxG.collide(player1, bullet2);
-		FlxG.collide(player1, bullet3);
-		FlxG.collide(player2, bullet1);
-		FlxG.collide(player2, bullet3);
-		FlxG.collide(player3, bullet1);
-		FlxG.collide(player3, bullet2);
+		FlxG.collide(player1, bullet2, hit);
+		FlxG.collide(player1, bullet3, hit);
+		FlxG.collide(player2, bullet1, hit);
+		FlxG.collide(player2, bullet3, hit);
+		FlxG.collide(player3, bullet1, hit);
+		FlxG.collide(player3, bullet2, hit);
 		FlxG.collide(players, level);
 		FlxG.collide(bullets, level);
 	}
+	
+
+	private IFlxCollision hit = new IFlxCollision()
+	{		
+		@Override
+		public void callback(FlxObject Object1, FlxObject Object2)
+		{
+			Object1.hurt(0);
+		}
+	};
 	
 	@Override
 	public void destroy()
 	{
 		super.destroy();
-		FlxG.getPlugin(GamepadManager.class).destroy();
-		FlxG.removePluginType(GamepadManager.class);
+		level = null;
+		player1 = null;
+		player2 = null;
+		player3 = null;
+		players = null;
+		bullets = null;
 	}
 }
 

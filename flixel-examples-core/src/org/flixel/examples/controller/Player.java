@@ -121,4 +121,11 @@ public class Player extends FlxSprite
 			}
 		}
 	}
+	
+	@Override
+	public void hurt(float Damage)
+	{
+		super.hurt(Damage);
+		flicker();
+	}
 }
