@@ -190,7 +190,13 @@
          <activity
             android:name=".GestureDemo"
             android:configChanges="keyboard|keyboardHidden|orientation"
-            android:label="Performance"
+            android:label="Gesture"
+            android:screenOrientation="landscape" >
+        </activity>
+         <activity
+            android:name=".ControllerDemo"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="Controller"
             android:screenOrientation="landscape" >
         </activity>
     </application>

@@ -1,0 +1,32 @@
+pack.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+tiles
+  rotate: false
+  xy: 36, 19
+  size: 128, 8
+  orig: 128, 8
+  offset: 0, 0
+  index: -1
+spaceman
+  rotate: false
+  xy: 2, 2
+  size: 32, 24
+  orig: 32, 24
+  offset: 0, 0
+  index: -1
+bullet
+  rotate: false
+  xy: 58, 2
+  size: 64, 8
+  orig: 64, 8
+  offset: 0, 0
+  index: -1
+map
+  rotate: false
+  xy: 36, 2
+  size: 20, 15
+  orig: 20, 15
+  offset: 0, 0
+  index: -1
