@@ -4,5 +4,6 @@
 	<inherits name="org.flixel.flixel_examples_core" />
 	<inherits name="org.flixel.flixel_html5" />
 	<entry-point class="org.flixel.client.FlxHtml5ExampleStarter"></entry-point>
+	
 	<set-configuration-property name="gdx.assetpath" value="../flixel-examples-android/assets" />
 </module>

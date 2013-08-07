@@ -4,7 +4,8 @@ dist/
 gwt-unitCache/
 deploy/
 classes/
-org.flixel.flixel_examples_html5/
+**/WAR/org.flixel.flixel_examples_html5/
+**/WAR/assets/
 
 *.jar
 *.so
