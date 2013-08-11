@@ -1,10 +1,16 @@
 package org.flixel.examples.breath;
 
-import org.flixel.*;
+import org.flixel.FlxG;
+import org.flixel.FlxGroup;
+import org.flixel.FlxObject;
+import org.flixel.FlxPoint;
+import org.flixel.FlxSprite;
+import org.flixel.FlxState;
+import org.flixel.FlxText;
 import org.flixel.event.IFlxCamera;
 
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 
 public class PlayState extends FlxState {
@@ -63,7 +69,7 @@ public class PlayState extends FlxState {
             
         PlayState.world_darkness = new FlxSprite(0,0);
         world_darkness.scrollFactor.x = world_darkness.scrollFactor.y = 0;
-        world_darkness.setPixels(new TextureRegion(frame_buffer.getColorBufferTexture()));
+        world_darkness.setPixels(new AtlasRegion(frame_buffer.getColorBufferTexture(), 0, 0, 0, 0));
         world_darkness.framePixels.flip(false, true);
         world_darkness.blend = "multiply";
         world_darkness.setAlpha(0);
