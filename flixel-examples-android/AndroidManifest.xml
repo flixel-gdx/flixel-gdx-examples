@@ -30,7 +30,7 @@
             android:name=".AnimationDemo"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="Animation Demo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".CollisionDemo"
             android:configChanges="keyboard|keyboardHidden|orientation"

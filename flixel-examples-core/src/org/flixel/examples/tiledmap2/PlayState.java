@@ -20,9 +20,9 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader.Parameters;
 public class PlayState extends FlxState
 {
 	private static String MAP = "examples/tiledmap2/map01.tmx";
-	private static String ImgBG = "examples/tiledmap2/pack:bg";
-	private static String ImgGibs = "examples/tiledmap2/pack:gibs";
-	private static String ImgTiles = "examples/tiledmap2/pack:tiles";
+	private static String ImgBG = "examples/tiledmap2/pack2:bg";
+	private static String ImgGibs = "examples/tiledmap2/pack2:gibs";
+	private static String ImgTiles = "examples/tiledmap2/pack2:tiles";
 
 	public static TiledMap map;
 	private FlxTilemap _level;
