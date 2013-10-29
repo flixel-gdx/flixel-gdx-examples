@@ -32,6 +32,8 @@
 		<item>SplashScreen</item>
 		<item>Performance</item>
 		<item>GestureDemo</item>
+		<item>GLES20Demo</item>
+		<item>BlendDemo</item>
 		<item>ControllerDemo</item>
     </string-array>
 </resources>
