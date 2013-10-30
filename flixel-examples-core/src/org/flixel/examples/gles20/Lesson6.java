@@ -2,9 +2,11 @@ package org.flixel.examples.gles20;
 
 import org.flixel.FlxG;
 import org.flixel.FlxState;
+import org.flixel.FlxText;
 import org.flixel.event.IFlxShaderProgram;
 import org.flixel.gles20.FlxShaderProgram;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector3;
 
@@ -37,7 +39,12 @@ public class Lesson6 extends FlxState
 
 	@Override
 	public void create()
-	{		
+	{
+		if(!Gdx.graphics.isGL20Available())
+		{
+			add(new FlxText(10, 10, 0, "Your phone is ancient, it doesn't support OpenGL ES 2.0!"));
+			return;
+		}
 		ShaderProgram.pedantic = false;
 		
 		// Add callback restore the uniforms when the context is lost.
