@@ -32,11 +32,8 @@ public class Rock extends FlxSprite
 		// shader will now be in use...
 
 		// update light position, normalized to screen resolution
-		float x = FlxG.mouse.screenX / (float) FlxG.width;
-		float y = 1 - (FlxG.mouse.screenY / (float) FlxG.height);
-
-		LIGHT_POS.x = x;
-		LIGHT_POS.y = y;
+		LIGHT_POS.x = (FlxG.mouse.x / (float) FlxG.width) * FlxG.camera._screenScaleFactorX;
+		LIGHT_POS.y = 1f * FlxG.camera._screenScaleFactorY - ((FlxG.mouse.y / (float) FlxG.height) * FlxG.camera._screenScaleFactorY);
 		// send a Vector4f to GLSL
 		shader.setUniformf("LightPos", LIGHT_POS);
 		
