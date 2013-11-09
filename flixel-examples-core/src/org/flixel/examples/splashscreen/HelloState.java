@@ -6,8 +6,6 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.event.IFlxButton;
 
-import com.badlogic.gdx.Input.Keys;
-
 /**
  *
  * @author Ka Wing Chin
@@ -37,7 +35,7 @@ public class HelloState extends FlxState
 	@Override
 	public void update() 
 	{
-		if(FlxG.keys.justPressed(Keys.R))
+		if(FlxG.keys.justPressed("R"))
 		{
 			FlxG.resetGame();
 		}

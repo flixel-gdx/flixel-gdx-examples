@@ -11,8 +11,6 @@ import org.flixel.FlxU;
 import org.flixel.event.IFlxButton;
 import org.flixel.event.IFlxCollision;
 
-import com.badlogic.gdx.Input.Keys;
-
 /**
  * A Quadtree demostration, based on the Flash application of Michael Baczynski.
  * 
@@ -106,7 +104,7 @@ public class PlayState extends FlxState
 	@Override
 	public void update()
 	{
-		if(FlxG.keys.justPressed(Keys.P))
+		if(FlxG.keys.justPressed("P"))
 			FlxG.paused = !FlxG.paused;
 		if(FlxG.paused)
 			return;

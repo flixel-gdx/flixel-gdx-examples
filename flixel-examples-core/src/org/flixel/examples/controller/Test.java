@@ -9,7 +9,7 @@ import org.flixel.examples.controller.mappings.PS2Adaptor;
 import org.flixel.examples.controller.mappings.PSPFuSa;
 import org.flixel.examples.controller.mappings.Xbox360Controller;
 import org.flixel.plugin.GamepadManager;
-import org.flixel.system.input.gamepad.Gamepad;
+import org.flixel.system.input.Gamepad;
 
 import com.badlogic.gdx.utils.Array;
 

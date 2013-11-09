@@ -6,9 +6,6 @@ import org.flixel.plugin.flxbox2d.B2FlxB;
 import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
 import org.flixel.plugin.flxbox2d.common.B2FlxV2;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -16,6 +13,8 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.utils.ObjectMap;
+
+import flash.display.Graphics;
 
 /**
  * 
@@ -94,14 +93,11 @@ public class TestRaycast extends Test
 		
 		FlxG.log(p1.x + " :  " + p1.y + " == " + p2.x + " :  " + p2.y);
 		
-		ShapeRenderer laser = FlxG.flashGfx.getShapeRenderer();
-		laser.end();
-		laser.begin(ShapeType.Line);
-		laser.setColor(Color.RED);
-		laser.line(p1.x * 32f, p1.y * 32f, 
-				(p2.x * lambda + (1 - lambda) * p1.x) * 32f, 
+		Graphics graphics = FlxG.flashGfx;
+		graphics.lineStyle(1f, 0xFF0000, 1f);
+		graphics.moveTo(p1.x * 32f, p1.y * 32f); 
+		graphics.lineTo((p2.x * lambda + (1 - lambda) * p1.x) * 32f, 
 				(p2.x * lambda + (1 - lambda) * p1.x) * 32f);
-		laser.end();
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package org.flixel.examples.animation;
 
+import org.flixel.FlxG;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.event.IFlxAnim;
@@ -20,18 +21,18 @@ public class PlayState extends FlxState
 	public final String ImgBat = "examples/animation/pack:bat";
 	public final String ImgGreenPotion = "examples/animation/item_diamondlarge.png";
 	
-	
 	private FlxSprite _zombie;
 
 	@Override
 	public void create()
 	{
+		FlxG.mouse.show();
 		// Shiny flixel logo.
 		FlxSprite s = new FlxSprite(20, 20);
 		s.loadGraphic(ImgFlixelLogo, true);
 		s.addAnimation("shine", new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4}, 14);
-		s.play("shine");
-		s.drawLine(0, 0, 30, 30, 0xFFFF00FF);
+		//s.play("shine");
+		//s.drawLine(0, 0, 30, 30, 0xFFFF00FF);
 		add(s);
 		
 		// NOTE: the zombie image is facing to the left. Normally you should stick sprites facing to the right.
@@ -94,7 +95,9 @@ public class PlayState extends FlxState
 		//s.addAnimation("default", new int[]{0,1,2},10);
 		//s.play("default");
 		//s.scale.x=4;
-		s = new FlxSprite(120, 20, ImgGreenPotion);
+		s = new FlxSprite(120, 20);
+		s.width = 800;
+		s.height = 800;
 		add(s);
 	}
 

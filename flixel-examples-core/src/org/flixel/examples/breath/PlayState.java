@@ -138,7 +138,7 @@ public class PlayState extends FlxState {
     public void update() {
         // CHEAT CODE LOL
         if(cheats) {
-            if(FlxG.keys.justPressed('N')) {
+            if(FlxG.keys.justPressed("N")) {
                 skip_ahead();
                 super.update();
                 return;

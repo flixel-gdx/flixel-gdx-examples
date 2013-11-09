@@ -135,9 +135,9 @@ public class PlayState extends FlxState
         super.update();
 
         //Set unit to collide with map
-    	FlxG.collide(_unit, _map);
+        FlxG.collide(_unit, _map);
 
-    	//Check mouse pressed and unit action
+        //Check mouse pressed and unit action
         if (FlxG.mouse.justPressed() && _action == ACTION_IDLE) 
         {
             //Get data map coordinate
@@ -164,7 +164,7 @@ public class PlayState extends FlxState
     	{       
     		//Find path to goal from unit to goal
     		FlxPath path = _map.findPath(new FlxPoint(_unit.x + _unit.width / 2, _unit.y + _unit.height / 2), new FlxPoint(_goal.x + _goal.width / 2, _goal.y + _goal.height / 2));
-               
+         
     		//Tell unit to follow path
     		_unit.followPath(path);
     		_action = ACTION_GO;

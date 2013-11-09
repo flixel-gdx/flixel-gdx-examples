@@ -1,6 +1,6 @@
 package org.flixel.examples.controller.mappings;
 
-import org.flixel.system.input.gamepad.GamepadMapping;
+import org.flixel.system.input.GamepadMapping;
 
 /**
  * PSP with FuSa plugin.

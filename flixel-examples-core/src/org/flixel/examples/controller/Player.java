@@ -2,7 +2,7 @@ package org.flixel.examples.controller;
 
 import org.flixel.FlxGroup;
 import org.flixel.FlxSprite;
-import org.flixel.system.input.gamepad.Gamepad;
+import org.flixel.system.input.Gamepad;
 
 public class Player extends FlxSprite
 {

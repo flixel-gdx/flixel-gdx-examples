@@ -36,7 +36,7 @@ public class Test extends B2FlxState
 		B2FlxB.setGravity(0, 9.8f);
 		FlxG.visualDebug = true;
 		FlxG.setBgColor(0xff000000);
-				
+		
 		if(FlxG.mobile)
 			B2FlxDebug.drawCollisions = false;
 //		B2FlxDebug.drawAABBs = true;

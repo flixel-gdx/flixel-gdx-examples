@@ -5,8 +5,6 @@ import org.flixel.FlxG;
 import org.flixel.FlxSprite;
 import org.flixel.ui.FlxVirtualPad;
 
-import com.badlogic.gdx.Input.Keys;
-
 public class Player extends FlxSprite
 {
 	private static String ImgPlayer = "examples/tiledmap2/pack:player";
@@ -42,15 +40,15 @@ public class Player extends FlxSprite
 	{
 		//Smooth slidey walking controls
 		acceleration.x = 0;
-		if(FlxG.keys.pressed(Keys.LEFT) || _pad.buttonLeft.status == FlxButton.PRESSED)
+		if(FlxG.keys.pressed("LEFT") || _pad.buttonLeft.status == FlxButton.PRESSED)
 			acceleration.x -= drag.x;
-		if(FlxG.keys.pressed(Keys.RIGHT) || _pad.buttonRight.status == FlxButton.PRESSED)
+		if(FlxG.keys.pressed("RIGHT") || _pad.buttonRight.status == FlxButton.PRESSED)
 			acceleration.x += drag.x;
 		
 		if(isTouching(FLOOR))
 		{
 			//Jump controls
-			if(FlxG.keys.justPressed(Keys.SPACE) || _pad.buttonA.status == FlxButton.PRESSED)
+			if(FlxG.keys.justPressed("SPACE") || _pad.buttonA.status == FlxButton.PRESSED)
 			{
 				velocity.y = -acceleration.y*0.51f;
 				play("jump");
