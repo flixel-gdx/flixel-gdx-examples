@@ -6,6 +6,6 @@ public class BlendDemo extends FlxGame
 {
 	public BlendDemo()
 	{
-		super(400, 400, PlayState.class, 1, 30, 30);
+		super(325, 244, PlayState.class, 1, 30, 30);
 	}
 }

@@ -19,7 +19,7 @@ public class PlayState extends FlxState
 	public final String ImgZombie3 = "examples/animation/pack:zombie3";
 	public final String ImgChest = "examples/animation/pack:chest";
 	public final String ImgBat = "examples/animation/pack:bat";
-	public final String ImgGreenPotion = "examples/animation/item_diamondlarge.png";
+	public final String ImgGreenPotion = "examples/animation/pack:greenpotion";
 	
 	private FlxSprite _zombie;
 
@@ -73,13 +73,13 @@ public class PlayState extends FlxState
 		add(s);
 		
 		// Another zombie from Mysterious Mayhem
-		s = new FlxSprite(20, 270).loadGraphic(ImgZombie3, true, false, 24, 39);
+		s = new FlxSprite(70, 200).loadGraphic(ImgZombie3, true, false, 24, 39);
 		s.addAnimation("dig", new int[]{3,3,4,5,6,7,0,1,0,2,7,7,6,6,5,5,4,4,3,3}, 7);
 		s.play("dig");
 		add(s);
 		
 		// Chest from Mysterious Mayhem
-		s = new FlxSprite(50, 270).loadGraphic(ImgChest, true, false, 18, 23);
+		s = new FlxSprite(150, 200).loadGraphic(ImgChest, true, false, 18, 23);
 		s.addAnimation("open", new int[]{0,0,0,1,2,3,4,5,6,7,8,9,8,7,6,5,4,10,10,10}, 5);
 		s.play("open");
 		add(s);
@@ -91,13 +91,12 @@ public class PlayState extends FlxState
 		add(s);
 		
 		// Green potion from Mysterious Mayhem
-		//s = new FlxSprite(120, 20).loadGraphic(ImgGreenPotion, true, false, 11, 33);
-		//s.addAnimation("default", new int[]{0,1,2},10);
-		//s.play("default");
+		s = new FlxSprite(120, 20).loadGraphic(ImgGreenPotion, true, false, 11, 33);
+		s.addAnimation("default", new int[]{0,1,2},10);
+		s.play("default");
 		//s.scale.x=4;
-		s = new FlxSprite(120, 20);
-		s.width = 800;
-		s.height = 800;
+
+//		s = new FlxSprite(120, 20, ImgGreenPotion);
 		add(s);
 	}
 

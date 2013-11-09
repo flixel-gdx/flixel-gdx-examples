@@ -30,7 +30,7 @@
             android:name=".AnimationDemo"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="Animation Demo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".CollisionDemo"
             android:configChanges="keyboard|keyboardHidden|orientation"
@@ -187,13 +187,25 @@
             android:label="Performance"
             android:screenOrientation="portrait" >
         </activity>
-         <activity
+        <activity
             android:name=".GestureDemo"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="Gesture"
             android:screenOrientation="landscape" >
         </activity>
-         <activity
+        <activity
+            android:name=".GLES20Demo"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="GLES20"
+            android:screenOrientation="landscape" >            
+        </activity>
+        <activity
+            android:name=".BlendDemo"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="Blend"
+            android:screenOrientation="landscape" >            
+        </activity>
+        <activity
             android:name=".ControllerDemo"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="Controller"

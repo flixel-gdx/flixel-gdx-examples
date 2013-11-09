@@ -3,64 +3,57 @@ format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 flixellogo
-  rotate: true
-  xy: 108, 221
-  size: 128, 16
-  orig: 128, 16
+  rotate: false
+  xy: 2, 2
+  size: 80, 16
+  orig: 80, 16
   offset: 0, 0
   index: -1
 chest
   rotate: true
-  xy: 68, 402
+  xy: 59, 214
   size: 198, 23
   orig: 198, 23
   offset: 0, 0
   index: -1
 zombietxai
   rotate: true
-  xy: 2, 43
-  size: 512, 64
-  orig: 512, 64
+  xy: 84, 2
+  size: 432, 41
+  orig: 432, 41
   offset: 0, 0
   index: -1
 droid
   rotate: true
-  xy: 108, 351
-  size: 128, 16
-  orig: 128, 16
-  offset: 0, 0
-  index: -1
-item_diamondlarge
-  rotate: true
-  xy: 68, 221
-  size: 144, 38
-  orig: 144, 38
+  xy: 43, 436
+  size: 70, 14
+  orig: 70, 14
   offset: 0, 0
   index: -1
 zombie2
-  rotate: false
-  xy: 2, 2
+  rotate: true
+  xy: 2, 436
   size: 72, 39
   orig: 72, 39
   offset: 0, 0
   index: -1
 bat
-  rotate: false
-  xy: 68, 196
+  rotate: true
+  xy: 59, 414
   size: 56, 23
   orig: 56, 23
   offset: 0, 0
   index: -1
 zombie3
   rotate: true
-  xy: 76, 2
+  xy: 43, 20
   size: 192, 39
   orig: 192, 39
   offset: 0, 0
   index: -1
 greenpotion
   rotate: false
-  xy: 68, 367
+  xy: 59, 472
   size: 33, 33
   orig: 33, 33
   offset: 0, 0

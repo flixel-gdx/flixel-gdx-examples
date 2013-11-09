@@ -4,6 +4,6 @@ public class BlendDemo
 {
 	public static void main(String[] args)
 	{
-		new FlxDesktopApplication(new org.flixel.examples.blend.BlendDemo(), 400, 400);
+		new FlxDesktopApplication(new org.flixel.examples.blend.BlendDemo(), 325, 244, true);
 	}
 }
