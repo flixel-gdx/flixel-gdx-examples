@@ -1,9 +1,11 @@
 package org.flixel.examples.gesture;
 
+import org.flixel.FlxG;
 import org.flixel.FlxGesture;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.event.IFlxGesture;
+import org.flixel.plugin.GestureManager;
 import org.flixel.plugin.GestureManager.GestureData;
 
 /**
@@ -19,6 +21,8 @@ public class PlayState extends FlxState
 		text = new FlxText(10, 10, 200, "NO GESTURE");
 		text.setSize(20);
 		add(text);
+
+		FlxG.addPlugin(new GestureManager());
 
 		FlxGesture gesture = new FlxGesture();
 		gesture.start(new IFlxGesture()
