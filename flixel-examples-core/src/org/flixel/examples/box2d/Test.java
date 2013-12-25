@@ -6,12 +6,12 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxU;
 import org.flixel.event.IFlxButton;
-import org.flixel.plugin.flxbox2d.B2FlxB;
-import org.flixel.plugin.flxbox2d.B2FlxState;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
-import org.flixel.plugin.flxbox2d.dynamics.joints.B2FlxMouseJoint;
-import org.flixel.plugin.flxbox2d.system.debug.B2FlxDebug;
+import org.flxbox2d.B2FlxB;
+import org.flxbox2d.B2FlxState;
+import org.flxbox2d.collision.shapes.B2FlxBox;
+import org.flxbox2d.collision.shapes.B2FlxShape;
+import org.flxbox2d.dynamics.joints.B2FlxMouseJoint;
+import org.flxbox2d.system.debug.B2FlxDebug;
 
 import com.badlogic.gdx.utils.Array;
 

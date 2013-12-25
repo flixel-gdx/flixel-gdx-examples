@@ -4,11 +4,11 @@ import org.flixel.FlxButton;
 import org.flixel.FlxG;
 import org.flixel.FlxText;
 import org.flixel.event.IFlxButton;
-import org.flixel.plugin.flxbox2d.B2FlxB;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxPolygon;
-import org.flixel.plugin.flxbox2d.controllers.B2GravityController;
+import org.flxbox2d.B2FlxB;
+import org.flxbox2d.collision.shapes.B2FlxBox;
+import org.flxbox2d.collision.shapes.B2FlxCircle;
+import org.flxbox2d.collision.shapes.B2FlxPolygon;
+import org.flxbox2d.controllers.B2GravityController;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.FixtureDef;

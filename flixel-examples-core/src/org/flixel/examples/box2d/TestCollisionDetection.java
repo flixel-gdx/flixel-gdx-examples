@@ -2,10 +2,10 @@ package org.flixel.examples.box2d;
 
 import org.flixel.FlxG;
 import org.flixel.examples.box2d.objects.Ghost;
-import org.flixel.plugin.flxbox2d.B2FlxB;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxShape;
-import org.flixel.plugin.flxbox2d.events.IB2FlxListener;
+import org.flxbox2d.B2FlxB;
+import org.flxbox2d.collision.shapes.B2FlxBox;
+import org.flxbox2d.collision.shapes.B2FlxShape;
+import org.flxbox2d.events.IB2FlxListener;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;

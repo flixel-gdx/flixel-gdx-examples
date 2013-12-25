@@ -1,6 +1,6 @@
 package org.flixel.examples.box2d.objects;
 
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
+import org.flxbox2d.collision.shapes.B2FlxBox;
 
 /**
  *

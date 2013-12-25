@@ -1,11 +1,11 @@
 package org.flixel.examples.box2d;
 
 import org.flixel.FlxG;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxCircle;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxPolygon;
-import org.flixel.plugin.flxbox2d.common.B2FlxV2;
-import org.flixel.plugin.flxbox2d.dynamics.joints.B2FlxRevoluteJoint;
+import org.flxbox2d.collision.shapes.B2FlxBox;
+import org.flxbox2d.collision.shapes.B2FlxCircle;
+import org.flxbox2d.collision.shapes.B2FlxPolygon;
+import org.flxbox2d.common.B2FlxV2;
+import org.flxbox2d.dynamics.joints.B2FlxRevoluteJoint;
 
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 

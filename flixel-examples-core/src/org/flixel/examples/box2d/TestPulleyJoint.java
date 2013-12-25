@@ -1,9 +1,9 @@
 package org.flixel.examples.box2d;
 
 import org.flixel.FlxG;
-import org.flixel.plugin.flxbox2d.B2FlxB;
-import org.flixel.plugin.flxbox2d.collision.shapes.B2FlxBox;
-import org.flixel.plugin.flxbox2d.dynamics.joints.B2FlxPulleyJoint;
+import org.flxbox2d.B2FlxB;
+import org.flxbox2d.collision.shapes.B2FlxBox;
+import org.flxbox2d.dynamics.joints.B2FlxPulleyJoint;
 
 import com.badlogic.gdx.math.Vector2;
 
