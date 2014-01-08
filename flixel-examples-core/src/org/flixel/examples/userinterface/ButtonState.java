@@ -33,6 +33,6 @@ public class ButtonState extends Test
 		add(new FlxNinePatchButton(100, 190, null, "flixel-gdx's\nNine\nPatch", 0, 0, null));
 		
 		// How cool is a nine patch button?
-		add(new FlxNinePatchButton(20, 280, null, "Amazing Nine\nPatch Button", 150, 0, null));
+		add(new FlxNinePatchButton(10, 280, null, "Amazing Nine\nPatch Button", 300, 160, null));
 	}
 }

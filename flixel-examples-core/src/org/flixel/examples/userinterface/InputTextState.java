@@ -2,8 +2,8 @@ package org.flixel.examples.userinterface;
 
 import org.flixel.ui.FlxDialogBox;
 import org.flixel.ui.FlxInputText;
+import org.flixel.ui.FlxNinePatch;
 import org.flixel.ui.FlxUISkin;
-import org.flixel.ui.FlxUISkin.NinePatch;
 
 /**
  * 
@@ -66,9 +66,9 @@ public class InputTextState extends Test
 		add(inputText);
 		
 		// Adjust the skin, only the middle of the ninepatch are used.
-		skin.setNinePatch(NinePatch.MIDDLE_LEFT, ImgTextFieldLeft, 4, 32);
-		skin.setNinePatch(NinePatch.MIDDLE_CENTER, ImgTextFieldCenter, 1, 32);
-		skin.setNinePatch(NinePatch.MIDDLE_RIGHT, ImgTextFieldRight, 4, 32);
+		skin.setNinePatch(FlxNinePatch.MIDDLE_LEFT, ImgTextFieldLeft, 4, 32);
+		skin.setNinePatch(FlxNinePatch.MIDDLE_CENTER, ImgTextFieldCenter, 1, 32);
+		skin.setNinePatch(FlxNinePatch.MIDDLE_RIGHT, ImgTextFieldRight, 4, 32);
 		
 		inputText = new FlxInputText(10, 320, skin, "ONLY NINEPATCH IN THE MIDDLE", 200, 32);
 		inputText.textfield.setFormat(FntRobotoRegular, 18);
