@@ -132,13 +132,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="SensorDemo"
             android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".Box2DDemo"
-            android:configChanges="keyboard|keyboardHidden|orientation"
-            android:label="Box2DDemo"
-            android:screenOrientation="landscape" >
-        </activity>
+        </activity>      
         <activity
             android:name=".Mode"
             android:configChanges="keyboard|keyboardHidden|orientation"

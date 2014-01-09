@@ -2,7 +2,6 @@ package org.flixel.examples.tiledmap2;
 
 import org.flixel.FlxEmitter;
 import org.flixel.FlxG;
-import org.flixel.FlxPoint;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
@@ -45,7 +44,7 @@ public class PlayState extends FlxState
 
 		FlxG.camera.width = FlxG.width;
 		_pad = new FlxVirtualPad(FlxVirtualPad.DPAD_FULL, FlxVirtualPad.A_B);
-		_pad.setAll("scrollFactor", new FlxPoint(0, 0));
+		
 		FlxG.width = 320;
 		// Objects that are placed in the very front.
 		FlxSprite decoration = new FlxSprite(256, 159, ImgBG);

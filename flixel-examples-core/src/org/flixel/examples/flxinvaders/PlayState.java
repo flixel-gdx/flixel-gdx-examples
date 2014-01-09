@@ -32,7 +32,14 @@ public class PlayState extends FlxState
 	//Inside this function we will create and orient all the important game objects.
 	@Override
 	public void create()
-	{
+	{		
+		//Here we are just displaying the cursor to encourage people to click the game,
+		// which will give Flash the browser focus and let the keyboard work.
+		//Normally we would do this in say the main menu state or something,
+		// but FlxInvaders has no menu :P
+		if(FlxG.mobile)
+			FlxG.mouse.show();
+		
 		// Set background color.
 		FlxG.setBgColor(0xFF000000);
 				
@@ -138,7 +145,7 @@ public class PlayState extends FlxState
 	public void update()
 	{
 		//This just says if the user clicked on the game to hide the cursor
-		if(FlxG.mouse.justPressed())
+		if(FlxG.mouse.justPressed() && FlxG.mouse.getVisible() && !FlxG.mobile)
 			FlxG.mouse.hide();
 		
 		//Space invaders doesn't really even use collisions, we're just checking for overlaps between
