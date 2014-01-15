@@ -19,6 +19,15 @@ public class Player extends FlxSprite
 	protected float _restart;
 	protected FlxEmitter _gibs;
 
+	private FlxSound _sfxJump;
+	private FlxSound _sfxLand;
+	private FlxSound _sfxExplode;
+	private FlxSound _sfxExplode2;
+	private FlxSound _sfxHurt;
+	private FlxSound _sfxJam;
+	
+	
+
 	//This is the player object class.  Most of the comments I would put in here
 	//would be near duplicates of the Enemy class, so if you're confused at all
 	//I'd recommend checking that out for some ideas!
@@ -54,6 +63,13 @@ public class Player extends FlxSprite
 		//bullet stuff
 		_bullets = Bullets;
 		_gibs = Gibs;
+		
+		_sfxExplode = new FlxSound().loadEmbedded(SndExplode, false, false, FlxSound.SFX);
+		_sfxExplode2 = new FlxSound().loadEmbedded(SndExplode2, false, false, FlxSound.SFX);
+		_sfxHurt = new FlxSound().loadEmbedded(SndHurt, false, false, FlxSound.SFX);
+		_sfxJam = new FlxSound().loadEmbedded(SndJam, false, false, FlxSound.SFX);
+		_sfxJump = new FlxSound().loadEmbedded(SndJump, false, false, FlxSound.SFX);
+		_sfxLand = new FlxSound().loadEmbedded(SndLand, false, false, FlxSound.SFX);
 	}
 
 	@Override
@@ -78,16 +94,16 @@ public class Player extends FlxSprite
 
 		//make a little noise if you just touched the floor
 		if(justTouched(FLOOR) && (velocity.y > 50))
-			FlxG.play(SndLand);
+			_sfxLand.play(true);
 
 		//MOVEMENT
 		acceleration.x = 0;
-		if(FlxG.keys.LEFT)
+		if(FlxG.keys.pressed("LEFT"))
 		{
 			setFacing(LEFT);
 			acceleration.x -= drag.x;
 		}
-		else if(FlxG.keys.RIGHT)
+		else if(FlxG.keys.pressed("RIGHT"))
 		{
 			setFacing(RIGHT);
 			acceleration.x += drag.x;
@@ -95,13 +111,13 @@ public class Player extends FlxSprite
 		if(FlxG.keys.justPressed("X") && (int) velocity.y == 0)
 		{
 			velocity.y = -_jumpPower;
-			FlxG.play(SndJump);
+			_sfxJump.play(true);
 		}
 
 		//AIMING
-		if(FlxG.keys.UP)
+		if(FlxG.keys.pressed("UP"))
 			_aim = UP;
-		else if(FlxG.keys.DOWN && velocity.y != 0)
+		else if(FlxG.keys.pressed("DOWN") && velocity.y != 0)
 			_aim = DOWN;
 		else
 			_aim = getFacing();
@@ -128,7 +144,7 @@ public class Player extends FlxSprite
 		if(FlxG.keys.justPressed("C"))
 		{
 			if(getFlickering())
-				FlxG.play(SndJam);
+				_sfxJam.play(true);
 			else
 			{
 				getMidpoint(_point);
@@ -145,7 +161,7 @@ public class Player extends FlxSprite
 		Damage = 0;
 		if(getFlickering())
 			return;
-		FlxG.play(SndHurt);
+		_sfxHurt.play(true);
 		flicker(1.3f);
 		if(FlxG.score > 1000) FlxG.score -= 1000;
 		if(velocity.x > 0)
@@ -161,8 +177,8 @@ public class Player extends FlxSprite
 		if(!alive)
 			return;
 		setSolid(false);
-		FlxG.play(SndExplode);
-		FlxG.play(SndExplode2);
+		_sfxExplode.play(true);
+		_sfxExplode2.play(true);
 		super.kill();
 		flicker(0);
 		exists = true;

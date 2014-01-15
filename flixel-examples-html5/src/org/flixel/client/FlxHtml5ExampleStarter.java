@@ -1,11 +1,11 @@
 package org.flixel.client;
 
-import org.flixel.examples.animation.AnimationDemo;
+import org.flixel.examples.mode.Mode;
 
 public class FlxHtml5ExampleStarter extends FlxHtml5Application
 {
 	public FlxHtml5ExampleStarter()
 	{
-		super(new AnimationDemo(), 400, 240);
+		super(new Mode(), 800, 480);
 	}
 }

@@ -17,6 +17,9 @@ public class Spawner extends FlxSprite
 	private FlxEmitter _gibs;
 	private Player _player;
 	private boolean _open;
+	private FlxSound _sfxExplode;
+	private FlxSound _sfxExplode2;
+	private FlxSound _sfxHit;
 
 	public Spawner(int X,int Y,FlxEmitter Gibs,FlxGroup Bots,FlxGroup BotBullets, FlxEmitter BotGibs,Player ThePlayer)
 	{
@@ -34,6 +37,10 @@ public class Spawner extends FlxSprite
 		addAnimation("open", new int[]{1, 2, 3, 4, 5}, 40, false);
 		addAnimation("close", new int[]{4, 3, 2, 1, 0}, 40, false);
 		addAnimation("dead", new int[]{6});
+		
+		_sfxExplode = new FlxSound().loadEmbedded(SndExplode, false, false, FlxSound.SFX);
+		_sfxExplode2 = new FlxSound().loadEmbedded(SndExplode2, false, false, FlxSound.SFX);
+		_sfxHit = new FlxSound().loadEmbedded(SndHit, false, false, FlxSound.SFX);
 	}
 
 	@Override 
@@ -82,7 +89,7 @@ public class Spawner extends FlxSprite
 	@Override
 	public void hurt(float Damage)
 	{
-		FlxG.play(SndHit);
+		_sfxHit.play(true);
 		flicker(0.2f);
 		FlxG.score += 50;
 		super.hurt(Damage);
@@ -93,8 +100,8 @@ public class Spawner extends FlxSprite
 	{
 		if(!alive)
 			return;
-		FlxG.play(SndExplode);
-		FlxG.play(SndExplode2);
+		_sfxExplode.play(true);
+		_sfxExplode2.play(true);
 		super.kill();
 		active = false;
 		exists = true;

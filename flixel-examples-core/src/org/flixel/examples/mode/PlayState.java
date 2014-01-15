@@ -42,11 +42,17 @@ public class PlayState extends FlxState
 
 	//just to prevent weirdness during level transition
 	protected boolean _fading;
+	
+	private FlxSound _sfxCount;
+	
+	
 
 	@Override
 	public void create()
 	{
 		FlxG.mouse.hide();
+		
+		_sfxCount = new FlxSound().loadEmbedded(SndCount, false, false, FlxSound.SFX);
 
 		//Here we are creating a pool of 100 little metal bits that can be exploded.
 		//We will recycle the crap out of these!
@@ -160,7 +166,9 @@ public class PlayState extends FlxState
 		//the scroll factors to zero, to make sure the HUD doesn't
 		//wiggle around while we play.
 		_hud.setAll("scrollFactor",new FlxPoint(0,0));
-		_hud.setAll("cameras",new Array<FlxCamera>(new FlxCamera[]{FlxG.camera}));
+		Array<FlxCamera> cameras = new Array<FlxCamera>();
+		cameras.addAll(new FlxCamera[]{FlxG.camera});
+		_hud.setAll("cameras",cameras);
 
 		FlxG.playMusic(SndMode);
 		FlxG.flash(0xff131c1b);
@@ -252,7 +260,8 @@ public class PlayState extends FlxState
 					float volume = 0.35f;
 					if(FlxG.score < 600)
 						volume = 1.0f;
-					FlxG.play(SndCount,volume);
+					_sfxCount.setVolume(volume);
+					_sfxCount.play(true);
 				}
 			}
 

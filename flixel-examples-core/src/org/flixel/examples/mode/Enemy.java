@@ -29,6 +29,10 @@ public class Enemy extends FlxSprite
 	//By passing this object, we can avoid a potentially costly allocation of
 	//a new FlxPoint() object by the getMidpoint() function.
 	protected FlxPoint _playerMidpoint;
+	
+	private FlxSound _sfxExplode;
+	private FlxSound _sfxHit;
+	private FlxSound _sfxJet;
 
 	//This is the constructor for the enemy class.  Because we are
 	//recycling enemies, we don't want our constructor to have any
@@ -57,6 +61,10 @@ public class Enemy extends FlxSprite
 		drag.x = 35;
 		_thrust = 0;
 		_playerMidpoint = new FlxPoint();
+		
+		_sfxExplode = new FlxSound().loadEmbedded(SndExplode, false, false, FlxSound.SFX);
+		_sfxHit = new FlxSound().loadEmbedded(SndHit, false, false, FlxSound.SFX);
+		_sfxJet = new FlxSound().loadEmbedded(SndJet, false, false, FlxSound.SFX);
 	}
 
 	//Each time an Enemy is recycled (in this game, by the Spawner object)
@@ -160,7 +168,7 @@ public class Enemy extends FlxSprite
 				//turn em on and play a little sound.
 				_jets.start(false,0.5f,0.01f);
 				if(onScreen())
-					FlxG.play(SndJet);
+					_sfxJet.play(true);
 			}
 			//Then, position the jets at the center of the Enemy,
 			//and point the jets the opposite way from where we're moving.
@@ -188,7 +196,7 @@ public class Enemy extends FlxSprite
 	//and damage is dealt to the Enemy.
 	@Override public void hurt(float Damage)
 	{
-		FlxG.play(SndHit);
+		_sfxHit.play(true);
 		flicker(0.2f);
 		FlxG.score += 10;
 		super.hurt(Damage);
@@ -201,7 +209,7 @@ public class Enemy extends FlxSprite
 	{
 		if(!alive)
 			return;
-		FlxG.play(SndExplode);
+		_sfxExplode.play(true);
 		super.kill();
 		flicker(0);
 		_jets.kill();

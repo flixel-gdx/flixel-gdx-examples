@@ -8,6 +8,9 @@ public class Bullet extends FlxSprite
 	private String SndHit = "examples/mode/jump.mp3";
 	private String SndShoot = "examples/mode/shoot.mp3";
 	
+	private FlxSound _sfxHit;
+	private FlxSound _sfxShoot;
+	
 	public float speed;
 
 	public Bullet()
@@ -26,6 +29,9 @@ public class Bullet extends FlxSprite
 		addAnimation("poof",new int[]{4, 5, 6, 7}, 50, false);
 
 		speed = 360;
+		
+		_sfxHit = new FlxSound().loadEmbedded(SndHit, false, false, FlxSound.SFX);
+		_sfxShoot = new FlxSound().loadEmbedded(SndShoot, false, false, FlxSound.SFX);
 	}
 
 	@Override
@@ -48,7 +54,7 @@ public class Bullet extends FlxSprite
 		velocity.x = 0;
 		velocity.y = 0;
 		if(onScreen())
-			FlxG.play(SndHit);
+			_sfxHit.play(true);
 		alive = false;
 		setSolid(false);
 		play("poof");
@@ -56,7 +62,7 @@ public class Bullet extends FlxSprite
 
 	public void shoot(FlxPoint Location, int Aim)
 	{
-		FlxG.play(SndShoot);
+		_sfxShoot.play(true);
 		super.reset(Location.x-width/2,Location.y-height/2);
 		setSolid(true);
 		switch(Aim)

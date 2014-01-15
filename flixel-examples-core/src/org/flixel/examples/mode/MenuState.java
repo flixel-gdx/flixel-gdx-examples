@@ -5,12 +5,17 @@ import org.flixel.event.IFlxButton;
 import org.flixel.event.IFlxCamera;
 import org.flixel.event.IFlxReplay;
 
+import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
+
 public class MenuState extends FlxState
 {
 	//Some graphics and sounds
 	protected String ImgEnemy = "examples/mode/pack:bot";
 	public String ImgGibs = "examples/mode/pack:spawner_gibs";
 	public String ImgCursor = "examples/mode/pack:cursor";
+	public String ImgFont80 = "examples/mode/nokiafc.fnt";
 	public String SndHit = "examples/mode/menu_hit.mp3";
 	public String SndHit2 = "examples/mode/menu_hit_2.mp3";
 
@@ -29,6 +34,7 @@ public class MenuState extends FlxState
 	@Override
 	public void create()
 	{	
+		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		FlxG.width = FlxG.camera.viewportWidth;
 		FlxG.resetCameras();
 		
@@ -59,7 +65,10 @@ public class MenuState extends FlxState
 
 		//the letters "mo"
 		title1 = new FlxText(FlxG.width + 16,FlxG.height/3,64,"mo");
-		title1.setSize(32);
+		if(Gdx.app.getType() == ApplicationType.WebGL)
+			title1.setFormat(ImgFont80, 80);
+		else 
+			title1.setSize(32);
 		title1.setColor(0x3a5c39);
 		title1.antialiasing = true;
 		title1.velocity.x = -FlxG.width;
@@ -68,7 +77,10 @@ public class MenuState extends FlxState
 
 		//the letters "de"
 		title2 = new FlxText(-60,title1.y,(int) title1.width,"de");
-		title2.setSize(title1.getSize());
+		if(Gdx.app.getType() == ApplicationType.WebGL)
+			title2.setFormat(ImgFont80, 80);
+		else 
+			title2.setSize(32);
 		title2.setColor(title1.getColor());
 		title2.antialiasing = title1.antialiasing;
 		title2.velocity.x = FlxG.width;
@@ -105,14 +117,14 @@ public class MenuState extends FlxState
 			title2.velocity.x = 0;
 
 			//Then, play a cool sound, change their color, and blow up pieces everywhere
-			FlxG.play(SndHit);
+			FlxG.play(SndHit, 1f, false, false);
 			FlxG.flash(0xffd8eba2,0.5f);
 			FlxG.shake(0.035f,0.5f);
 			title1.setColor(0xd8eba2);
 			title2.setColor(0xd8eba2);
 			gibs.start(true,5);
-			title1.angle = FlxG.random()*30-15;
-			title2.angle = FlxG.random()*30-15;
+//			title1.angle = FlxG.random()*30-15;
+//			title2.angle = FlxG.random()*30-15;
 
 			//Then we're going to add the text and buttons and things that appear
 			//If we were hip we'd use our own button animations, but we'll just recolor
@@ -149,12 +161,12 @@ public class MenuState extends FlxState
 		timer += FlxG.elapsed;
 		if(timer >= 10) //go into demo mode if no buttons are pressed for 10 seconds
 			attractMode = true;
-		if(!fading && ((FlxG.keys.X && FlxG.keys.C) || attractMode)) 
+		if(!fading && ((FlxG.keys.pressed("X") && FlxG.keys.pressed("C")) || attractMode)) 
 		{
-			fading = true;
-			FlxG.play(SndHit2);
-			FlxG.flash(0xffd8eba2,0.5f);
-			FlxG.fade(0xff131c1b,1,new IFlxCamera(){@Override public void callback(){onFade();}});
+//			fading = true;
+//			FlxG.play(SndHit2, 1f, false, false);
+//			FlxG.flash(0xffd8eba2,0.5f);
+//			FlxG.fade(0xff131c1b,1,new IFlxCamera(){@Override public void callback(){onFade();}});
 		}
 	}
 
@@ -174,7 +186,7 @@ public class MenuState extends FlxState
 	protected void onPlay()
 	{
 		playButton.exists = false;
-		FlxG.play(SndHit2);
+		FlxG.play(SndHit2, 1f, false, false);
 	}
 
 	//This function is passed to FlxG.fade() when we are ready to go to the next game state.

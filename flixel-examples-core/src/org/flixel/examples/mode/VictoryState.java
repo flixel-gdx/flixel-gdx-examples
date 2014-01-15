@@ -44,7 +44,7 @@ public class VictoryState extends FlxState
 			if((_timer > 0.35) && ((_timer > 10) || FlxG.keys.justPressed("X") || FlxG.keys.justPressed("C")))
 			{
 				_fading = true;
-				FlxG.play(SndMenu);
+				FlxG.play(SndMenu, 1f, false, false);
 				FlxG.fade(0xff131c1b,2,new IFlxCamera(){@Override public void callback(){ onPlay();}});
 			}
 		}
