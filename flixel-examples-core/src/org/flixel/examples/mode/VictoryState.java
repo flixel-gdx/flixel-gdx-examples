@@ -3,10 +3,14 @@ package org.flixel.examples.mode;
 import org.flixel.*;
 import org.flixel.event.IFlxCamera;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Application.ApplicationType;
+
 public class VictoryState extends FlxState
 {
 	private String ImgGibs = "examples/mode/pack:spawner_gibs";
 	private String SndMenu = "examples/mode/menu_hit_2.mp3";
+	private String ImgFont20 = "examples/mode/nokiafc.fnt";
 	
 	private float _timer;
 	private boolean _fading;
@@ -30,7 +34,10 @@ public class VictoryState extends FlxState
 		gibs.start(false,0,0.005f);
 
 		FlxText text = new FlxText(0,FlxG.height/2-35,FlxG.width,"VICTORY\n\nSCORE: "+FlxG.score);
-		text.setFormat(null,16,0xd8eba2,"center");
+		if(Gdx.app.getType() == ApplicationType.WebGL)
+			text.setFormat(ImgFont20,20,0xd8eba2,"center");
+		else
+			text.setFormat(null,16,0xd8eba2,"center");
 		add(text);
 	}
 

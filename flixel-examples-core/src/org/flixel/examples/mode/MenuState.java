@@ -1,12 +1,17 @@
 package org.flixel.examples.mode;
 
-import org.flixel.*;
+import org.flixel.FlxButton;
+import org.flixel.FlxEmitter;
+import org.flixel.FlxG;
+import org.flixel.FlxSave;
+import org.flixel.FlxState;
+import org.flixel.FlxText;
+import org.flixel.FlxU;
 import org.flixel.event.IFlxButton;
 import org.flixel.event.IFlxCamera;
 import org.flixel.event.IFlxReplay;
 
 import com.badlogic.gdx.Application.ApplicationType;
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 
 public class MenuState extends FlxState
@@ -15,7 +20,7 @@ public class MenuState extends FlxState
 	protected String ImgEnemy = "examples/mode/pack:bot";
 	public String ImgGibs = "examples/mode/pack:spawner_gibs";
 	public String ImgCursor = "examples/mode/pack:cursor";
-	public String ImgFont80 = "examples/mode/nokiafc.fnt";
+	public String ImgFont40 = "examples/mode/nokiafc.fnt";
 	public String SndHit = "examples/mode/menu_hit.mp3";
 	public String SndHit2 = "examples/mode/menu_hit_2.mp3";
 
@@ -33,8 +38,7 @@ public class MenuState extends FlxState
 
 	@Override
 	public void create()
-	{	
-		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+	{
 		FlxG.width = FlxG.camera.viewportWidth;
 		FlxG.resetCameras();
 		
@@ -66,7 +70,7 @@ public class MenuState extends FlxState
 		//the letters "mo"
 		title1 = new FlxText(FlxG.width + 16,FlxG.height/3,64,"mo");
 		if(Gdx.app.getType() == ApplicationType.WebGL)
-			title1.setFormat(ImgFont80, 80);
+			title1.setFormat(ImgFont40, 40);
 		else 
 			title1.setSize(32);
 		title1.setColor(0x3a5c39);
@@ -78,7 +82,7 @@ public class MenuState extends FlxState
 		//the letters "de"
 		title2 = new FlxText(-60,title1.y,(int) title1.width,"de");
 		if(Gdx.app.getType() == ApplicationType.WebGL)
-			title2.setFormat(ImgFont80, 80);
+			title2.setFormat(ImgFont40, 40);
 		else 
 			title2.setSize(32);
 		title2.setColor(title1.getColor());
@@ -123,8 +127,8 @@ public class MenuState extends FlxState
 			title1.setColor(0xd8eba2);
 			title2.setColor(0xd8eba2);
 			gibs.start(true,5);
-//			title1.angle = FlxG.random()*30-15;
-//			title2.angle = FlxG.random()*30-15;
+			title1.angle = FlxG.random()*30-15;
+			title2.angle = FlxG.random()*30-15;
 
 			//Then we're going to add the text and buttons and things that appear
 			//If we were hip we'd use our own button animations, but we'll just recolor
@@ -163,10 +167,10 @@ public class MenuState extends FlxState
 			attractMode = true;
 		if(!fading && ((FlxG.keys.pressed("X") && FlxG.keys.pressed("C")) || attractMode)) 
 		{
-//			fading = true;
-//			FlxG.play(SndHit2, 1f, false, false);
-//			FlxG.flash(0xffd8eba2,0.5f);
-//			FlxG.fade(0xff131c1b,1,new IFlxCamera(){@Override public void callback(){onFade();}});
+			fading = true;
+			FlxG.play(SndHit2, 1f, false, false);
+			FlxG.flash(0xffd8eba2,0.5f);
+			FlxG.fade(0xff131c1b,1,new IFlxCamera(){@Override public void callback(){onFade();}});
 		}
 	}
 

@@ -4,6 +4,8 @@ import org.flixel.*;
 import org.flixel.event.IFlxCamera;
 import org.flixel.event.IFlxCollision;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.utils.Array;
 
 public class PlayState extends FlxState
@@ -16,6 +18,7 @@ public class PlayState extends FlxState
 	private String ImgGibs = "examples/mode/pack:gibs";
 	private String ImgSpawnerGibs = "examples/mode/pack:spawner_gibs";
 	private String ImgMiniFrame = "examples/mode/pack:miniframe";
+	private String ImgFont20 = "examples/mode/nokiafc.fnt";
 	
 	//major game object storage
 	protected FlxGroup _blocks;
@@ -132,7 +135,10 @@ public class PlayState extends FlxState
 		//that is, the player score, number of spawners left, etc.
 		//First, we'll create a text field for the current score
 		_score = new FlxText(FlxG.width/4,0,FlxG.width/2);
-		_score.setFormat(null,16,0xd8eba2,"center",0x131c1b);
+		if(Gdx.app.getType() == ApplicationType.WebGL)
+			_score.setFormat(ImgFont20,20,0xd8eba2,"center",0x131c1b);			
+		else
+			_score.setFormat(null,16,0xd8eba2,"center",0x131c1b);
 		_hud.add(_score);
 		if(FlxG.scores.size < 2)
 		{
@@ -156,7 +162,10 @@ public class PlayState extends FlxState
 		//Then we create the "gun jammed" notification
 		_gunjam = new FlxGroup();
 		_gunjam.add(new FlxSprite(0,FlxG.height-22).makeGraphic(FlxG.width,24,0xff131c1b));
-		_gunjam.add(new FlxText(0,FlxG.height-22,FlxG.width,"GUN IS JAMMED").setFormat(null,16,0xd8eba2,"center"));
+		if(Gdx.app.getType() == ApplicationType.WebGL)
+			_gunjam.add(new FlxText(0,FlxG.height-22,FlxG.width,"GUN IS JAMMED").setFormat(ImgFont20,20,0xd8eba2,"center"));
+		else
+			_gunjam.add(new FlxText(0,FlxG.height-22,FlxG.width,"GUN IS JAMMED").setFormat(null,16,0xd8eba2,"center"));
 		_gunjam.visible = false;
 		_hud.add(_gunjam);
 
