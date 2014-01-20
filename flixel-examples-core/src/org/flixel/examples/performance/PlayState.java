@@ -549,8 +549,8 @@ public class PlayState extends FlxState
 		stopTimer();
 	}
 
-	// TODO: Math IEEERemainder
-	@SuppressWarnings("unused")
+	// TODO: Math IEEERemainder, not supported by GWT
+	/*@SuppressWarnings("unused")
 	public void testMathIEEERemainder()
 	{
 		double result;
@@ -567,7 +567,7 @@ public class PlayState extends FlxState
 			result = Math.IEEEremainder(FLOAT1, FLOAT2);
 			result = Math.IEEEremainder(FLOAT1, FLOAT2);
 		}
-	}
+	}*/
 
 	// Not tested, but it's obvious that 180 / PI is faster.
 	@SuppressWarnings("unused")

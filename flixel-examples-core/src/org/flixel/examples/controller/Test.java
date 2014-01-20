@@ -12,6 +12,7 @@ import org.flixel.plugin.GamepadManager;
 import org.flixel.system.input.Gamepad;
 
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.reflect.ClassReflection;
 
 /**
  *
@@ -59,7 +60,7 @@ public class Test extends FlxState
 		{
 			try
 			{				
-				FlxG.switchState(tests.get(currentTest).newInstance());
+				FlxG.switchState(ClassReflection.newInstance(tests.get(currentTest)));
 			}
 			catch(Exception e)
 			{
@@ -85,7 +86,7 @@ public class Test extends FlxState
 			currentTest = 0;
 		try
 		{				
-			FlxG.switchState(tests.get(currentTest).newInstance());
+			FlxG.switchState(ClassReflection.newInstance(tests.get(currentTest)));
 		}
 		catch(Exception e)
 		{

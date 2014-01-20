@@ -9,6 +9,7 @@ import org.flixel.FlxU;
 import org.flixel.event.IFlxButton;
 
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.reflect.ClassReflection;
 
 /**
  *
@@ -58,7 +59,7 @@ public class Test extends FlxState
 		{
 			try
 			{				
-				FlxG.switchState(tests.get(currentTest).newInstance());
+				FlxG.switchState(ClassReflection.newInstance(tests.get(currentTest)));
 			}
 			catch(Exception e)
 			{
@@ -95,7 +96,7 @@ public class Test extends FlxState
 			currentTest = 0;
 		try
 		{				
-			FlxG.switchState(tests.get(currentTest).newInstance());
+			FlxG.switchState(ClassReflection.newInstance(tests.get(currentTest)));
 		}
 		catch(Exception e)
 		{
@@ -110,7 +111,7 @@ public class Test extends FlxState
 			currentTest = tests.size-1;
 		try
 		{				
-			FlxG.switchState(tests.get(currentTest).newInstance());
+			FlxG.switchState(ClassReflection.newInstance(tests.get(currentTest)));
 		}
 		catch(Exception e)
 		{

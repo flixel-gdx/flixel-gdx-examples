@@ -1,0 +1,11 @@
+pack.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bunny
+  rotate: false
+  xy: 0, 0
+  size: 26, 37
+  orig: 26, 37
+  offset: 0, 0
+  index: -1

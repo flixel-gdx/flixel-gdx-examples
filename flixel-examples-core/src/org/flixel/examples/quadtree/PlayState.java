@@ -5,14 +5,16 @@ import org.flixel.FlxG;
 import org.flixel.FlxGroup;
 import org.flixel.FlxObject;
 import org.flixel.FlxPoint;
+import org.flixel.FlxSprite;
 import org.flixel.FlxState;
-import org.flixel.FlxTileblock;
 import org.flixel.FlxU;
 import org.flixel.event.IFlxButton;
 import org.flixel.event.IFlxCollision;
 
+import com.badlogic.gdx.graphics.Texture.TextureWrap;
+
 /**
- * A Quadtree demostration, based on the Flash application of Michael Baczynski.
+ * A Quadtree demonstration, based on the Flash application of Michael Baczynski.
  * 
  * @author Ka Wing Chin
  */
@@ -22,7 +24,7 @@ public class PlayState extends FlxState
 	private final int WORLD_HEIGHT = 800;
 	private final FlxPoint _last = new FlxPoint();
 	
-	private static final String ImgBg = "examples/quadtree/pack:bg";
+	private static final String ImgBg = "examples/quadtree/bg.png";
 	private static final String Img2 = "examples/quadtree/pack:2";
 	private static final String Img4 = "examples/quadtree/pack:4";
 	private static final String Img6 = "examples/quadtree/pack:6";
@@ -51,7 +53,7 @@ public class PlayState extends FlxState
 	public void create()
 	{
 		FlxG.setBgColor(0xFFfafafa);
-		
+		FlxG.debug = true;
 		FlxG.camera.setBounds(0, 0, WORLD_WIDTH, WORLD_HEIGHT, true);
 		
 		// Walls
@@ -73,10 +75,10 @@ public class PlayState extends FlxState
 		createBlocks(25, Img20, 20, _blocks20 = new FlxGroup());
 		createBlocks(5, Img30, 30, _blocks30 = new FlxGroup());
 				
-		// Tiles
-		FlxTileblock tile = new FlxTileblock(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
-		tile.loadTiles(ImgBg, 256, 256);
-		add(tile);
+		// Background
+		FlxSprite bg = new FlxSprite().loadGraphic(ImgBg, false, false, WORLD_WIDTH, WORLD_HEIGHT);
+		bg.getTexture().setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
+		add(bg);
 		
 		// Overlap tiles
 		add(_nodes8 = new FlxGroup());
