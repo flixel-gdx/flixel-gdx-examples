@@ -40,9 +40,9 @@ public class Player extends FlxSprite
 	{
 		//Smooth slidey walking controls
 		acceleration.x = 0;
-		if(FlxG.keys.LEFT || isTouched(leftArea))
+		if(FlxG.keys.pressed("LEFT") || isTouched(leftArea))
 			acceleration.x -= drag.x;
-		if(FlxG.keys.RIGHT || isTouched(rightArea))
+		if(FlxG.keys.pressed("RIGHT") || isTouched(rightArea))
 			acceleration.x += drag.x;
 
 		if(isTouching(FLOOR))

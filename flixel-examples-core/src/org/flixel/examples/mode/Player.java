@@ -98,12 +98,12 @@ public class Player extends FlxSprite
 
 		//MOVEMENT
 		acceleration.x = 0;
-		if(FlxG.keys.pressed("LEFT"))
+		if(FlxG.keys.LEFT)
 		{
 			setFacing(LEFT);
 			acceleration.x -= drag.x;
 		}
-		else if(FlxG.keys.pressed("RIGHT"))
+		else if(FlxG.keys.RIGHT)
 		{
 			setFacing(RIGHT);
 			acceleration.x += drag.x;
@@ -115,9 +115,9 @@ public class Player extends FlxSprite
 		}
 
 		//AIMING
-		if(FlxG.keys.pressed("UP"))
+		if(FlxG.keys.UP)
 			_aim = UP;
-		else if(FlxG.keys.pressed("DOWN") && velocity.y != 0)
+		else if(FlxG.keys.DOWN && velocity.y != 0)
 			_aim = DOWN;
 		else
 			_aim = getFacing();

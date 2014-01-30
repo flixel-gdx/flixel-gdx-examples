@@ -165,7 +165,7 @@ public class MenuState extends FlxState
 		timer += FlxG.elapsed;
 		if(timer >= 10) //go into demo mode if no buttons are pressed for 10 seconds
 			attractMode = true;
-		if(!fading && ((FlxG.keys.pressed("X") && FlxG.keys.pressed("C")) || attractMode)) 
+		if(!fading && ((FlxG.keys.X && FlxG.keys.C) || attractMode)) 
 		{
 			fading = true;
 			FlxG.play(SndHit2, 1f, false, false);
