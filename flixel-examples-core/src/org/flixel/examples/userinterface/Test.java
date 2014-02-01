@@ -54,7 +54,8 @@ public class Test extends FlxState
 			add(new FlxText(0, FlxG.height-30, 300, "'Left/Right' arrows to go to previous/next example."));
 		}
 		
-		if(FlxU.getClassName(this, true).equals("Test"))
+		String className = FlxU.getClassName(this, true);
+		if(className.equals("Test") || className.equals("org.flixel.examples.userinterface.Test"))
 		{
 			try
 			{
