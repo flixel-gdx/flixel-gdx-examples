@@ -40,7 +40,9 @@ public class PlayState extends FlxState
 		sprite.immovable = true;
 		destination = sprite.getMidpoint();
 		destination.y += 112;
-		path = new FlxPath(new Array<FlxPoint>(new FlxPoint[]{sprite.getMidpoint(),destination}));
+		Array<FlxPoint> points = new Array<FlxPoint>();
+		points.addAll(new FlxPoint[]{sprite.getMidpoint(),destination});
+		path = new FlxPath(points);
 		sprite.followPath(path,40,FlxObject.PATH_YOYO);
 		add(sprite);
 
@@ -49,7 +51,9 @@ public class PlayState extends FlxState
 		sprite.immovable = true;
 		destination = sprite.getMidpoint();
 		destination.x += 56;
-		path = new FlxPath(new Array<FlxPoint>(new FlxPoint[]{sprite.getMidpoint(),destination}));
+		points = new Array<FlxPoint>();
+		points.addAll(new FlxPoint[]{sprite.getMidpoint(),destination});
+		path = new FlxPath(points);
 		sprite.followPath(path,40,FlxObject.PATH_YOYO);
 		add(sprite);
 
