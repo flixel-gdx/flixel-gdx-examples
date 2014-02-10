@@ -10,6 +10,7 @@ import org.flixel.FlxU;
 import org.flixel.event.IFlxButton;
 import org.flixel.event.IFlxCamera;
 import org.flixel.event.IFlxReplay;
+import org.flixel.ui.FlxVirtualPad;
 
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
@@ -34,7 +35,8 @@ public class MenuState extends FlxState
 	public FlxText title2;
 	public boolean fading;
 	public float timer;
-	public boolean attractMode;
+	static boolean attractMode;
+	private FlxVirtualPad _pad;
 
 	@Override
 	public void create()
@@ -96,6 +98,12 @@ public class MenuState extends FlxState
 		attractMode = false;
 			
 		FlxG.mouse.show(ImgCursor,2);
+		
+		_pad = new FlxVirtualPad(FlxVirtualPad.DPAD_NONE, FlxVirtualPad.A_B);
+		_pad.setAlpha(0.5f);
+		
+		if(Gdx.app.getType() != ApplicationType.Desktop)
+			add(_pad);
 	}
 
 	@Override
@@ -165,7 +173,10 @@ public class MenuState extends FlxState
 		timer += FlxG.elapsed;
 		if(timer >= 10) //go into demo mode if no buttons are pressed for 10 seconds
 			attractMode = true;
-		if(!fading && ((FlxG.keys.X && FlxG.keys.C) || attractMode)) 
+		if(!fading 
+			&& ((FlxG.keys.X && FlxG.keys.C) 
+			|| (_pad.buttonA.status == FlxButton.PRESSED && _pad.buttonB.status == FlxButton.PRESSED) 
+			|| attractMode)) 
 		{
 			fading = true;
 			FlxG.play(SndHit2, 1f, false, false);
@@ -199,7 +210,7 @@ public class MenuState extends FlxState
 	protected void onFade()
 	{
 		if(attractMode)
-			FlxG.loadReplay((FlxG.random()<0.5)?FlxG.loadString(Attract1):FlxG.loadString(Attract2),new PlayState(),new String[]{"ANY"},22,new IFlxReplay(){@Override public void callback(){onDemoComplete();}});
+			FlxG.loadReplay((FlxG.random()<0.5f)?FlxG.loadString(Attract1):FlxG.loadString(Attract2),new PlayState(),new String[]{"ANY"},22,new IFlxReplay(){@Override public void callback(){onDemoComplete();}});
 		else
 			FlxG.switchState(new PlayState());
 	}

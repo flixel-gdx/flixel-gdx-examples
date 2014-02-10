@@ -1,6 +1,8 @@
 package org.flixel.examples.mode;
 
 import org.flixel.*;
+import org.flixel.event.IFlxButton;
+import org.flixel.ui.FlxVirtualPad;
 
 public class Player extends FlxSprite
 {
@@ -26,12 +28,13 @@ public class Player extends FlxSprite
 	private FlxSound _sfxHurt;
 	private FlxSound _sfxJam;
 	
-	
+	private FlxVirtualPad _pad;
+	private boolean _justShoot;
 
 	//This is the player object class.  Most of the comments I would put in here
 	//would be near duplicates of the Enemy class, so if you're confused at all
 	//I'd recommend checking that out for some ideas!
-	public Player(int X,int Y,FlxGroup Bullets,FlxEmitter Gibs)
+	public Player(int X,int Y,FlxGroup Bullets,FlxEmitter Gibs, FlxVirtualPad pad)
 	{
 		super(X,Y);
 		loadGraphic(ImgSpaceman,true,true,8);
@@ -42,6 +45,9 @@ public class Player extends FlxSprite
 		height = 7;
 		offset.x = 1;
 		offset.y = 1;
+		
+		_pad = pad;
+		_pad.buttonA.onDown = new IFlxButton(){@Override public void callback(){jump();}};
 
 		//basic player physics
 		int runSpeed = 80;
@@ -98,26 +104,25 @@ public class Player extends FlxSprite
 
 		//MOVEMENT
 		acceleration.x = 0;
-		if(FlxG.keys.LEFT)
+		if(FlxG.keys.LEFT || _pad.buttonLeft.status == FlxButton.PRESSED)
 		{
 			setFacing(LEFT);
 			acceleration.x -= drag.x;
 		}
-		else if(FlxG.keys.RIGHT)
+		else if(FlxG.keys.RIGHT || _pad.buttonRight.status == FlxButton.PRESSED)
 		{
 			setFacing(RIGHT);
 			acceleration.x += drag.x;
 		}
-		if(FlxG.keys.justPressed("X") && (int) velocity.y == 0)
-		{
-			velocity.y = -_jumpPower;
-			_sfxJump.play(true);
+		if(FlxG.keys.justPressed("X"))
+		{			
+			jump();
 		}
 
 		//AIMING
-		if(FlxG.keys.UP)
+		if(FlxG.keys.UP  || _pad.buttonUp.status == FlxButton.PRESSED)
 			_aim = UP;
-		else if(FlxG.keys.DOWN && velocity.y != 0)
+		else if((FlxG.keys.DOWN || _pad.buttonDown.status == FlxButton.PRESSED) && velocity.y != 0)
 			_aim = DOWN;
 		else
 			_aim = getFacing();
@@ -141,18 +146,24 @@ public class Player extends FlxSprite
 		}
 
 		//SHOOTING
-		if(FlxG.keys.justPressed("C"))
+		if(FlxG.keys.pressed("C")  || _pad.buttonB.status == FlxButton.PRESSED)
 		{
-			if(getFlickering())
-				_sfxJam.play(true);
-			else
+			if(!_justShoot)
 			{
-				getMidpoint(_point);
-				((Bullet) _bullets.recycle(Bullet.class)).shoot(_point,_aim);
-				if(_aim == DOWN)
-					velocity.y -= 36;
-			}
+				if(getFlickering())
+					_sfxJam.play(true);
+				else
+				{
+					getMidpoint(_point);
+					((Bullet) _bullets.recycle(Bullet.class)).shoot(_point,_aim);
+					if(_aim == DOWN)
+						velocity.y -= 36;
+				}
+				_justShoot = true;
+			}			
 		}
+		else
+			_justShoot = false;
 	}
 
 	@Override
@@ -169,6 +180,15 @@ public class Player extends FlxSprite
 		else
 			velocity.x = maxVelocity.x;
 		super.hurt(Damage);
+	}
+	
+	private void jump()
+	{
+		if((int) velocity.y == 0)
+		{
+			velocity.y = -_jumpPower;
+			_sfxJump.play(true);			
+		}
 	}
 
 	@Override 

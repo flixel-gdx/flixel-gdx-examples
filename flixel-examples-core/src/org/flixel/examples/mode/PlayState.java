@@ -3,6 +3,7 @@ package org.flixel.examples.mode;
 import org.flixel.*;
 import org.flixel.event.IFlxCamera;
 import org.flixel.event.IFlxCollision;
+import org.flixel.ui.FlxVirtualPad;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Application.ApplicationType;
@@ -47,15 +48,21 @@ public class PlayState extends FlxState
 	protected boolean _fading;
 	
 	private FlxSound _sfxCount;
-	
+	private FlxVirtualPad _pad;
 	
 
 	@Override
 	public void create()
 	{
-		FlxG.mouse.hide();
+//		FlxG.mouse.hide();
 		
 		_sfxCount = new FlxSound().loadEmbedded(SndCount, false, false, FlxSound.SFX);
+		
+		_pad = new FlxVirtualPad(FlxVirtualPad.DPAD_FULL, FlxVirtualPad.A_B);
+		_pad.setAlpha(0.5f);
+				
+//		if(Gdx.app.getType() == ApplicationType.Desktop || MenuState.attractMode)
+//			_pad.visible = false;
 
 		//Here we are creating a pool of 100 little metal bits that can be exploded.
 		//We will recycle the crap out of these!
@@ -87,7 +94,7 @@ public class PlayState extends FlxState
 
 		//Now that we have references to the bullets and metal bits,
 		//we can create the player object.
-		_player = new Player(316,300,_bullets,_littleGibs);
+		_player = new Player(316,300,_bullets,_littleGibs, _pad);
 
 		//This refers to a custom function down at the bottom of the file
 		//that creates all our level geometry with a total size of 640x480.
@@ -213,11 +220,16 @@ public class PlayState extends FlxState
 		//HUD/User Interface stuff
 		_score = null;
 		_score2 = null;
+		
+		_pad = null;
 	}
 
 	@Override
 	public void update()
 	{			
+		if(_pad.visible)
+			_pad.update();
+		
 		//save off the current score and update the game state
 		int oldScore = FlxG.score;
 		super.update();
@@ -231,7 +243,7 @@ public class PlayState extends FlxState
 		boolean scoreChanged = oldScore != FlxG.score;
 
 		//Jammed message
-		if(FlxG.keys.justPressed("C") && _player.getFlickering())
+		if((FlxG.keys.justPressed("C") || _pad.buttonB.status == FlxButton.PRESSED) && _player.getFlickering())
 		{
 			_jamTimer = 1;
 			_gunjam.visible = true;
@@ -288,6 +300,14 @@ public class PlayState extends FlxState
 			if(!_player.alive) FlxG.score = 0;
 			_score.setText(String.valueOf(FlxG.score));
 		}
+	}
+	
+	@Override
+	public void draw()
+	{
+		super.draw();
+		if(_pad.visible)
+			_pad.draw();
 	}
 
 	//This is an overlap callback function, triggered by the calls to FlxU.overlap().
