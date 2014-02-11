@@ -16,3 +16,5 @@ Forums
 flixel-gdx doesn’t have its own message board, but you can use the forums of flixel and libgdx. Both have an active community. If you have any questions or feedback that are related to flixel please put it in the flixel community. They are more likely to help you out more quickly than at the libgdx. Questions about Android, OpenGL ES, rendering, etc. goes to libgdx.
 
 [flixel forums](http://forums.flixel.org) | [libgdx forums](http://www.badlogicgames.com/forum)
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/flixel-gdx/flixel-gdx-examples/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
