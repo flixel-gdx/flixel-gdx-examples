@@ -56,6 +56,11 @@
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="Bitmapfont Demo"
             android:screenOrientation="landscape" />
+         <activity
+            android:name=".BitmapFontDistance"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="Bitmapfont distance"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MultiTouchDemo"
             android:configChanges="keyboard|keyboardHidden|orientation"
