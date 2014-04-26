@@ -5,7 +5,7 @@ import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -130,7 +130,7 @@ public class Lesson5 extends FlxState
 		
 		//Clear the offscreen buffer with an opaque background
 		Gdx.gl.glClearColor(0.5f, 0.5f, 0.5f, 1f);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		//before rendering, ensure we are using the default shader
 		FlxG.batch.setShader(null);

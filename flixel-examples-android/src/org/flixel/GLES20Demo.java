@@ -1,6 +1,5 @@
 package org.flixel;
 
-import android.os.Bundle;
 
 /**
  *
@@ -13,13 +12,5 @@ public class GLES20Demo extends FlxAndroidApplication
 	{
 		super(new org.flixel.examples.gles20.GLES20Demo());
 	}
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		cfg.useGL20 = true;
-		super.onCreate(savedInstanceState);
-	}
-
 }
 

@@ -9,7 +9,7 @@ public class BitmapFontDistance
 
 	public static void main(String[] args)
 	{
-		new FlxDesktopApplication(new org.flixel.examples.distancefieldfont.BitmapFontDistance(), 480, 800, true);
+		new FlxDesktopApplication(new org.flixel.examples.distancefieldfont.BitmapFontDistance(), 480, 800);
 	}
 }
 

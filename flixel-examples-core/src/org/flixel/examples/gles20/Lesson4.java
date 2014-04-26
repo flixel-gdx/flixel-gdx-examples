@@ -5,7 +5,7 @@ import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 /**
@@ -48,7 +48,7 @@ public class Lesson4 extends FlxState
 		dirt.getTexture().bind(1);
 		// now we need to reset glActiveTexture to zero!!!! since sprite batch
 		// does not do this for us
-		Gdx.gl.glActiveTexture(GL10.GL_TEXTURE0);
+		Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
 
 		// tex0 will be bound when grass is drawn
 		grass.shader = shader;
