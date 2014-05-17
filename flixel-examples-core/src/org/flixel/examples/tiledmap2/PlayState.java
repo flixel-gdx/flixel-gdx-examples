@@ -8,33 +8,23 @@ import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
 import org.flixel.ui.FlxVirtualPad;
 
-import com.badlogic.gdx.maps.MapLayers;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader.Parameters;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
 
 public class PlayState extends FlxState
-{
-	private static String MAP = "examples/tiledmap2/map01.tmx";
+{	
+	private static String MAP = "examples/tiledmap2/map01.json";
 	private static String ImgBG = "examples/tiledmap2/pack2:bg";
 	private static String ImgGibs = "examples/tiledmap2/pack2:gibs";
 	private static String ImgTiles = "examples/tiledmap2/pack2:tiles";
 
-	public static TiledMap map;
 	private FlxTilemap _level;
 	private FlxVirtualPad _pad;
 
 	@Override
 	public void create()
 	{
-		TmxMapLoader loader = new TmxMapLoader();
-		Parameters args = new Parameters();
-		args.yUp = false;
-		map = loader.load(MAP, args);		
-
 		// Background
 		FlxG.setBgColor(0xffacbcd7);
 
@@ -54,44 +44,51 @@ public class PlayState extends FlxState
 		add(new FlxText(32, 36, 96, "collision").setFormat(null, 16, 0xFF778ea1, "center"));
 		add(new FlxText(32, 60, 96, "DEMO").setFormat(null, 24, 0xFF778ea1, "center"));
 
-		MapLayers layers = map.getLayers();
-		MapObjects objects = layers.get("objects").getObjects();
-		RectangleMapObject rectObj;
-		for(MapObject mapObject : objects)
+		
+		JsonValue value = new JsonReader().parse(Gdx.files.internal(MAP));
+		JsonValue layers = value.getChild("layers");
+		
+		// The tile data.
+		int[] data = layers.get("data").asIntArray();
+		
+		// Go to the next layer which holds the objects.
+		JsonValue objs = layers.next;		
+		JsonValue objects = objs.get("objects");
+		for(int i = 0; i < objects.size; i++)
 		{
-			rectObj = (RectangleMapObject) mapObject;
-			
-			// Draw sprites where objects occur
-			String name = mapObject.getName();
+			String name = objects.get(i).getString("name");
+			JsonValue jv = objects.get(i);
 			if(name != null)
 			{
-				float x = rectObj.getRectangle().x;
-				float y = rectObj.getRectangle().y;
-				float width = rectObj.getRectangle().width;				
-				float height = rectObj.getRectangle().height;
+				float x = jv.getFloat("x");
+				float y = jv.getFloat("y");
+				float width = jv.getInt("width");				
+				float height = jv.getInt("height");
 				if(name.equals("crate"))
 					add(new Crate(x, y));
 				else if(name.equals("elevator"))
 					add(new Elevator(x, 80, height));
 				else if(name.equals("pusher"))
 					add(new Pusher(x, y, width));
-				else if(name.equals("player"))
+				 if(name.equals("player"))
 					add(new Player(x, y, _pad));
 				else if(name.equals("dispenser"))
-				{
-					float minVX = Float.parseFloat(rectObj.getProperties().get("minvx", String.class));
-					float minVY = Float.parseFloat(rectObj.getProperties().get("minvy", String.class));
-					float maxVX = Float.parseFloat(rectObj.getProperties().get("maxvx", String.class));
-					float maxVY = Float.parseFloat(rectObj.getProperties().get("maxvy", String.class));
-					int quantity = Integer.parseInt(rectObj.getProperties().get("quantity", String.class));
+				{	
+					
+					JsonValue properties = objects.get(i).get("properties");
+					float minVX = properties.getFloat("minvx");
+					float minVY = properties.getFloat("minvy");
+					float maxVX = properties.getFloat("maxvx");
+					float maxVY = properties.getFloat("maxvy");
+					int quantity = properties.getInt("quantity");
 					
 					// This is the thing that spews nuts and bolts
 					FlxEmitter dispenser = new FlxEmitter(x, y);
 					dispenser.setSize(8, 40);
 					dispenser.setXSpeed(minVX, maxVX);
 					dispenser.setYSpeed(minVY, maxVY);
-					dispenser.gravity = Float.parseFloat(rectObj.getProperties().get("gravity", String.class));
-					dispenser.bounce = Float.parseFloat(rectObj.getProperties().get("bounce", String.class));
+					dispenser.gravity = properties.getFloat("gravity");
+					dispenser.bounce = properties.getFloat("bounce");
 					dispenser.makeParticles(ImgGibs, quantity, 16, true, 0.8f);
 					dispenser.start(false, 10, 0.035f);
 					add(dispenser);
@@ -99,9 +96,9 @@ public class PlayState extends FlxState
 			}
 		}
 		
-		_level = new FlxTilemap();		
-		_level.loadMap(FlxTilemap.tiledmapToCSV(map, "map"), ImgTiles, 8, 8, FlxTilemap.OFF, 1);
-
+		// The rest of the map data is also in the file, but we did this manually for now.
+		_level = new FlxTilemap();
+		_level.loadMap(FlxTilemap.arrayToCSV(data, 40), ImgTiles, 8, 8, FlxTilemap.OFF, 1);
 		add(_level);
 		add(_pad);
 		_pad.setAlpha(0.5f);
@@ -112,7 +109,6 @@ public class PlayState extends FlxState
 	{
 		super.destroy();
 		_level = null;
-		map.dispose();
 	}
 
 	@Override
