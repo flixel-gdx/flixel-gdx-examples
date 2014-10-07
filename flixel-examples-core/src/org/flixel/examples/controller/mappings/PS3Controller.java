@@ -1,4 +1,4 @@
-package controller.mappings;
+package org.flixel.examples.controller.mappings;
 
 import org.flixel.system.input.GamepadMapping;
 
