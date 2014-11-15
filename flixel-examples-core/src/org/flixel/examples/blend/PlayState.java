@@ -39,6 +39,7 @@ public class PlayState extends FlxState
 		_base.blendTexture = _blend.getTexture();
 		_blendCount = 0;
 		_shaderCount = 0;
+		_useShader = true;
 
 		add(_blend);
 		add(_base);
@@ -93,15 +94,15 @@ public class PlayState extends FlxState
 		{
 			if (_useShader)
 			{
-				if (_blends.length == ++_blendCount)
-					_blendCount = 0;
-				_base.blend = _blends[_blendCount];
+				if (_shaders.length == ++_shaderCount)
+					_shaderCount = 0;
+				_base.blendGL20 = _shaders[_shaderCount];				
 			}
 			else
 			{
-				if (_shaders.length == ++_shaderCount)
-					_shaderCount = 0;
-				_base.blendGL20 = _shaders[_shaderCount];
+				if (_blends.length == ++_blendCount)
+					_blendCount = 0;
+				_base.blend = _blends[_blendCount];
 			}
 		}
 		super.update();
