@@ -1,8 +1,8 @@
 package org.flixel;
 
 import org.flixel.examples.tiledmap2.TiledMap2Demo;
-import org.robovm.cocoatouch.foundation.NSAutoreleasePool;
-import org.robovm.cocoatouch.uikit.UIApplication;
+import org.robovm.apple.foundation.NSAutoreleasePool;
+import org.robovm.apple.uikit.UIApplication;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
