@@ -129,13 +129,12 @@ public class PlayState extends FlxState
 		player.maxVelocity.y = 200;
 		player.acceleration.y = 200;
 		player.drag.x = player.maxVelocity.x*4;
-		add(player);		
+		add(player);
 		
-		score = new FlxText(2,2,100, "SCORE: ");
+		score = new FlxText(2,2,80, "SCORE: ");
 		score.setShadow(0xff000000);
 		score.setText("SCORE: "+(coins.countDead()*100));
 		add(score);
-	
 		
 		status = new FlxText(FlxG.width-160-2,2,160);
 		status.setShadow(0xff000000);

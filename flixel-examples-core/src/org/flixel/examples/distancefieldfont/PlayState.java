@@ -58,12 +58,12 @@ public class PlayState extends FlxState
 				 * Enable distance field
 				 * The padding is 4 and the smoothness is 0.3.
 				 */
-				text.setDistanceField(true, 4, 0.3f, "fontShader");
-				text.setFormat(font_distance, 32, 0xFFFFFF, null, 0xFFFF0000, 4, 4);				
+				//text.setDistanceField(true, 4, 0.3f, "fontShader");
+				text.setFormat(font_distance, 32, 0xFFFFFF, null, 0xFFFF0000);				
 			}
 			else
 			{				
-				text.setFormat(font_default, 32, 0xFFFFFF, null, 0xFFFF0000, 4, 4);				
+				text.setFormat(font_default, 32, 0xFFFFFF, null, 0xFFFF0000);				
 			}			
 			text.scale.x = text.scale.y = scales[i];
 			add(text);			

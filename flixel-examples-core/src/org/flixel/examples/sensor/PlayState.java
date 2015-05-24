@@ -67,7 +67,7 @@ public class PlayState extends FlxState
 		.append("\nRotation: ").append(SensorManager.rotation)
 		.append("\nDisplayMode: ").append(Gdx.graphics.getDesktopDisplayMode());
 		
-		_text.setText(_buf);
+		_text.setText(_buf.toString());
 		
 		for(int i = 0; i < _sprites.length; i++)
 		{

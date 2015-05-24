@@ -151,7 +151,7 @@ public class PlayState extends FlxState
 		_buffer.delete(0, _buffer.length())
 		.append("Bunnies: ")
 		.append(_bunnies.length);
-		_bunnyCounter.setText(_buffer);
+		_bunnyCounter.setText(_buffer.toString());
 	}
 
 	public void updateMemoryUsage()
@@ -168,7 +168,7 @@ public class PlayState extends FlxState
 			_buffer.delete(0, _buffer.length())
 			.append((Gdx.app.getJavaHeap() + Gdx.app.getNativeHeap()) / 1048576)
 			.append(" MB");
-			_memoryUsage.setText(_buffer);
+			_memoryUsage.setText(_buffer.toString());
 			updateMemoryUsage();
 		}
 	};

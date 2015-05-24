@@ -35,7 +35,7 @@ public class RadioButtonState extends Test
 			@Override
 			public void callback()
 			{			
-				text.setText(radioGroup.getSelectedLabel());
+				text.setText(radioGroup.getSelectedLabel().toString());
 			}
 		};
 		
