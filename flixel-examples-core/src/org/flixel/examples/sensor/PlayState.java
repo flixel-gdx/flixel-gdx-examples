@@ -26,7 +26,7 @@ public class PlayState extends FlxState
 	@Override
 	public void create()
 	{		
-		FlxG.addPlugin(SensorManager.class);
+		FlxG.addPlugin(new SensorManager());
 		
 		FlxG.setBgColor(0xffacbcd7);
 		

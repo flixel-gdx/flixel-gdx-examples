@@ -15,7 +15,7 @@ public class TiledMap2Demo extends FlxGame
 {
 	public TiledMap2Demo()
 	{
-		super(320, 240, PlayState.class, 2, 40, 40, false, FlxCamera.FILL_X);
+		super(320, 240, PlayState.class, 2, 40, 40, false, FlxCamera.FIT);
 		forceDebugger = true;
 		FlxG.debug = true;
 	}

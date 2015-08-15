@@ -5,6 +5,8 @@ import org.flixel.event.IFlxButton;
 
 import com.badlogic.gdx.utils.Array;
 
+import flash.ui.Mouse;
+
 public class PlayState extends FlxState
 {
 	//Here's the FlxSave variable this is what we're going to be saving to.
@@ -55,15 +57,14 @@ public class PlayState extends FlxState
 
 		//Make a group to place the boxes in
 		boxGroup = new FlxGroup();
-		//And let's make some boxes!
-		
-		FlxButton box;
+		//And let's make some boxes!		
 		@SuppressWarnings("unchecked")
-		Array<FlxPoint> boxPositions = gameSave.data.get( "boxPositions", Array.class);
+		Array<FlxPoint> boxPositions = gameSave.data.get("boxPositions", Array.class);
 		for (int i = 0; i < numBoxes; i++) {
+			FlxButton box;
 			//If we already have some save data to work with, then let's go ahead and put it to use	
 			if (boxPositions != null){
-				 box = new FlxButton(boxPositions.get(i).x, boxPositions.get(i).y, String.valueOf(i + 1));
+				box = new FlxButton(boxPositions.get(i).x, boxPositions.get(i).y, String.valueOf(i + 1));
 				//I'm using a FlxButton in this instance because I can use if(button.state == FlxButton.PRESSED) 
 				//to detect if the mouse is held down on a button
 				topText.setText("Loaded positions");
@@ -95,6 +96,7 @@ public class PlayState extends FlxState
 
 		//Let's re show the cursors
 		FlxG.mouse.show();
+		Mouse.hide();
 	}
 
 	@Override
@@ -110,12 +112,11 @@ public class PlayState extends FlxState
 		//Note something like this needs to be after super.update() that way the button's state has updated to reflect the mouse event
 		if (FlxG.mouse.justPressed()) {
 			for (FlxBasic a : boxGroup.members) {
-				FlxButton b = (FlxButton) a;
-				if (b.status == FlxButton.PRESSED) {
-					dragOffset.x = b.x - FlxG.mouse.x; //The offset is used to make the box stick to the cursor and not snap to the corner
-					dragOffset.y = b.y - FlxG.mouse.y;
+				if (((FlxButton)a).status == FlxButton.PRESSED) {
+					dragOffset.x = ((FlxButton)a).x - FlxG.mouse.x; //The offset is used to make the box stick to the cursor and not snap to the corner
+					dragOffset.y = ((FlxButton)a).y - FlxG.mouse.y;
 					dragging = true;
-					dragTarget = b;
+					dragTarget = (FlxButton)a;
 				}
 			}
 		}
@@ -134,42 +135,42 @@ public class PlayState extends FlxState
 	//Called when the user clicks the 'Save Locations' button
 	@SuppressWarnings("unchecked")
 	private void onSave() {
-		FlxButton box;
-		Array<FlxPoint> boxPositions; 
 		//Do we already have a save? if not then we need to make one
 		if (gameSave.data.get("boxPositions", Array.class) == null) {
 			//lets make a new array at the location data/
-			boxPositions = new Array<FlxPoint>();			
+			Array<FlxPoint> boxPositions = new Array<FlxPoint>();			
 			for (FlxBasic a : boxGroup.members) {
 				//Cast the boxPositions as an array, you don't have to - but i like my FlashDevelop to highlight so i know im doing it right.
-				box = (FlxButton) a;
-				boxPositions.add(new FlxPoint(box.x, box.y));
+				boxPositions.add(new FlxPoint(((FlxButton)a).x, ((FlxButton)a).y));
 			}
 			topText.setText("Created a new save, and saved positions");
 			topText.setAlpha(1);
+			
+			boxPositions.shrink();
+			gameSave.data.put("boxPositions", boxPositions);
+			gameSave.flush();
 		}else {
 			//So we already have some save data? lets overwrite the data WITHOUT ASKING! oooh so bad :P
-			boxPositions = gameSave.data.get("boxPositions", Array.class);
+			Array<FlxPoint> boxPositions = gameSave.data.get("boxPositions", Array.class);
 			//Now we're not doing a real for-loop here, because i REALLY like for each, so we'll need our own index count
 			int tempCount = 0;
 			//For each button in the group boxGroup - I'm sure you see why I like this already
 			for (FlxBasic a : boxGroup.members) {
-				box = (FlxButton) a;
-				boxPositions.set(tempCount, new FlxPoint(box.x, box.y));
+				boxPositions.set(tempCount, new FlxPoint(((FlxButton)a).x, ((FlxButton)a).y));
 				tempCount++;
 			}
 			topText.setText("Overwrote old positions");
 			topText.setAlpha(1);
+			
+			boxPositions.shrink();
+			gameSave.data.put("boxPositions", boxPositions);
+			gameSave.flush();
 		}
-		boxPositions.shrink();
-		gameSave.data.put("boxPositions", boxPositions);
-		gameSave.flush();
 	}
 
 	//Called when the user clicks the 'Load Locations' button
 	private void onLoad() {
 		//Loading what? There's no save data!
-		
 		@SuppressWarnings("unchecked")
 		Array<FlxPoint> boxPositions = gameSave.data.get("boxPositions", Array.class);
 		if (boxPositions == null){
@@ -180,11 +181,9 @@ public class PlayState extends FlxState
 			//array lose their type, and for some reason cannot be re-cast as a FlxPoint. They become regular Flash Objects with the correct
 			//variables though, so you're safe to use them - just your IDE won't highlight recognize and highlight the variables
 			int tempCount = 0;
-			FlxButton box;
 			for (FlxBasic a : boxGroup.members) {
-				box = (FlxButton) a;
-				box.x = boxPositions.get(tempCount).x;
-				box.y = boxPositions.get(tempCount).y;
+				((FlxButton)a).x = boxPositions.get(tempCount).x;
+				((FlxButton)a).y = boxPositions.get(tempCount).y;
 				tempCount++;
 			}
 			topText.setText("Loaded positions");

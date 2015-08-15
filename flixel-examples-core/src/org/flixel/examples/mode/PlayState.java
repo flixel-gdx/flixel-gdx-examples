@@ -47,22 +47,15 @@ public class PlayState extends FlxState
 	//just to prevent weirdness during level transition
 	protected boolean _fading;
 	
-	private FlxSound _sfxCount;
 	private FlxVirtualPad _pad;
 	
-
 	@Override
 	public void create()
 	{
-//		FlxG.mouse.hide();
-		
-		_sfxCount = new FlxSound().loadEmbedded(SndCount, false, false, FlxSound.SFX);
-		
+		FlxG.mouse.hide();
+				
 		_pad = new FlxVirtualPad(FlxVirtualPad.DPAD_FULL, FlxVirtualPad.A_B);
 		_pad.setAlpha(0.5f);
-				
-//		if(Gdx.app.getType() == ApplicationType.Desktop || MenuState.attractMode)
-//			_pad.visible = false;
 
 		//Here we are creating a pool of 100 little metal bits that can be exploded.
 		//We will recycle the crap out of these!
@@ -229,7 +222,7 @@ public class PlayState extends FlxState
 	{			
 		if(_pad.visible)
 			_pad.update();
-		
+				
 		//save off the current score and update the game state
 		int oldScore = FlxG.score;
 		super.update();
@@ -281,8 +274,7 @@ public class PlayState extends FlxState
 					float volume = 0.35f;
 					if(FlxG.score < 600)
 						volume = 1.0f;
-					_sfxCount.setVolume(volume);
-					_sfxCount.play(true);
+					FlxG.play(SndCount,volume);
 				}
 			}
 

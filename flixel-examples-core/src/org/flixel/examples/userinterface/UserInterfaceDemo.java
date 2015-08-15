@@ -11,7 +11,7 @@ public class UserInterfaceDemo extends FlxGame
 {
 	public UserInterfaceDemo()
 	{
-		super(320, 480, Test.class, 1, 30, 30, true, FlxCamera.FILL_Y);
+		super(320, 480, Test.class, 1, 30, 30, true, FlxCamera.FIT);
 		forceDebugger = true;
 	}
 }

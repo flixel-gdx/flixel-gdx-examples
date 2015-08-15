@@ -24,9 +24,6 @@ public class Test extends FlxState
 	public void create()
 	{
 		FlxG.setBgColor(0xFF111111);
-		FlxG.height = FlxG.camera.viewportHeight;		
-		FlxG.camera.height = FlxG.height;
-		FlxG.height = 480;
 		
 		if(tests == null)
 		{

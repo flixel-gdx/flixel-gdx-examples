@@ -13,6 +13,7 @@ public class Mode extends FlxGame
 {
 	public Mode()
 	{
-		super(320, 240, MenuState.class, 2, 50, 50, false, FlxCamera.FILL_X);
+		super(320, 240, MenuState.class, 2, 50, 50, false, FlxCamera.RESIZE_WIDTH);
+		forceDebugger = true;
 	}
 }

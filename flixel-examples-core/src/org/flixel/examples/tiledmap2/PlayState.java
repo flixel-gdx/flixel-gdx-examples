@@ -28,11 +28,6 @@ public class PlayState extends FlxState
 		// Background
 		FlxG.setBgColor(0xffacbcd7);
 
-		FlxG.width = FlxG.camera.viewportWidth;
-
-		FlxG.camera.scroll.x = -(FlxG.width - FlxG.camera.width) / 2;
-
-		FlxG.camera.width = FlxG.width;
 		_pad = new FlxVirtualPad(FlxVirtualPad.DPAD_FULL, FlxVirtualPad.A_B);
 		
 		FlxG.width = 320;

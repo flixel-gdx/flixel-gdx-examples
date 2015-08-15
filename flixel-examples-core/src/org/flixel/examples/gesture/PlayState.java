@@ -22,7 +22,7 @@ public class PlayState extends FlxState
 		text.setSize(20);
 		add(text);
 
-		FlxG.addPlugin(GestureManager.class);
+		FlxG.addPlugin(new GestureManager());
 
 		FlxGesture gesture = new FlxGesture();
 		gesture.start(new IFlxGesture()

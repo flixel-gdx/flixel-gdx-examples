@@ -18,9 +18,7 @@ public class PlayState3 extends Test
 	public void create()
 	{
 		super.create();
-		FlxG.width = FlxG.camera.viewportWidth;
-		FlxG.camera.scroll.x = -(FlxG.width - FlxG.camera.width) / 2;		
-		FlxG.camera.width = FlxG.width;
+		
 		_analog1 = new FlxAnalog(75, FlxG.height-75);
 		_analog1.setAlpha(.75f);
 		add(_analog1);

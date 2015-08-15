@@ -35,15 +35,12 @@ public class MenuState extends FlxState
 	public FlxText title2;
 	public boolean fading;
 	public float timer;
-	static boolean attractMode;
+	public boolean attractMode;
 	private FlxVirtualPad _pad;
 
 	@Override
 	public void create()
 	{
-		FlxG.width = FlxG.camera.viewportWidth;
-		FlxG.resetCameras();
-		
 		FlxG.setBgColor(0xff131c1b);
 
 		//Simple use of flixel save game object.
@@ -120,7 +117,7 @@ public class MenuState extends FlxState
 	public void update()
 	{			
 		super.update();
-
+		
 		if(title2.x > title1.x + title1.width - 4)
 		{
 			//Once mo and de cross each other, fix their positions
@@ -179,7 +176,7 @@ public class MenuState extends FlxState
 			|| attractMode)) 
 		{
 			fading = true;
-			FlxG.play(SndHit2, 1f, false, false);
+			FlxG.play(SndHit2);
 			FlxG.flash(0xffd8eba2,0.5f);
 			FlxG.fade(0xff131c1b,1,new IFlxCamera(){@Override public void callback(){onFade();}});
 		}

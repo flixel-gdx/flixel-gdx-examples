@@ -20,5 +20,6 @@ public class SaveDemo extends FlxGame
 	public SaveDemo()
 	{
 		super(400, 300, PlayState.class, 1, 20, 20);
+		forceDebugger = true;
 	}
 }
