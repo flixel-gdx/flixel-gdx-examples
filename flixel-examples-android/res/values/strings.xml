@@ -35,5 +35,6 @@
 		<item>GLES20Demo</item>
 		<item>BlendDemo</item>
 		<item>ControllerDemo</item>
+		<item>Flappybalt</item>
     </string-array>
 </resources>

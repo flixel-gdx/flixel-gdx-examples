@@ -1,0 +1,32 @@
+pack.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+background
+  rotate: false
+  xy: 2, 2
+  size: 160, 240
+  orig: 160, 240
+  offset: 0, 0
+  index: -1
+bounce
+  rotate: false
+  xy: 164, 2
+  size: 8, 206
+  orig: 8, 206
+  offset: 0, 0
+  index: -1
+dove
+  rotate: false
+  xy: 2, 244
+  size: 24, 8
+  orig: 24, 8
+  offset: 0, 0
+  index: -1
+paddle
+  rotate: false
+  xy: 174, 2
+  size: 9, 91
+  orig: 9, 91
+  offset: 0, 0
+  index: -1
