@@ -13,7 +13,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="22" />
 
     <application
         android:allowBackup="false"
@@ -212,6 +212,12 @@
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="Controller"
             android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".Flappybalt"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="Flappybalt"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
