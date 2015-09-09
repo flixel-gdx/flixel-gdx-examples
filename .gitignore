@@ -1,11 +1,16 @@
 bin/
 gen/
 dist/
+
+.gwt/
 gwt-unitCache/
 deploy/
 classes/
-**/WAR/org.flixel.flixel_examples_html5/
-**/WAR/assets/
+**/war/org.flixel.flixel_examples_html5/
+**/war/assets/
+
+.metadata
+.recommenders
 
 *.jar
 *.so
